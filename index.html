@@ -1,180 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Portfolio - Tu Nombre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header, section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        h1, h2 {
-            font-weight: 800;
-        }
-        .lang-switch {
-            text-align: right;
-            margin: 10px 20px;
-        }
-        .lang-switch button {
-            background: none;
-            border: none;
-            color: #007acc;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .project {
-            margin-bottom: 30px;
-        }
-        .project h3 {
-            margin-bottom: 5px;
-        }
-        a {
-            color: #007acc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #888;
-            margin: 50px 0 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Christian López Agardi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1, h2 {
+      font-weight: 800;
+    }
+
+    .lang-switch {
+      text-align: right;
+      margin: 10px 20px;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      color: #007acc;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 5px;
+    }
+
+    .lang-switch img {
+      width: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .project, .cv-section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .photo img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #007acc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      margin: 50px 0 20px;
+    }
+  </style>
 </head>
 <body>
 
 <div class="lang-switch">
-    <button onclick="setLanguage('es')">🇪🇸 ES</button> | 
-    <button onclick="setLanguage('en')">🇬🇧 EN</button>
+  <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
+  <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
 </div>
 
 <header>
-    <h1 id="name">Christian López Agardi</h1>
-    <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
+  <div class="photo">
+    <img src="yo.jpg" alt="Christian López Agardi" />
+  </div>
+  <h1 id="name">Christian López Agardi</h1>
+  <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
 </header>
 
 <section>
-    <h2 id="about-title">Sobre mí</h2>
-    <p id="about-text">
-        Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
-    </p>
+  <h2 id="about-title">Sobre mí</h2>
+  <p id="about-text">
+    Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
+  </p>
 </section>
 
 <section>
-    <h2 id="projects-title">Proyectos destacados</h2>
+  <h2 id="projects-title">Proyectos destacados</h2>
 
-    <div class="project">
-        <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2024)</h3>
-        <p id="proj1-text">
-            En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
-        </p>
-        <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup, cron / Task Scheduler, MySQL</p>
-    </div>
+  <div class="project">
+    <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2024)</h3>
+    <p id="proj1-text">
+      En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
+    </p>
+    <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup, cron / Task Scheduler, MySQL</p>
+  </div>
 
-    <div class="project">
-        <h3 id="proj2-title">App integral para mascotas (TFG Ingeniería)</h3>
-        <p id="proj2-text">
-            Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.
-        </p>
-        <p><strong>Stack:</strong> Node.js, Express, Expo, Firebase (Firestore, Auth), NoSQL</p>
-    </div>
+  <div class="project">
+    <h3 id="proj2-title">App integral para mascotas (TFG Ingeniería)</h3>
+    <p id="proj2-text">
+      Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.
+    </p>
+    <p><strong>Stack:</strong> Node.js, Express, Expo, Firebase (Firestore, Auth), NoSQL</p>
+  </div>
 
-    <div class="project">
-        <h3 id="proj3-title">Plan de marketing para la app (TFG ADE)</h3>
-        <p id="proj3-text">
-            Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.
-        </p>
-    </div>
+  <div class="project">
+    <h3 id="proj3-title">Plan de marketing para la app (TFG ADE)</h3>
+    <p id="proj3-text">
+      Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.
+    </p>
+  </div>
+</section>
+
+<section class="cv-section">
+  <h2 id="cv-title">Currículum</h2>
+  <p id="cv-text">
+    Puedes descargar mi <a href="curriculum.pdf" download>currículum en español</a> o mi <a href="resume.pdf" download>resume en inglés</a>.
+  </p>
 </section>
 
 <section>
-    <h2 id="cv-title">Currículum</h2>
-    <p id="cv-text">
-        Puedes descargar mi CV en <a href="#">español</a> o mi <a href="#">resume en inglés</a>.
-    </p>
-</section>
-
-<section>
-    <h2 id="contact-title">Contacto</h2>
-    <p id="contact-text">
-        Puedes escribirme a <a href="mailto:tuemail@dominio.com">tuemail@dominio.com</a> o conectarme en <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>.
-    </p>
+  <h2 id="contact-title">Contacto</h2>
+  <p id="contact-text">
+    Puedes escribirme a <a href="mailto:tuemail@dominio.com">tuemail@dominio.com</a> o conectarme en <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>.
+  </p>
 </section>
 
 <footer>
-    &copy; 2025 Christian López Agardi
+  &copy; 2025 Christian López Agardi
 </footer>
 
 <script>
-    const translations = {
-        es: {
-            name: "Christian López Agardi",
-            subtitle: "Ingeniero Informático & ADE | Automación, IA & Negocios",
-            aboutTitle: "Sobre mí",
-            aboutText: "Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.",
-            projectsTitle: "Proyectos destacados",
-            proj1Title: "Extracción y automatización de datos (INHUB, 2022-2024)",
-            proj1Text: "En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.",
-            proj2Title: "App integral para mascotas (TFG Ingeniería)",
-            proj2Text: "Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.",
-            proj3Title: "Plan de marketing para la app (TFG ADE)",
-            proj3Text: "Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.",
-            cvTitle: "Currículum",
-            cvText: "Puedes descargar mi CV en <a href='#'>español</a> o mi <a href='#'>resume en inglés</a>.",
-            contactTitle: "Contacto",
-            contactText: "Puedes escribirme a <a href='mailto:tuemail@dominio.com'>tuemail@dominio.com</a> o conectarme en <a href='https://linkedin.com/in/tuusuario' target='_blank'>LinkedIn</a>."
-        },
-        en: {
-            name: "Christian López Agardi",
-            subtitle: "Computer Engineer & Business | Automation, AI & Strategy",
-            aboutTitle: "About me",
-            aboutText: "I’m a Computer Engineer with a degree in Business Administration. I love creating tech solutions that add real value, especially around process automation, software development, and AI applied to business.",
-            projectsTitle: "Highlighted Projects",
-            proj1Title: "Data scraping & automation (INHUB, 2022-2024)",
-            proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
-            proj2Title: "Pet wellness app (CS Thesis)",
-            proj2Text: "I built a hybrid app focused on pets’ physical, mental and emotional wellbeing, with AI-personalized plans, using Node.js, Express, Expo and Firebase for secure Firestore auth & storage. The system tracks health data, sends alerts and generates dynamic recommendations.",
-            proj3Title: "Marketing plan for the app (BA Thesis)",
-            proj3Text: "I developed the strategic plan for the app’s launch, including market analysis, buyer persona definition, multi-channel digital strategy and financial projections.",
-            cvTitle: "Resume",
-            cvText: "You can download my CV in <a href='#'>Spanish</a> or my <a href='#'>resume in English</a>.",
-            contactTitle: "Contact",
-            contactText: "Feel free to email me at <a href='mailto:tuemail@dominio.com'>tuemail@dominio.com</a> or connect on <a href='https://linkedin.com/in/tuusuario' target='_blank'>LinkedIn</a>."
-        }
-    };
-
-    function setLanguage(lang) {
-        const t = translations[lang];
-        document.getElementById("name").innerText = t.name;
-        document.getElementById("subtitle").innerText = t.subtitle;
-        document.getElementById("about-title").innerText = t.aboutTitle;
-        document.getElementById("about-text").innerHTML = t.aboutText;
-        document.getElementById("projects-title").innerText = t.projectsTitle;
-        document.getElementById("proj1-title").innerText = t.proj1Title;
-        document.getElementById("proj1-text").innerHTML = t.proj1Text;
-        document.getElementById("proj2-title").innerText = t.proj2Title;
-        document.getElementById("proj2-text").innerHTML = t.proj2Text;
-        document.getElementById("proj3-title").innerText = t.proj3Title;
-        document.getElementById("proj3-text").innerHTML = t.proj3Text;
-        document.getElementById("cv-title").innerText = t.cvTitle;
-        document.getElementById("cv-text").innerHTML = t.cvText;
-        document.getElementById("contact-title").innerText = t.contactTitle;
-        document.getElementById("contact-text").innerHTML = t.contactText;
+  const translations = {
+    es: {
+      name: "Christian López Agardi",
+      subtitle: "Ingeniero Informático & ADE | Automación, IA & Negocios",
+      aboutTitle: "Sobre mí",
+      aboutText: "Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.",
+      projectsTitle: "Proyectos destacados",
+      proj1Title: "Extracción y automatización de datos (INHUB, 2022-2024)",
+      proj1Text: "En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.",
+      proj2Title: "App integral para mascotas (TFG Ingeniería)",
+      proj2Text: "Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.",
+      proj3Title: "Plan de marketing para la app (TFG ADE)",
+      proj3Text: "Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.",
+      cvTitle: "Currículum",
+      cvText: "Puedes descargar mi <a href='curriculum.pdf' download>currículum en español</a> o mi <a href='resume.pdf' download>resume en inglés</a>.",
+      contactTitle: "Contacto",
+      contactText: "Puedes escribirme a <a href='mailto:tuemail@dominio.com'>tuemail@dominio.com</a> o conectarme en <a href='https://linkedin.com/in/tuusuario' target='_blank'>LinkedIn</a>."
+    },
+    en: {
+      name: "Christian López Agardi",
+      subtitle: "Computer Engineer & Business | Automation, AI & Strategy",
+      aboutTitle: "About me",
+      aboutText: "I’m a Computer Engineer with a degree in Business Administration. I love creating tech solutions that add real value, especially around process automation, software development, and AI applied to business.",
+      projectsTitle: "Highlighted Projects",
+      proj1Title: "Data scraping & automation (INHUB, 2022–2024)",
+      proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
+      proj2Title: "Pet wellness app (CS Thesis)",
+      proj2Text: "I built a hybrid app focused on pets’ physical, mental and emotional wellbeing, with AI-personalized plans, using Node.js, Express, Expo and Firebase for secure Firestore auth & storage. The system tracks health data, sends alerts and generates dynamic recommendations.",
+      proj3Title: "Marketing plan for the app (BA Thesis)",
+      proj3Text: "I developed the strategic plan for the app’s launch, including market analysis, buyer persona definition, multi-channel digital strategy and financial projections.",
+      cvTitle: "Resume",
+      cvText: "You can download my <a href='curriculum.pdf' download>CV in Spanish</a> or my <a href='resume.pdf' download>resume in English</a>.",
+      contactTitle: "Contact",
+      contactText: "Feel free to email me at <a href='mailto:tuemail@dominio.com'>tuemail@dominio.com</a> or connect on <a href='https://linkedin.com/in/tuusuario' target='_blank'>LinkedIn</a>."
     }
+  };
+
+  function setLanguage(lang) {
+    const t = translations[lang];
+    document.getElementById("name").innerText = t.name;
+    document.getElementById("subtitle").innerText = t.subtitle;
+    document.getElementById("about-title").innerText = t.aboutTitle;
+    document.getElementById("about-text").innerHTML = t.aboutText;
+    document.getElementById("projects-title").innerText = t.projectsTitle;
+    document.getElementById("proj1-title").innerText = t.proj1Title;
+    document.getElementById("proj1-text").innerHTML = t.proj1Text;
+    document.getElementById("proj2-title").innerText = t.proj2Title;
+    document.getElementById("proj2-text").innerHTML = t.proj2Text;
+    document.getElementById("proj3-title").innerText = t.proj3Title;
+    document.getElementById("proj3-text").innerHTML = t.proj3Text;
+    document.getElementById("cv-title").innerText = t.cvTitle;
+    document.getElementById("cv-text").innerHTML = t.cvText;
+    document.getElementById("contact-title").innerText = t.contactTitle;
+    document.getElementById("contact-text").innerHTML = t.contactText;
+  }
 </script>
 
 </body>
