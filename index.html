@@ -36,11 +36,8 @@
       <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
       <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
     </div>
-    <div class="left-controls">
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <div class="theme-toggle">
-        <button onclick="toggleTheme()" id="theme-button">🌙 Modo oscuro</button>
-      </div>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
     </div>
     <script>
       function toggleMenu() {
@@ -281,17 +278,8 @@
 
   function toggleTheme() {
     const html = document.documentElement;
-    const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', theme);
-
-    const button = document.getElementById('theme-button');
-    if (theme === 'dark') {
-      button.textContent = '🌙 Modo oscuro';
-      button.classList.add('active');
-    } else {
-      button.textContent = '☀️ Modo claro';
-      button.classList.remove('active');
-    }
+    const theme = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
   }
 
   function updateVisitCount() {

@@ -1,4 +1,4 @@
-    :root {
+perfecto, ahora ayudame a que la imagen no salga tan pegada a la barra de menu de la cabecera, sale tan pegada que la parte superior de la imagen queda debajo de la barra de menu, luego, en la esquina izquierda, el modo light y dark queda superpuesto al icono de hamburguesa de menu, haz que no esten superpuestos, si no que esten al lado, al mimo nivel pero uno al lado del otro o uno encima (menu) y abajo el tema. Te paso el archivo de estilos .css porque creo que se debe tocar ahi:     :root {
       --bg: #f5f7fa;
       --text: #333;
       --card-bg: #fff;
@@ -18,7 +18,7 @@
     }
     header, section {
       max-width: 900px;
-      margin-top: 100px;
+      margin: 40px auto;
       padding: 0 20px;
     }
     h1, h2 {
@@ -37,7 +37,7 @@
       border: 3px solid #040404;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .lang-switch {
+    .lang-switch, .theme-toggle {
       position: fixed;
       top: 10px;
       z-index: 1001;
@@ -45,18 +45,8 @@
     .lang-switch {
       right: 10px;
     }
-    .left-controls {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        z-index: 1002;
-        }
-
     .theme-toggle {
-      z-index: 1001;
+      left: 10px;
     }
     .theme-toggle button {
       background: none;
