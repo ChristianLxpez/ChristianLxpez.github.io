@@ -12,6 +12,7 @@
       --bg: #f5f7fa;
       --text: #333;
       --card-bg: #fff;
+      --highlight: #007acc;
     }
     [data-theme="dark"] {
       --bg: #1e1e1e;
@@ -33,11 +34,43 @@
     h1, h2 {
       font-weight: 800;
     }
-    .lang-switch {
+    .photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .photo img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #040404;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .lang-switch, .theme-toggle {
       position: fixed;
       top: 10px;
-      right: 10px;
       z-index: 1001;
+    }
+    .lang-switch {
+      right: 10px;
+    }
+    .theme-toggle {
+      left: 10px;
+    }
+    .theme-toggle button {
+      background: none;
+      border: 1px solid var(--text);
+      padding: 5px 10px;
+      border-radius: 20px;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .theme-toggle button.active {
+      background: var(--highlight);
+      color: white;
+      font-weight: bold;
     }
     .lang-switch button {
       background: none;
@@ -83,19 +116,6 @@
     }
     .navbar.open .navbar-links {
       display: flex;
-    }
-    .theme-toggle {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1001;
-    }
-    .theme-toggle button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      color: var(--text);
     }
     .project, .cv-section, .info-section, .contact-form {
       background: var(--card-bg);
@@ -149,55 +169,69 @@
 <body>
 
   <!-- Menu -->
-<div class="navbar" id="navbar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div class="navbar-links" id="nav-links">
-      <a href="#about-title">Sobre mí</a>
-      <a href="#projects-title">Proyectos</a>
-      <a href="#skills-title">Habilidades</a>
-      <a href="#languages-title">Idiomas</a>
-      <a href="#contact-title">Contacto</a>
+  <div class="navbar" id="navbar">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <div class="navbar-links" id="nav-links">
+        <a href="#about-title">Sobre mí</a>
+        <a href="#projects-title">Proyectos</a>
+        <a href="#skills-title">Habilidades</a>
+        <a href="#languages-title">Idiomas</a>
+        <a href="#contact-title">Contacto</a>
+      </div>
     </div>
-  </div>
+    <div class="lang-switch">
+      <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
+      <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
+    </div>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
+    </div>
+    <script>
+      function toggleMenu() {
+        document.getElementById('navbar').classList.toggle('open');
+      }
+    </script>
+
+  <!-- Language selector -->
   <div class="lang-switch">
     <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
     <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
   </div>
+  <!-- Theme selector -->
   <div class="theme-toggle">
-    <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
+    <button onclick="setTheme('light')" id="lightBtn">Light ☀️</button>
+    <button onclick="setTheme('dark')" id="darkBtn">Dark 🌑</button>
   </div>
   <script>
-    function toggleMenu() {
-      document.getElementById('navbar').classList.toggle('open');
-    }
+      function setTheme(theme) {
+        const html = document.documentElement;
+        html.setAttribute('data-theme', theme);
+        document.getElementById('lightBtn').classList.remove('active');
+        document.getElementById('darkBtn').classList.remove('active');
+        document.getElementById(theme + 'Btn').classList.add('active');
+      }
+      window.onload = () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        setTheme(current);
+      };
   </script>
 
-<!-- Language selector -->
-<div class="lang-switch">
-  <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
-  <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
-</div>
-<!-- Theme selector -->
-<div class="theme-toggle">
-  <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
-</div>
+  <!-- Self picture + tag -->
+  <header>
+    <div class="photo">
+      <img src="yo.jpg" alt="Christian López Agardi" />
+    </div>
+    <h1 id="name">Christian López Agardi</h1>
+    <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
+  </header>
 
-<!-- Self picture + tag -->
-<header>
-  <div class="photo">
-    <img src="yo.jpg" alt="Christian López Agardi" />
-  </div>
-  <h1 id="name">Christian López Agardi</h1>
-  <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
-</header>
-
-<!-- Short bio -->
-<section>
-  <h2 id="about-title">Sobre mí</h2>
-  <p id="about-text">
-    Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
-  </p>
-</section>
+  <!-- Short bio -->
+  <section>
+    <h2 id="about-title">Sobre mí</h2>
+    <p id="about-text">
+      Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
+    </p>
+  </section>
 
 <section class="info-section">
   <h2 id="skills-title">💡 Habilidades</h2>
