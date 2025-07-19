@@ -51,9 +51,12 @@
     <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
   </div>
   <!-- Theme selector -->
-  <div class="theme-toggle">
-    <button onclick="setTheme('light')" id="lightBtn">Light ☀️</button>
-    <button onclick="setTheme('dark')" id="darkBtn">Dark 🌑</button>
+ <div class="top-left-controls">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="theme-toggle">
+      <button onclick="setTheme('light')" id="lightBtn">Light ☀️</button>
+      <button onclick="setTheme('dark')" id="darkBtn">Dark 🌑</button>
+    </div>
   </div>
   <script>
       function setTheme(theme) {
@@ -110,10 +113,10 @@
 <section class="info-section">
   <h2 id="languages-title">🌍 Idiomas</h2>
   <ul id="languages-list">
-    <li>🇪🇸 Español (nativo)</li>
-    <li>🇺🇸 Inglés (avanzado)</li>
-    <li>🇭🇺 Húngaro (nativo)</li>
-    <li>🇫🇷 Francés (básico)</li>
+    <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
+    <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Húngaro (nativo)</li>
+    <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
+    <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francés (A2)</li>
   </ul>
 </section>
 
@@ -139,7 +142,7 @@
     <p id="proj1-text">
       En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
     </p>
-    <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup, cron / Task Scheduler, MySQL</p>
+    <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup / Task Scheduler, MySQL</p>
   </div>
 
   <div class="project">
@@ -148,6 +151,10 @@
       Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.
     </p>
     <p><strong>Stack:</strong> Node.js, Express, Expo, Firebase (Firestore, Auth), NoSQL</p>
+
+    <div class="project-image">
+      <img src="images/page1.PNG" alt="Captura de la app para mascotas" />
+    </div>
   </div>
 
   <div class="project">
@@ -174,7 +181,7 @@
 
 <!-- Contact Form -->
 <section class="contact-form">
-  <h2 id="form-title">Contacto</h2>
+  <h2 id="form-title">Contáctame</h2>
   <form action="https://formsubmit.co/christianlopez897@gmail.com" method="POST">
     <input type="text" name="name" placeholder="Tu nombre" required id="form-name">
     <input type="email" name="email" placeholder="Tu email" required id="form-email">
@@ -205,7 +212,7 @@
       cvText: "Puedes descargar mi <a href='curriculum.pdf' download>CV en Español</a> o <a href='resume.pdf' download>CV en Inglés</a>.",
       contactTitle: "Contacto",
       contactText: "Puedes escribirme a <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> o en <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
-      formTitle: "Contacto",
+      formTitle: "Contáctame",
       formName: "Tu nombre",
       formEmail: "Tu email",
       formMessage: "Tu mensaje",
@@ -246,7 +253,7 @@
         personalText: "Balanced between technical precision and people management. Highly adaptable to multicultural environments, result-driven and continuously improving. According to Belbin: \"cohesive, perceptive, detail-oriented and solution-focused\".",
         interestsTitle: "🚀 Interests & Goals",
         interestsText: "Passionate about technology, innovation and constant learning. Currently seeking international projects with growth potential. Elite athlete in long jump and triple jump, with experience in international competitions.",
-        formTitle: "Contact me",
+        formTitle: "Get in touch",
         formName: "Your name",
         formEmail: "Your email",
         formMessage: "Your message",
