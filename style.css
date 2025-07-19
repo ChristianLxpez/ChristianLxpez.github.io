@@ -162,7 +162,7 @@ footer {
     border: none;
     cursor: pointer;
     color: var(--text);
-    margin-top: 20px;
+    margin-top: 25px;
   }
 
   .navbar-links {
@@ -184,6 +184,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 0;
   }
 
   .menu-toggle {
