@@ -162,7 +162,7 @@ footer {
     border: none;
     cursor: pointer;
     color: var(--text);
-    margin-top: 5px;
+    margin-top: 20px;
   }
 
   .navbar-links {
