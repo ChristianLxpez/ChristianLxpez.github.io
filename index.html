@@ -6,6 +6,16 @@
   <title>Portfolio - Christian López Agardi</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --bg: #f5f7fa;
+      --text: #333;
+      --card-bg: #fff;
+    }
+    [data-theme="dark"] {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+      --card-bg: #2c2c2c;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background: #f5f7fa;
@@ -77,21 +87,120 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
+    .project, .cv-section, .info-section, .contact-form {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #888;
       margin: 50px 0 20px;
     }
+    .emoji {
+      margin-right: 6px;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      z-index: 999;
+    }
+    .navbar a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    form button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      header, section {
+        padding: 0 10px;
+      }
+      .navbar {
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+    }
   </style>
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M6Y8MH9V74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M6Y8MH9V74');
+</script>
 </head>
+
 <body>
 
+  <!-- Menu -->
+  <div class="navbar">
+    <a href="#about-title">Sobre mí</a>
+    <a href="#projects-title">Proyectos</a>
+    <a href="#skills-title">Habilidades</a>
+    <a href="#languages-title">Idiomas</a>
+    <a href="#contact-title">Contacto</a>
+  </div>
+
+<!-- Language selector -->
 <div class="lang-switch">
   <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
   <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
 </div>
+<!-- Theme selector -->
+<div class="theme-toggle">
+  <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
+</div>
 
+<!-- Self picture + tag -->
 <header>
   <div class="photo">
     <img src="yo.jpg" alt="Christian López Agardi" />
@@ -100,6 +209,7 @@
   <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
 </header>
 
+<!-- Short bio -->
 <section>
   <h2 id="about-title">Sobre mí</h2>
   <p id="about-text">
@@ -172,15 +282,26 @@
 <section class="cv-section">
   <h2 id="cv-title">Currículum</h2>
   <p id="cv-text">
-    Puedes descargar mi <a href="curriculum.pdf" download>currículum en español</a> o mi <a href="resume.pdf" download>resume en inglés</a>.
+    Puedes descargar mi <a href="curriculum.pdf" download>CV en español</a> o <a href="resume.pdf" download>CV en inglés</a>.
   </p>
 </section>
 
 <section>
   <h2 id="contact-title">Contacto</h2>
   <p id="contact-text">
-    Puedes escribirme a <a href="mailto:tuemail@dominio.com">tuemail@dominio.com</a> o conectarme en <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>.
+    Puedes escribirme a <a href="mailto:christianlopez897@gmail.com">christianlopez897@gmail.com</a> o conectarme en <a href="https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/" target="_blank">LinkedIn</a>.
   </p>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form">
+  <h2 id="contact-title">Contacto</h2>
+  <form action="https://formsubmit.co/tuemail@dominio.com" method="POST">
+    <input type="text" name="name" placeholder="Tu nombre" required>
+    <input type="email" name="email" placeholder="Tu email" required>
+    <textarea name="message" placeholder="Tu mensaje" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
 </section>
 
 <footer>
@@ -270,6 +391,20 @@
     document.getElementById("interests-title").innerText = t.interestsTitle;
     document.getElementById("interests-text").innerHTML = t.interestsText;
   }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const theme = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+  }
+
+  function updateVisitCount() {
+    const count = localStorage.getItem('visitCount') || 0;
+    const newCount = parseInt(count) + 1;
+    localStorage.setItem('visitCount', newCount);
+    document.getElementById('visits').innerText = `Visitas: ${newCount}`;
+  }
+  updateVisitCount();
 </script>
 
 </body>
