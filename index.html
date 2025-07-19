@@ -20,30 +20,25 @@
 </head>
 
 <body>
-
-  <!-- Menu -->
-  <div class="navbar" id="navbar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <div class="navbar-links" id="nav-links">
-        <a href="#about-title" id="nav-about">Sobre mí</a>
-        <a href="#projects-title" id="nav-projects">Proyectos</a>
-        <a href="#skills-title" id="nav-skills">Habilidades</a>
-        <a href="#languages-title" id="nav-languages">Idiomas</a>
-        <a href="#contact-title" id="nav-contact">Contacto</a>
-      </div>
-    </div>
-    <script>
-      function toggleMenu() {
-        document.getElementById('navbar').classList.toggle('open');
-      }
-    </script>
-
   <div class="top-controls">
     <!-- Theme selector -->
     <div class="theme-toggle">
       <button onclick="setTheme('light')" id="lightBtn">Light ☀️</button>
       <button onclick="setTheme('dark')" id="darkBtn">Dark 🌙</button>
     </div>
+
+    <!-- Menu -->
+    <div class="navbar" id="navbar">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="navbar-links" id="nav-links">
+          <a href="#about-title" id="nav-about">Sobre mí</a>
+          <a href="#projects-title" id="nav-projects">Proyectos</a>
+          <a href="#skills-title" id="nav-skills">Habilidades</a>
+          <a href="#languages-title" id="nav-languages">Idiomas</a>
+          <a href="#contact-title" id="nav-contact">Contacto</a>
+        </div>
+    </div>
+    
     <!-- Language selector -->
     <div class="lang-switch">
       <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
@@ -51,6 +46,12 @@
       <button onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navbar').classList.toggle('open');
+    }
+  </script>
   
   <script>
       function setTheme(theme) {
