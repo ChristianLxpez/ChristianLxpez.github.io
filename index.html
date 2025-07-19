@@ -37,9 +37,20 @@
       <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
     </div>
     <div class="theme-toggle">
-      <button onclick="toggleTheme()"><i class="fas fa-moon"></i> / <i class="fas fa-sun"></i></button>
+      <button id="themeBtn" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
     <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', theme);
+
+        // Cambia el icono
+        const themeIcon = document.querySelector("#themeBtn i");
+        themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      }
       function toggleMenu() {
         document.getElementById('navbar').classList.toggle('open');
       }
@@ -76,19 +87,21 @@
     <div class="photo">
       <img src="yo.jpg" alt="Christian López Agardi" />
     </div>
-    <h1 id="name">Christian López Agardi</h1>
-    <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
+    <div class="name-block">
+      <h1 id="name">Christian López Agardi</h1>
+      <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
+    </div>
   </header>
 
   <!-- Short bio -->
-  <section class="project">
+  <section class="info-section">
     <h2 id="about-title">Sobre mí</h2>
     <p id="about-text">
       Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
     </p>
   </section>
 
-<section class="project">
+<section class="info-section">
   <h2 id="skills-title">💡 Habilidades</h2>
   <ul id="skills-list">
     <ul id="skills-list-2" class="tech-logos">
@@ -109,7 +122,7 @@
   </ul>
 </section>
 
-<section class="project">
+<section class="info-section">
   <h2 id="languages-title">🌍 Idiomas</h2>
   <ul id="languages-list">
     <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
@@ -119,14 +132,14 @@
   </ul>
 </section>
 
-<section class="project">
+<section class="info-section">
   <h2 id="personal-title">🧠 Perfil personal</h2>
   <p id="personal-text">
     Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: "cohesivo, perceptivo, detallista y resolutivo".
   </p>
 </section>
 
-<section class="project">
+<section class="info-section">
   <h2 id="interests-title">🚀 Intereses y objetivos</h2>
   <p id="interests-text">
     Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva internacional.
