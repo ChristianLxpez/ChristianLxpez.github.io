@@ -158,6 +158,8 @@ footer {
     }
     .project-image img {
         max-width: 60%;
+        max-height: 400px;
+        object-fit: contain;
     }
 }
 form input, form textarea {
