@@ -32,25 +32,7 @@
         <a href="#contact-title">Contacto</a>
       </div>
     </div>
-    <div class="lang-switch">
-      <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
-      <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
-    </div>
-    <div class="theme-toggle">
-      <button id="themeBtn" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
     <script>
-      function toggleTheme() {
-        const html = document.documentElement;
-        const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', theme);
-
-        // Cambia el icono
-        const themeIcon = document.querySelector("#themeBtn i");
-        themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-      }
       function toggleMenu() {
         document.getElementById('navbar').classList.toggle('open');
       }
