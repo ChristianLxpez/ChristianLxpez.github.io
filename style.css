@@ -1,4 +1,4 @@
-perfecto, ahora ayudame a que la imagen no salga tan pegada a la barra de menu de la cabecera, sale tan pegada que la parte superior de la imagen queda debajo de la barra de menu, luego, en la esquina izquierda, el modo light y dark queda superpuesto al icono de hamburguesa de menu, haz que no esten superpuestos, si no que esten al lado, al mimo nivel pero uno al lado del otro o uno encima (menu) y abajo el tema. Te paso el archivo de estilos .css porque creo que se debe tocar ahi:     :root {
+:root {
       --bg: #f5f7fa;
       --text: #333;
       --card-bg: #fff;
@@ -162,4 +162,16 @@ perfecto, ahora ayudame a que la imagen no salga tan pegada a la barra de menu d
       padding: 10px 20px;
       border-radius: 8px;
       cursor: pointer;
+    }
+    .tech-logos li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 1.1rem;
+    }
+
+    .tech-logos img {
+        width: 28px;
+        height: 28px;
     }
