@@ -59,7 +59,8 @@
   <!-- Language selector -->
   <div class="lang-switch">
     <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
-    <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button>
+    <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button> |
+    <button onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
   </div>
   <!-- Theme selector -->
  <div class="top-left-controls">
@@ -284,10 +285,10 @@
         `,
         languagesTitle: "🌍 Languages",
         languagesList: `
-        <li>🇪🇸 Spanish (native)</li>
-        <li>🇺🇸 English (advanced)</li>
-        <li>🇭🇺 Hungarian (native)</li>
-        <li>🇫🇷 French (basic)</li>
+            <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanish (native)</li>
+            <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungarian (native)</li>
+            <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> English (First - B2)</li>
+            <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> French (A2)</li>
         `,
         personalTitle: "🧠 Personal Profile",
         personalText: "Balanced between technical precision and people management. Highly adaptable to multicultural environments, result-driven and continuously improving. According to Belbin: \"cohesive, perceptive, detail-oriented and solution-focused\".",
@@ -299,7 +300,46 @@
         formMessage: "Your message",
         formSubmit: "Send",
         formSuccess: "✅ Message sent successfully",
-    }
+    },
+    hu: {
+        name: "Christian López Agardi",
+        subtitle: "Informatikus mérnök és közgazdász | Automatizálás, MI és üzlet",
+        aboutTitle: "Rólam",
+        aboutText: "Informatikus mérnök vagyok, üzleti menedzsment háttérrel. Szenvedélyem a technológiai megoldások fejlesztése, különösen a folyamatok automatizálása, szoftverfejlesztés és az MI üzleti alkalmazása terén.",
+        projectsTitle: "Kiemelt projektek",
+        proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2024)",
+        proj1Text: "Az INHUB-nál Python szkripteket fejlesztettem Selenium és BeautifulSoup segítségével, amelyek több weboldalról gyűjtöttek adatokat. A feladatok napi szinten voltak ütemezve, és az adatokat automatikusan Excel, CSV és MySQL-ben tároltuk, ezzel optimalizálva a döntéshozatalt.",
+        proj2Title: "Állatjólléti app (Mérnöki szakdolgozat)",
+        proj2Text: "Hibrid alkalmazást fejlesztettem, amely a kisállatok fizikai, mentális és érzelmi jóllétére összpontosít. A rendszer személyre szabott MI-alapú terveket készít Node.js, Express, Expo és Firebase használatával, beleértve a Firestore biztonságos hitelesítését és tárolását.",
+        proj3Title: "Marketing terv az apphoz (Közgazdaságtan szakdolgozat)",
+        proj3Text: "Stratégiai tervet dolgoztam ki az app bevezetéséhez: piackutatás, célcsoport meghatározás, digitális marketingstratégia és pénzügyi előrejelzések. ",
+        cvTitle: "Önéletrajz",
+        cvText: "Letöltheted az <a href='curriculum.pdf' download>önéletrajzomat spanyolul</a> vagy <a href='resume.pdf' download>angolul</a>.",
+        contactTitle: "Kapcsolat",
+        contactText: "Írj e-mailt: <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
+        skillsTitle: "💡 Képességek",
+        skillsText: `
+          <li>🧭 <strong>Vezetés:</strong> Projektmenedzsment, stratégiai tervezés, KPI-k</li>
+          <li>🤝 <strong>Soft skillek:</strong> Csapatmunka, interkulturális kommunikáció</li>
+        `,
+        languagesTitle: "🌍 Nyelvek",
+        languagesList: `
+          <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanyol (anyanyelvi)</li>
+          <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Magyar (anyanyelvi)</li>
+          <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Angol (First - B2)</li>
+          <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francia (A2)</li>
+        `,
+        personalTitle: "🧠 Személyes profil",
+        personalText: "Technikai precizitás és emberek vezetése közötti egyensúly. Könnyen alkalmazkodom multikulturális környezethez, eredményorientált vagyok és folyamatosan fejlődöm. Belbin szerint: 'összetartó, érzékeny, részletekre figyelő és megoldásközpontú'.",
+        interestsTitle: "🚀 Érdeklődés és célok",
+        interestsText: "Szenvedélyem a technológia, az innováció és az élethosszig tartó tanulás. Nemzetközi projektek iránt érdeklődöm. Élsportolóként távolugrásban és hármasugrásban vettem részt országos versenyeken.",
+        formTitle: "Lépj kapcsolatba",
+        formName: "Neved",
+        formEmail: "E-mail címed",
+        formMessage: "Üzeneted",
+        formSubmit: "Küldés",
+        formSuccess: "✅ Üzenet sikeresen elküldve",
+      }
   };
 
   function setLanguage(lang) {
