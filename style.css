@@ -59,34 +59,13 @@ h1, h2 {
 .theme-toggle {
     left: 10px; 
 }
-.theme-toggle button {
-    background: none;
-    border: 1px solid var(--text);
-    padding: 5px 10px;
-    border-radius: 20px;
-    color: var(--text);
-    font-size: 0.85rem;
-    cursor: pointer;
-}
+
 .theme-toggle button.active {
     background: var(--highlight);
     color: white;
     font-weight: bold;
 }
-.lang-switch button {
-    background: none;
-    border: none;
-    color: #007acc;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 5px;
-}
-.lang-switch img {
-    width: 20px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -165,6 +144,16 @@ footer {
         max-height: 400px;
         object-fit: contain;
     }
+    .top-controls {
+        flex-direction: row;
+        align-items: center;
+        top: 8px;
+        right: 20px;
+        gap: 20px;
+    }
+    .lang-switch, .theme-toggle {
+        flex-direction: row;
+    }
 }
 form input, form textarea {
     width: 100%;
@@ -222,4 +211,34 @@ form button {
   text-align: center;
   margin-bottom: 20px;
 }
+
+.top-controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1001;
+  align-items: flex-end;
+}
+
+.theme-toggle button,
+.lang-switch button {
+  background: none;
+  border: 1px solid var(--text);
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.lang-switch img {
+  width: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 

@@ -25,11 +25,11 @@
   <div class="navbar" id="navbar">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <div class="navbar-links" id="nav-links">
-        <a href="#about-title">Sobre mí</a>
-        <a href="#projects-title">Proyectos</a>
-        <a href="#skills-title">Habilidades</a>
-        <a href="#languages-title">Idiomas</a>
-        <a href="#contact-title">Contacto</a>
+        <a href="#about-title" id="nav-about">Sobre mí</a>
+        <a href="#projects-title" id="nav-projects">Proyectos</a>
+        <a href="#skills-title" id="nav-skills">Habilidades</a>
+        <a href="#languages-title" id="nav-languages">Idiomas</a>
+        <a href="#contact-title" id="nav-contact">Contacto</a>
       </div>
     </div>
     <script>
@@ -38,19 +38,20 @@
       }
     </script>
 
-  <!-- Language selector -->
-  <div class="lang-switch">
-    <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
-    <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button> |
-    <button onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
-  </div>
-  <!-- Theme selector -->
- <div class="top-left-controls">
+  <div class="top-controls">
+    <!-- Theme selector -->
     <div class="theme-toggle">
       <button onclick="setTheme('light')" id="lightBtn">Light ☀️</button>
       <button onclick="setTheme('dark')" id="darkBtn">Dark 🌙</button>
     </div>
+    <!-- Language selector -->
+    <div class="lang-switch">
+      <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
+      <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button> |
+      <button onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
+    </div>
   </div>
+  
   <script>
       function setTheme(theme) {
         const html = document.documentElement;
@@ -240,6 +241,13 @@
       formMessage: "Tu mensaje",
       formSubmit: "Enviar",
       formSuccess: "✅ Mensaje enviado correctamente",
+      nav: {
+        about: "Sobre mí",
+        projects: "Proyectos",
+        skills: "Habilidades",
+        languages: "Idiomas",
+        contact: "Contacto"
+      },
     },
     en: {
         name: "Christian López Agardi",
@@ -282,6 +290,13 @@
         formMessage: "Your message",
         formSubmit: "Send",
         formSuccess: "✅ Message sent successfully",
+        nav: {
+          about: "About",
+          projects: "Projects",
+          skills: "Skills",
+          languages: "Languages",
+          contact: "Contact"
+        },
     },
     hu: {
         name: "Christian López Agardi",
@@ -300,7 +315,7 @@
         contactTitle: "Kapcsolat",
         contactText: "Írj e-mailt: <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
         skillsTitle: "💡 Képességek",
-        skillsText: `
+        skillsList: `
           <li>🧭 <strong>Vezetés:</strong> Projektmenedzsment, stratégiai tervezés, KPI-k</li>
           <li>🤝 <strong>Soft skillek:</strong> Csapatmunka, interkulturális kommunikáció</li>
         `,
@@ -321,6 +336,13 @@
         formMessage: "Üzeneted",
         formSubmit: "Küldés",
         formSuccess: "✅ Üzenet sikeresen elküldve",
+        nav: {
+          about: "Rólam",
+          projects: "Projektek",
+          skills: "Képességek",
+          languages: "Nyelvek",
+          contact: "Kapcsolat"
+        },
       }
   };
 
@@ -355,6 +377,11 @@
     document.getElementById("form-message").placeholder = t.formMessage;
     document.getElementById("form-submit").innerText = t.formSubmit;
     document.getElementById("form-success").innerText = t.formSuccess;
+    document.getElementById("nav-about").innerText = t.nav.about;
+    document.getElementById("nav-projects").innerText = t.nav.projects;
+    document.getElementById("nav-skills").innerText = t.nav.skills;
+    document.getElementById("nav-languages").innerText = t.nav.languages;
+    document.getElementById("nav-contact").innerText = t.nav.contact;
   }
 
   function toggleTheme() {
