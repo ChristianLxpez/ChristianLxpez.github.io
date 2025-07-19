@@ -200,7 +200,34 @@
     <textarea name="message" placeholder="Tu mensaje" required id="form-message"></textarea>
     <button type="submit" id="form-submit">Enviar</button>
   </form>
+  <div id="form-success" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></div>
 </section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita la recarga/redirección
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch("https://formsubmit.co/ajax/christianlopez897@gmail.com", {
+      method: "POST",
+      body: data,
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById("form-success").style.display = "block";
+        form.reset();
+      } else {
+        alert("❌ Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("❌ Error de red. Por favor, inténtalo más tarde.");
+    });
+  });
+</script>
 
 <footer>
   &copy; 2025 Christian López Agardi
@@ -228,7 +255,8 @@
       formName: "Tu nombre",
       formEmail: "Tu email",
       formMessage: "Tu mensaje",
-      formSubmit: "Enviar"
+      formSubmit: "Enviar",
+      formSuccess: "✅ Mensaje enviado correctamente",
     },
     en: {
         name: "Christian López Agardi",
@@ -269,7 +297,8 @@
         formName: "Your name",
         formEmail: "Your email",
         formMessage: "Your message",
-        formSubmit: "Send"
+        formSubmit: "Send",
+        formSuccess: "✅ Message sent successfully",
     }
   };
 
@@ -303,6 +332,7 @@
     document.getElementById("form-email").placeholder = t.formEmail;
     document.getElementById("form-message").placeholder = t.formMessage;
     document.getElementById("form-submit").innerText = t.formSubmit;
+    document.getElementById("form-success").innerText = t.formSuccess;
   }
 
   function toggleTheme() {

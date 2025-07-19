@@ -213,7 +213,7 @@ form button {
 }
 
 .project-image img:hover {
-  transform: scale(1.03);
+  transform: scale(1.15);
 }
 
 .name-block {
