@@ -295,7 +295,8 @@ footer {
 }
 
 form input, form textarea {
-  width: 85%;
+  min-width: 90%;
+  max-width: 95%;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
