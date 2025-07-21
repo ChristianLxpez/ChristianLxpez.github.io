@@ -39,7 +39,7 @@ h1, h2 {
   border: 3px solid #040404;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-.lang-switch, .theme-toggle {
+.lang-switch {
   position: fixed;
   top: 10px;
   z-index: 1001;
@@ -57,7 +57,9 @@ h1, h2 {
   right: 10px;
 }
 .theme-toggle {
-  left: 10px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .theme-toggle button.active,
 .lang-switch button.active {
@@ -91,16 +93,13 @@ h1, h2 {
 }
 .navbar-links {
   display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
 }
 .navbar-links a {
   color: var(--text);
   text-decoration: none;
   font-weight: bold;
 }
-.navbar.open .navbar-links {
+.navbar.open {
   display: flex;
 }
 .project, .cv-section, .info-section, .contact-form {
@@ -171,12 +170,14 @@ footer {
 
   .navbar-links {
     display: none;
-    flex-direction: column;
+    flex-direction: row; /* ← horizontal en vez de columna */
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     margin-top: 10px;
   }
 
-  .navbar.open .navbar-links {
+  .navbar.open {
     display: flex;
   }
 }
@@ -236,9 +237,10 @@ footer {
 
 form input, form textarea {
   width: 100%;
+  max-width: 600px;
   padding: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
