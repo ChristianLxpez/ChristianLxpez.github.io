@@ -53,9 +53,13 @@ h1, h2 {
   gap: 8px;
   z-index: 1001;
 }
+
 .lang-switch {
-  right: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
+
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -67,6 +71,7 @@ h1, h2 {
     color: #000;
     font-weight: bold;
     border: 1px solid #007acc;
+    border-radius: 6px;
 }
 
 /* --- NAVBAR GLOBAL --- */
@@ -93,9 +98,18 @@ h1, h2 {
   cursor: pointer;
   color: var(--text);
 }
+
+/* ENLACES MENÚ DESPLEGABLE */
 .navbar-links {
   display: none;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  background: var(--card-bg);
+  margin-top: 60px;
 }
+
 .navbar-links a {
   color: var(--text);
   text-decoration: none;
@@ -247,7 +261,7 @@ footer {
 }
 
 form input, form textarea {
-  width: 100%;
+  width: 75%;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -303,15 +317,24 @@ form button {
   margin-bottom: 20px;
 }
 
+/* CONTENEDOR SUPERIOR */
 .top-controls {
   position: fixed;
   top: 10px;
+  left: 10px;
   right: 10px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1001;
-  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+/* BLOQUE IZQUIERDO (tema + menú) */
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .theme-toggle button,
