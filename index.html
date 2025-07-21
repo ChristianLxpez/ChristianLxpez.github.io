@@ -20,18 +20,18 @@
 </head>
 
 <body>
-  <!-- BARRA SUPERIOR FIJA -->
-  <div class="navbar" id="navbar">
-    <!-- Tema -->
-    <div class="theme-toggle">
-      <button onclick="setTheme('light')" id="lightBtn">☀️</button>
-      <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
+  <div class="top-controls">
+    <!-- Bloque izquierdo: Tema + Menú -->
+    <div class="left-group">
+      <div class="theme-toggle">
+        <button onclick="setTheme('light')" id="lightBtn">☀️</button>
+        <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 
-    <!-- Menú hamburguesa -->
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-    <!-- Idiomas -->
+    <!-- Idiomas a la derecha -->
     <div class="lang-switch">
       <button onclick="setLanguage('es')" id="btn-es"><img src="https://flagcdn.com/es.svg" alt="ES"> ES</button>
       <button onclick="setLanguage('en')" id="btn-en"><img src="https://flagcdn.com/us.svg" alt="EN"> EN</button>
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <!-- Enlaces del menú -->
+  <!-- Enlaces desplegables (ocultos en escritorio) -->
   <div class="navbar-links" id="nav-links">
     <a href="#about-title" id="nav-about">Sobre mí</a>
     <a href="#projects-title" id="nav-projects">Proyectos</a>
