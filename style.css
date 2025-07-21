@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --bg: #f5f7fa;
   --text: #333;
@@ -71,7 +75,6 @@ h1, h2 {
     color: #000;
     font-weight: bold;
     border: 1px solid #007acc;
-    border-radius: 6px;
 }
 
 /* --- NAVBAR GLOBAL --- */
@@ -98,6 +101,15 @@ h1, h2 {
   cursor: pointer;
   color: var(--text);
 }
+
+  /* Botón menú */
+  .menu-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+  }
 
 /* ENLACES MENÚ DESPLEGABLE */
 .navbar-links {
@@ -146,13 +158,12 @@ footer {
 /* Móvil (hasta 768px) */
 @media (max-width: 768px) {
   .top-controls {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: var(--card-bg);
-    z-index: 1001;
+    padding: 10px 12px;
+    width: 100%;
   }
 
   .top-row {
@@ -161,6 +172,29 @@ footer {
     gap: 10px;
     justify-content: center;
     align-items: center;
+  }
+
+  .theme-toggle,
+  .lang-switch,
+  .left-group {
+    flex-shrink: 1;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .lang-switch {
+    justify-content: flex-end;
+  }
+
+  .theme-toggle {
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    margin-left: 10px;
   }
 
   .theme-toggle button,
@@ -261,7 +295,7 @@ footer {
 }
 
 form input, form textarea {
-  width: 75%;
+  width: 85%;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -320,13 +354,17 @@ form button {
 /* CONTENEDOR SUPERIOR */
 .top-controls {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  right: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 12px;
   z-index: 1001;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
 }
 
