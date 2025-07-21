@@ -285,7 +285,7 @@ form button {
 }
 
 .project-image img:hover {
-  transform: scale(1.55);
+  transform: scale(1.15);
 }
 
 .name-block {
