@@ -24,7 +24,7 @@
     <!-- Theme selector -->
     <div class="theme-toggle">
       <button onclick="setTheme('light')" id="lightBtn">☀️</button>
-      <button onclick="setTheme('dark')" id="darkBtn">🌙</button>
+      <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
     </div>
 
     <!-- Menu -->
@@ -368,6 +368,15 @@
 
   function setLanguage(lang) {
     const t = translations[lang];
+    
+    // Remueve .active de todos los botones de idioma
+    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+
+    // Añade .active al botón seleccionado
+    const activeBtn = [...document.querySelectorAll('.lang-switch button')]
+      .find(btn => btn.textContent.trim().toLowerCase().includes(lang));
+    if (activeBtn) activeBtn.classList.add('active');
+
     document.getElementById("name").innerText = t.name;
     document.getElementById("subtitle").innerText = t.subtitle;
     document.getElementById("about-title").innerText = t.aboutTitle;
