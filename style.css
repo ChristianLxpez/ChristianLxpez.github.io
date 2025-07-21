@@ -69,21 +69,23 @@ h1, h2 {
     border: 1px solid #007acc;
 }
 
+/* --- NAVBAR GLOBAL --- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   background: var(--card-bg);
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  padding: 10px;
+  padding: 10px 20px;
   z-index: 999;
   flex-wrap: wrap;
 }
+
 .navbar .menu-toggle {
   font-size: 24px;
   background: none;
@@ -159,22 +161,29 @@ footer {
     justify-content: space-between;
   }
 
+  /* Botón menú */
   .menu-toggle {
     font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--text);
-    margin: 0 10px;
   }
 
+  /* --- NAVBAR LINKS --- */
   .navbar-links {
     display: none;
-    flex-direction: row; /* ← horizontal en vez de columna */
-    flex-wrap: wrap;
+    flex-direction: row; /* horizontal */
     justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    background: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .navbar-links.open {
+    display: flex;
   }
 
   .navbar.open {
@@ -218,10 +227,12 @@ footer {
     gap: 20px;
   }
 
-  .lang-switch,
-  .theme-toggle {
+  /* Idiomas y tema */
+  .theme-toggle,
+  .lang-switch {
     display: flex;
     gap: 10px;
+    align-items: center;
   }
 
   @media (max-width: 1024px) {
@@ -237,7 +248,7 @@ footer {
 
 form input, form textarea {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;

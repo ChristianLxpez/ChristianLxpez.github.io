@@ -20,29 +20,32 @@
 </head>
 
 <body>
-  <div class="top-controls">
-    <!-- Theme selector -->
+  <!-- BARRA SUPERIOR FIJA -->
+  <div class="navbar" id="navbar">
+    <!-- Tema -->
     <div class="theme-toggle">
       <button onclick="setTheme('light')" id="lightBtn">☀️</button>
       <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
-      <!-- Menu -->
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="navbar-links" id="nav-links">
-          <a href="#about-title" id="nav-about">Sobre mí</a>
-          <a href="#projects-title" id="nav-projects">Proyectos</a>
-          <a href="#skills-title" id="nav-skills">Habilidades</a>
-          <a href="#languages-title" id="nav-languages">Idiomas</a>
-          <a href="#contact-title" id="nav-contact">Contacto</a>
-        </div>
     </div>
 
-    
-    <!-- Language selector -->
+    <!-- Menú hamburguesa -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Idiomas -->
     <div class="lang-switch">
-      <button onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES">ES</button> |
-      <button onclick="setLanguage('en')"><img src="https://flagcdn.com/us.svg" alt="EN">EN</button> |
-      <button onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
+      <button onclick="setLanguage('es')" id="btn-es"><img src="https://flagcdn.com/es.svg" alt="ES"> ES</button>
+      <button onclick="setLanguage('en')" id="btn-en"><img src="https://flagcdn.com/us.svg" alt="EN"> EN</button>
+      <button onclick="setLanguage('hu')" id="btn-hu"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
     </div>
+  </div>
+
+  <!-- Enlaces del menú -->
+  <div class="navbar-links" id="nav-links">
+    <a href="#about-title" id="nav-about">Sobre mí</a>
+    <a href="#projects-title" id="nav-projects">Proyectos</a>
+    <a href="#skills-title" id="nav-skills">Habilidades</a>
+    <a href="#languages-title" id="nav-languages">Idiomas</a>
+    <a href="#contact-title" id="nav-contact">Contacto</a>
   </div>
 
   <script>
