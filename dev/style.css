@@ -117,9 +117,9 @@ h1, h2 {
   flex-direction: row;
   justify-content: center;
   gap: 15px;
-  padding: 5px;
+  padding: 10px;
   background: var(--card-bg);
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .navbar-links a {

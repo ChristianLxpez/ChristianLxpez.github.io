@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <link rel="icon" type="image/png" href="favicon-32x32.png">
+  <title>Portfolio - Christian López Agardi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M6Y8MH9V74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M6Y8MH9V74');
+</script>
+</head>
+
+<body>
+  <div class="top-controls">
+    <!-- Bloque izquierdo: Tema + Menú -->
+    <div class="left-group">
+      <div class="theme-toggle">
+        <button onclick="setTheme('light')" id="lightBtn">☀️</button>
+        <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+
+    <!-- Idiomas a la derecha -->
+    <div class="lang-switch">
+      <button onclick="setLanguage('es')" id="btn-es"><img src="https://flagcdn.com/es.svg" alt="ES"> ES</button>
+      <button onclick="setLanguage('en')" id="btn-en"><img src="https://flagcdn.com/us.svg" alt="EN"> EN</button>
+      <button onclick="setLanguage('hu')" id="btn-hu"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
+    </div>
+  </div>
+
+  <!-- Enlaces desplegables (ocultos en escritorio) -->
+  <div class="navbar-links" id="nav-links">
+    <a href="#about-title" id="nav-about">Sobre mí</a>
+    <a href="#projects-title" id="nav-projects">Proyectos</a>
+    <a href="#skills-title" id="nav-skills">Habilidades</a>
+    <a href="#languages-title" id="nav-languages">Idiomas</a>
+    <a href="#contact-title" id="nav-contact">Contacto</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+  </script>
+  
+  <script>
+      function setTheme(theme) {
+        const html = document.documentElement;
+        html.setAttribute('data-theme', theme);
+        document.getElementById('lightBtn').classList.remove('active');
+        document.getElementById('darkBtn').classList.remove('active');
+        document.getElementById(theme + 'Btn').classList.add('active');
+      }
+      window.onload = () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        setTheme(current);
+        // Establecer idioma por defecto en inglés:
+        setLanguage('en');
+      };
+  </script>
+
+  <!-- Self picture + tag -->
+  <header>
+    <div class="photo">
+      <img src="yo.jpg" alt="Christian López Agardi" />
+    </div>
+    <div class="name-block">
+      <h1 id="name">Christian López Agardi</h1>
+      <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
+    </div>
+  </header>
+
+  <!-- Short bio -->
+  <section class="info-section">
+    <h2 id="about-title">Sobre mí</h2>
+    <p id="about-text">
+      Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
+    </p>
+  </section>
+
+<section class="info-section">
+  <h2 id="skills-title">💡 Habilidades</h2>
+
+  <ul id="skills-icons" class="tech-logos">
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python"/> Python</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java"/> Java</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++"/> C++</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js"/> Node.js</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" title="React Native"/> React Native</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" title="Firebase"/> Firebase</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML"/> HTML</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS"/> CSS</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript"/> JavaScript</li>
+      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL"/> MySQL</li>
+  </ul>
+  <ul id="skills-list">
+    <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica, KPIs</li>
+    <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural</li>
+  </ul>
+</section>
+
+<section class="info-section">
+  <h2 id="languages-title">🌍 Idiomas</h2>
+  <ul id="languages-list">
+    <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
+    <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Húngaro (nativo)</li>
+    <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
+    <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francés (A2)</li>
+  </ul>
+</section>
+
+<section class="info-section">
+  <h2 id="personal-title">🧠 Perfil personal</h2>
+  <p id="personal-text">
+    Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: "cohesivo, perceptivo, detallista y resolutivo".
+  </p>
+</section>
+
+<section class="info-section">
+  <h2 id="interests-title">🎯 Intereses y objetivos</h2>
+  <p id="interests-text">
+    Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva nacional.
+  </p>
+</section>
+
+<section>
+  <h2 id="projects-title">Proyectos destacados</h2>
+
+  <div class="project">
+    <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2024)</h3>
+    <p id="proj1-text">
+      En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
+    </p>
+    <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup / Task Scheduler, MySQL</p>
+  </div>
+
+  <div class="project">
+    <h3 id="proj2-title">App integral para mascotas (TFG Ingeniería)</h3>
+    <p id="proj2-text">
+      Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.
+    </p>
+    <p><strong>Stack:</strong> Node.js, Express, Expo, Firebase (Firestore, Auth), NoSQL</p>
+
+    <div class="project-image">
+      <img src="images/page1.PNG" alt="Captura de la app para mascotas" />
+    </div>
+  </div>
+
+  <div class="project">
+    <h3 id="proj3-title">Plan de marketing para la app (TFG ADE)</h3>
+    <p id="proj3-text">
+      Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.
+    </p>
+  </div>
+</section>
+
+<section class="cv-section">
+  <h2 id="cv-title">Currículum</h2>
+  <p id="cv-text">
+    Puedes descargar mi <a href="curriculum.pdf" download>CV en español</a> o <a href="resume.pdf" download>CV en inglés</a>.
+  </p>
+</section>
+
+<section class="info-section">
+  <h2 id="contact-title">Contacto</h2>
+  <p id="contact-text">
+    Puedes escribirme a <a href="mailto:christianlopez897@gmail.com">christianlopez897@gmail.com</a> o conectarme en <a href="https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/" target="_blank">LinkedIn</a>.
+  </p>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form">
+  <h2 id="form-title">Contáctame</h2>
+  <form action="https://formsubmit.co/christianlopez897@gmail.com" method="POST">
+    <input type="text" name="name" placeholder="Tu nombre" required id="form-name">
+    <input type="email" name="email" placeholder="Tu email" required id="form-email">
+    <textarea name="message" placeholder="Tu mensaje" required id="form-message"></textarea>
+    <button type="submit" id="form-submit">Enviar</button>
+  </form>
+  <div id="form-success" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></div>
+</section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita la recarga/redirección
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch("https://formsubmit.co/ajax/christianlopez897@gmail.com", {
+      method: "POST",
+      body: data,
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById("form-success").style.display = "block";
+        form.reset();
+      } else {
+        alert("❌ Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("❌ Error de red. Por favor, inténtalo más tarde.");
+    });
+  });
+</script>
+
+<footer>
+  &copy; 2025 Christian López Agardi
+</footer>
+
+<script>
+  const translations = {
+    es: {
+      name: "Christian López Agardi",
+      subtitle: "Ingeniero Informático & ADE | Automación, IA & Negocios",
+      aboutTitle: "Sobre mí",
+      aboutText: "Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.",
+      projectsTitle: "Proyectos destacados",
+      proj1Title: "Extracción y automatización de datos (INHUB, 2022-2024)",
+      proj1Text: "En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.",
+      proj2Title: "App integral para mascotas (TFG Ingeniería)",
+      proj2Text: "Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.",
+      proj3Title: "Plan de marketing para la app (TFG ADE)",
+      proj3Text: "Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.",
+      cvTitle: "Currículum",
+      cvText: "Puedes descargar mi <a href='curriculum.pdf' download>CV en Español</a> o <a href='resume.pdf' download>CV en Inglés</a>.",
+      contactTitle: "Contacto",
+      contactText: "Puedes escribirme a <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> o en <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
+      skillsTitle: "💡 Habilidades",
+        skillsList: `
+        <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
+        <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
+        <li>📊 <strong>Data:</strong> SQL, Excel, automatización de datos</li>
+        <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica, KPIs</li>
+        <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural</li>
+        `,
+        languagesTitle: "🌍 Idiomas",
+        languagesList: `
+            <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
+            <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungaro (nativo)</li>
+            <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
+            <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francés (A2)</li>
+        `,
+        personalTitle: "🧠 Perfil personal",
+        personalText: " Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: \"cohesivo, perceptivo, detallista y resolutivo\".",
+        interestsTitle: "🎯 Intereses y Objetivos",
+        interestsText: "Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva nacional.",
+      formTitle: "Contáctame",
+      formName: "Tu nombre",
+      formEmail: "Tu email",
+      formMessage: "Tu mensaje",
+      formSubmit: "Enviar",
+      formSuccess: "✅ Mensaje enviado correctamente",
+      nav: {
+        about: "Sobre mí",
+        projects: "Proyectos",
+        skills: "Habilidades",
+        languages: "Idiomas",
+        contact: "Contacto"
+      },
+    },
+    en: {
+        name: "Christian López Agardi",
+        subtitle: "Computer Engineer & Business | Automation, AI & Strategy",
+        aboutTitle: "About me",
+        aboutText: "I’m a Computer Engineer with a degree in Business Administration. I love creating tech solutions that add real value, especially around process automation, software development, and AI applied to business.",
+        projectsTitle: "Highlighted Projects",
+        proj1Title: "Data scraping & automation (INHUB, 2022–2024)",
+        proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
+        proj2Title: "Pet wellness app (CS Thesis)",
+        proj2Text: "I built a hybrid app focused on pets’ physical, mental and emotional wellbeing, with AI-personalized plans, using Node.js, Express, Expo and Firebase for secure Firestore auth & storage. The system tracks health data, sends alerts and generates dynamic recommendations.",
+        proj3Title: "Marketing plan for the app (BA Thesis)",
+        proj3Text: "I developed the strategic plan for the app’s launch, including market analysis, buyer persona definition, multi-channel digital strategy and financial projections.",
+        cvTitle: "Resume",
+        cvText: "You can download my <a href='curriculum.pdf' download>CV in Spanish</a> or <a href='resume.pdf' download>CV in English</a>.",
+        contactTitle: "Contact",
+        contactText: "Feel free to email me at <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> or connect on <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
+        skillsTitle: "💡 Skills",
+        skillsList: `
+        <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
+        <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
+        <li>📊 <strong>Data:</strong> SQL, Excel, automated storage</li>
+        <li>🧭 <strong>Management:</strong> Project leadership, strategic planning, KPI tracking</li>
+        <li>🤝 <strong>Soft skills:</strong> Teamwork, intercultural communication</li>
+        `,
+        languagesTitle: "🌍 Languages",
+        languagesList: `
+            <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanish (native)</li>
+            <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungarian (native)</li>
+            <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> English (First - B2)</li>
+            <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> French (A2)</li>
+        `,
+        personalTitle: "🧠 Personal Profile",
+        personalText: "Balanced between technical precision and people management. Highly adaptable to multicultural environments, result-driven and continuously improving. According to Belbin: \"cohesive, perceptive, detail-oriented and solution-focused\".",
+        interestsTitle: "🎯 Interests & Goals",
+        interestsText: "Passionate about technology, innovation and constant learning. Currently seeking international projects with growth potential. Elite athlete in long jump and triple jump, with experience in national competitions.",
+        formTitle: "Get in touch",
+        formName: "Your name",
+        formEmail: "Your email",
+        formMessage: "Your message",
+        formSubmit: "Send",
+        formSuccess: "✅ Message sent successfully",
+        nav: {
+          about: "About",
+          projects: "Projects",
+          skills: "Skills",
+          languages: "Languages",
+          contact: "Contact"
+        },
+    },
+    hu: {
+        name: "Christian López Agardi",
+        subtitle: "Informatikus mérnök és közgazdász | Automatizálás, MI és üzlet",
+        aboutTitle: "Rólam",
+        aboutText: "Informatikus mérnök vagyok, üzleti menedzsment háttérrel. Szenvedélyem a technológiai megoldások fejlesztése, különösen a folyamatok automatizálása, szoftverfejlesztés és az MI üzleti alkalmazása terén.",
+        projectsTitle: "Kiemelt projektek",
+        proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2024)",
+        proj1Text: "Az INHUB-nál Python szkripteket fejlesztettem Selenium és BeautifulSoup segítségével, amelyek több weboldalról gyűjtöttek adatokat. A feladatok napi szinten voltak ütemezve, és az adatokat automatikusan Excel, CSV és MySQL-ben tároltuk, ezzel optimalizálva a döntéshozatalt.",
+        proj2Title: "Állatjólléti app (Mérnöki szakdolgozat)",
+        proj2Text: "Hibrid alkalmazást fejlesztettem, amely a kisállatok fizikai, mentális és érzelmi jóllétére összpontosít. A rendszer személyre szabott MI-alapú terveket készít Node.js, Express, Expo és Firebase használatával, beleértve a Firestore biztonságos hitelesítését és tárolását.",
+        proj3Title: "Marketing terv az apphoz (Közgazdaságtan szakdolgozat)",
+        proj3Text: "Stratégiai tervet dolgoztam ki az app bevezetéséhez: piackutatás, célcsoport meghatározás, digitális marketingstratégia és pénzügyi előrejelzések. ",
+        cvTitle: "Önéletrajz",
+        cvText: "Letöltheted az <a href='curriculum.pdf' download>önéletrajzomat spanyolul</a> vagy <a href='resume.pdf' download>angolul</a>.",
+        contactTitle: "Kapcsolat",
+        contactText: "Írj e-mailt: <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
+        skillsTitle: "💡 Képességek",
+        skillsList: `
+          <li>🧭 <strong>Vezetés:</strong> Projektmenedzsment, stratégiai tervezés, KPI-k</li>
+          <li>🤝 <strong>Soft skillek:</strong> Csapatmunka, interkulturális kommunikáció</li>
+        `,
+        languagesTitle: "🌍 Nyelvek",
+        languagesList: `
+          <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanyol (anyanyelvi)</li>
+          <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Magyar (anyanyelvi)</li>
+          <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Angol (First - B2)</li>
+          <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francia (A2)</li>
+        `,
+        personalTitle: "🧠 Személyes profil",
+        personalText: "Technikai precizitás és emberek vezetése közötti egyensúly. Könnyen alkalmazkodom multikulturális környezethez, eredményorientált vagyok és folyamatosan fejlődöm. Belbin szerint: 'összetartó, érzékeny, részletekre figyelő és megoldásközpontú'.",
+        interestsTitle: "🎯 Érdeklődés és célok",
+        interestsText: "Szenvedélyem a technológia, az innováció és az élethosszig tartó tanulás. Nemzetközi projektek iránt érdeklődöm. Élsportolóként távolugrásban és hármasugrásban vettem részt országos versenyeken.",
+        formTitle: "Lépj kapcsolatba",
+        formName: "Neved",
+        formEmail: "E-mail címed",
+        formMessage: "Üzeneted",
+        formSubmit: "Küldés",
+        formSuccess: "✅ Üzenet sikeresen elküldve",
+        nav: {
+          about: "Rólam",
+          projects: "Projektek",
+          skills: "Képességek",
+          languages: "Nyelvek",
+          contact: "Kapcsolat"
+        },
+      }
+  };
+
+  function setLanguage(lang) {
+    const t = translations[lang];
+    
+    // Remueve .active de todos los botones de idioma
+    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+
+    // Añade .active al botón seleccionado
+    const activeBtn = [...document.querySelectorAll('.lang-switch button')]
+      .find(btn => btn.textContent.trim().toLowerCase().includes(lang));
+    if (activeBtn) activeBtn.classList.add('active');
+
+    document.getElementById("name").innerText = t.name;
+    document.getElementById("subtitle").innerText = t.subtitle;
+    document.getElementById("about-title").innerText = t.aboutTitle;
+    document.getElementById("about-text").innerHTML = t.aboutText;
+    document.getElementById("projects-title").innerText = t.projectsTitle;
+    document.getElementById("proj1-title").innerText = t.proj1Title;
+    document.getElementById("proj1-text").innerHTML = t.proj1Text;
+    document.getElementById("proj2-title").innerText = t.proj2Title;
+    document.getElementById("proj2-text").innerHTML = t.proj2Text;
+    document.getElementById("proj3-title").innerText = t.proj3Title;
+    document.getElementById("proj3-text").innerHTML = t.proj3Text;
+    document.getElementById("cv-title").innerText = t.cvTitle;
+    document.getElementById("cv-text").innerHTML = t.cvText;
+    document.getElementById("contact-title").innerText = t.contactTitle;
+    document.getElementById("contact-text").innerHTML = t.contactText;
+    document.getElementById("skills-title").innerText = t.skillsTitle;
+    document.getElementById("skills-list").innerHTML = t.skillsList;
+    document.getElementById("languages-title").innerText = t.languagesTitle;
+    document.getElementById("languages-list").innerHTML = t.languagesList;
+    document.getElementById("personal-title").innerText = t.personalTitle;
+    document.getElementById("personal-text").innerHTML = t.personalText;
+    document.getElementById("interests-title").innerText = t.interestsTitle;
+    document.getElementById("interests-text").innerHTML = t.interestsText;
+    document.getElementById("form-title").innerText = t.formTitle;
+    document.getElementById("form-name").placeholder = t.formName;
+    document.getElementById("form-email").placeholder = t.formEmail;
+    document.getElementById("form-message").placeholder = t.formMessage;
+    document.getElementById("form-submit").innerText = t.formSubmit;
+    document.getElementById("form-success").innerText = t.formSuccess;
+    document.getElementById("nav-about").innerText = t.nav.about;
+    document.getElementById("nav-projects").innerText = t.nav.projects;
+    document.getElementById("nav-skills").innerText = t.nav.skills;
+    document.getElementById("nav-languages").innerText = t.nav.languages;
+    document.getElementById("nav-contact").innerText = t.nav.contact;
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const theme = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+  }
+
+  function updateVisitCount() {
+    const count = localStorage.getItem('visitCount') || 0;
+    const newCount = parseInt(count) + 1;
+    localStorage.setItem('visitCount', newCount);
+    document.getElementById('visits').innerText = `Visitas: ${newCount}`;
+  }
+  updateVisitCount();
+</script>
+
+</body>
+</html>
