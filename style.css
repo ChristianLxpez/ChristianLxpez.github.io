@@ -225,7 +225,7 @@ footer {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-    padding: 10px 0;
+    /*padding: 10px 0;*/
     background: var(--card-bg);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
@@ -295,7 +295,7 @@ footer {
 }
 
 form input, form textarea {
-  min-width: 90%;
+  min-width: 95%;
   max-width: 95%;
   padding: 10px;
   padding-left: 20px;
@@ -304,6 +304,7 @@ form input, form textarea {
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
 form button {
   background: #007acc;
   color: white;
