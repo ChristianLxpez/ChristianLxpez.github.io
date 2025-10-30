@@ -14,6 +14,7 @@
   --card-bg: #2c2c2c;
 }
 body {
+  visibility: hidden;
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -21,6 +22,10 @@ body {
   padding-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
+}
+body.loaded {
+  visibility: visible;
+  transition: visibility 0s linear 0s, opacity 0.2s;
 }
 header, section {
   max-width: 900px;
@@ -315,11 +320,10 @@ form button {
 }
 
 
-/* .languages-list img {
+.languages-list img {
   vertical-align: middle;
   margin-right: 6px;
-  margin-bottom: 12px; 
-} */
+}
 
 #languages-list li {
   margin-bottom: 12px; /* más espacio entre cada línea */
