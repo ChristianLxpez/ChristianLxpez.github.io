@@ -14,6 +14,7 @@
   --card-bg: #2c2c2c;
 }
 body {
+  visibility: hidden;
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -21,6 +22,10 @@ body {
   padding-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
+}
+body.loaded {
+  visibility: visible;
+  transition: visibility 0s linear 0s, opacity 0.2s;
 }
 header, section {
   max-width: 900px;
@@ -117,9 +122,9 @@ h1, h2 {
   flex-direction: row;
   justify-content: center;
   gap: 15px;
-  padding: 5px;
+  padding: 10px;
   background: var(--card-bg);
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .navbar-links a {
@@ -260,10 +265,18 @@ footer {
     margin-top: 0;
   }
 
+  .project-image {
+    text-align: center;
+    margin-top: 15px;
+  }
+
   .project-image img {
-    max-width: 60%;
-    max-height: 400px;
+    width: 25%;
+    max-width: 140px;
+    height: auto;
     object-fit: contain;
+    margin: 10px auto;
+    display: block;
   }
 
   .top-controls {
@@ -313,22 +326,16 @@ form button {
   border-radius: 8px;
   cursor: pointer;
 }
-.tech-logos li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
 
-.tech-logos img {
-  width: 28px;
-  height: 28px;
-}
 
 .languages-list img {
   vertical-align: middle;
   margin-right: 6px;
+}
+
+#languages-list li {
+  margin-bottom: 12px; /* más espacio entre cada línea */
+  line-height: 1.6;
 }
 
 .project-image {
@@ -394,3 +401,91 @@ form button {
   vertical-align: middle;
   margin-right: 5px;
 }
+
+
+
+
+/* === Language Dropdown Fix === */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#lang-btn {
+  background: none;
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+#lang-btn img {
+  border-radius: 3px;
+}
+
+.lang-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: var(--card-bg);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 1002;
+  min-width: 130px;
+}
+
+.lang-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.lang-menu a:hover {
+  background: #e6f2ff;
+}
+
+.lang-dropdown.open .lang-menu {
+  display: block;
+}
+
+/* === Mejora de los iconos de Skills === */
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* separación entre iconos */
+  list-style: none;
+  padding: 0;
+}
+
+.tech-logos li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  margin: 10px;
+  text-align: center;
+}
+
+.tech-logos img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+/* === Más espacio entre líneas en la lista de habilidades === */
+#skills-list li {
+  margin-bottom: 12px; /* más espacio entre cada línea */
+  line-height: 1.6;
+}
+

@@ -271,7 +271,7 @@ footer {
   }
 
   .project-image img {
-    width: 18%;
+    width: 25%;
     max-width: 140px;
     height: auto;
     object-fit: contain;
