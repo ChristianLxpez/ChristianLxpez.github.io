@@ -266,8 +266,8 @@ footer {
   }
 
   .project-image img {
-    max-width: 60%;
-    max-height: 400px;
+    max-width: 30%;
+    max-height: 200px;
     object-fit: contain;
   }
 
