@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,7 +129,7 @@
     <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
     <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Húngaro (nativo)</li>
     <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
-    <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francés (A2)</li>
+    <li><img src="https://flagcdn.com/w40/de.png" alt="FR" width="20"/> Alemán (A2)</li>
   </ul>
 </section>
 
@@ -257,6 +257,18 @@
   document.addEventListener("click", () => {
     document.querySelector(".lang-dropdown").classList.remove("open");
   });
+
+  const flags = {
+    en: "https://flagcdn.com/gb.svg",
+    es: "https://flagcdn.com/es.svg",
+    hu: "https://flagcdn.com/hu.svg",
+    de: "https://flagcdn.com/de.svg"
+  };
+
+  setLanguage(lang);
+
+  // Actualiza la bandera del botón principal
+  document.getElementById("current-flag").src = flags[lang];
 
   // Actualizar texto según idioma seleccionado
   /* function setLanguage(lang) {
@@ -513,7 +525,7 @@
 
   };
 
-  function applyTranslations(lang) {
+  function setLanguage(lang) {
     const t = translations[lang];
     
     // Remueve .active de todos los botones de idioma
