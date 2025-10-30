@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -231,9 +231,9 @@
 </script>
 
 <section class="info-section" id="meeting">
-  <h2>📅 Book a Meeting</h2>
-  <p>If you’d like to schedule a meeting with me, you can do it directly through my calendar:</p>
-  <div class="calendly-inline-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:1100px;"></div>
+  <h2 id="meeting-title">📅 Book a Meeting</h2>
+  <p id="meeting-text" style="text-align: center;">If you’d like to schedule a meeting with me, you can do it directly through my calendar:</p>
+  <div class="calendly-inline-widget"  id="calendly-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:800px;"></div>
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </section>
 
@@ -281,7 +281,22 @@
     }
 
     // Cierra el menú
-      document.querySelector(".lang-dropdown").classList.remove("open");
+    document.querySelector(".lang-dropdown").classList.remove("open");
+
+    // Actualiza el idioma de Calendly
+    const calendlyWidget = document.getElementById("calendly-widget");
+    if (calendlyWidget) {
+        const baseUrl = "https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi";
+        let locale = lang; // 'en', 'es', 'hu', 'de'
+        // Borra el contenido actual y recrea el iframe con el nuevo idioma
+        calendlyWidget.innerHTML = '';
+        Calendly.initInlineWidget({
+            url: `${baseUrl}?locale=${locale}`,
+            parentElement: calendlyWidget,
+            prefill: {},
+            utm: {}
+        });
+    }
   }
 </script>
 
@@ -336,6 +351,8 @@
         languages: "Idiomas",
         contact: "Contacto"
       },
+      meetingTitle: "📅 Reserva una reunión",
+      meetingText: "Si quieres agendar una reunión conmigo, puedes hacerlo directamente a través de mi calendario:",
     },
     en: {
         name: "Christian López Agardi",
@@ -386,6 +403,8 @@
           languages: "Languages",
           contact: "Contact"
         },
+        meetingTitle: "📅 Book a Meeting",
+        meetingText: "If you’d like to schedule a meeting with me, you can do it directly through my calendar:",
     },
     hu: {
         name: "Christian López Agardi",
@@ -436,6 +455,8 @@
           languages: "Nyelvek",
           contact: "Kapcsolat"
         },
+        meetingTitle: "📅 Időpontfoglalás",
+        meetingText: "Ha szeretnél velem találkozót egyeztetni, közvetlenül a naptáramon keresztül megteheted:",
       },
       de: {
         name: "Christian López Agardi",
@@ -486,6 +507,8 @@
           languages: "Sprachen",
           contact: "Kontakt"
         },
+        meetingTitle: "📅 Termin buchen",
+        meetingText: "Wenn Sie ein Treffen mit mir vereinbaren möchten, können Sie dies direkt über meinen Kalender tun:",
       },
 
   };
@@ -535,6 +558,8 @@
     document.getElementById("nav-skills").innerText = t.nav.skills;
     document.getElementById("nav-languages").innerText = t.nav.languages;
     document.getElementById("nav-contact").innerText = t.nav.contact;
+    document.getElementById("meeting-title").innerText = t.meetingTitle;
+    document.getElementById("meeting-text").innerText = t.meetingText;
   }
 
   function toggleTheme() {

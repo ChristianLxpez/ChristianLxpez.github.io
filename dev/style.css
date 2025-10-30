@@ -313,22 +313,12 @@ form button {
   border-radius: 8px;
   cursor: pointer;
 }
-/* .tech-logos li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
 
-.tech-logos img {
-  width: 28px;
-  height: 28px;
-} */
 
 .languages-list img {
   vertical-align: middle;
   margin-right: 6px;
+  margin-bottom: 12px; /* más espacio entre cada línea */
 }
 
 .project-image {
