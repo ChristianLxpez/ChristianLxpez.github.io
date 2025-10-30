@@ -31,15 +31,17 @@
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 
-    <!-- Idiomas a la derecha -->
+    <!-- Idiomas compactos -->
     <div class="lang-dropdown">
       <button id="lang-btn">
-        🌐 Language: <span id="current-lang">English</span> <i class="fas fa-chevron-down"></i>
+        <img id="current-flag" src="https://flagcdn.com/gb.svg" alt="Current language" width="24" height="16">
+        <i class="fas fa-chevron-down"></i>
       </button>
       <div class="lang-menu" id="lang-menu">
-        <a href="#" onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES"> Español</a>
-        <a href="#" onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> Magyar</a>
-        <a href="#" onclick="setLanguage('de')"><img src="https://flagcdn.com/de.svg" alt="DE"> Deutsch</a>
+        <a href="#" onclick="setLanguage('en')"><img src="https://flagcdn.com/gb.svg" alt="EN" width="20"> English</a>
+        <a href="#" onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES" width="20"> Español</a>
+        <a href="#" onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU" width="20"> Magyar</a>
+        <a href="#" onclick="setLanguage('de')"><img src="https://flagcdn.com/de.svg" alt="DE" width="20"> Deutsch</a>
       </div>
     </div>
   </div>
@@ -258,6 +260,16 @@
 
   // Actualizar texto según idioma seleccionado
   function setLanguage(lang) {
+    const flags = {
+      en: "https://flagcdn.com/gb.svg",
+      es: "https://flagcdn.com/es.svg",
+      hu: "https://flagcdn.com/hu.svg",
+      de: "https://flagcdn.com/de.svg"
+    };
+
+    // Actualiza la bandera del botón principal
+    document.getElementById("current-flag").src = flags[lang];
+
     if (lang === "en") currentLang.textContent = "English";
     if (lang === "es") currentLang.textContent = "Español";
     if (lang === "hu") currentLang.textContent = "Magyar";
@@ -267,6 +279,9 @@
     if (typeof window.translations !== "undefined") {
       window.setLanguage(lang);
     }
+
+    // Cierra el menú
+      document.querySelector(".lang-dropdown").classList.remove("open");
   }
 </script>
 
