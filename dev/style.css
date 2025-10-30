@@ -315,10 +315,15 @@ form button {
 }
 
 
-.languages-list img {
+/* .languages-list img {
   vertical-align: middle;
   margin-right: 6px;
+  margin-bottom: 12px; 
+} */
+
+.languages-list li {
   margin-bottom: 12px; /* más espacio entre cada línea */
+  line-height: 1.6;
 }
 
 .project-image {
