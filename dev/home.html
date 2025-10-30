@@ -80,7 +80,7 @@
   <!-- Self picture + tag -->
   <header>
     <div class="photo">
-      <img src="yo.jpg" alt="Christian López Agardi" />
+      <img src="yo.jpeg" alt="Christian López Agardi" />
     </div>
     <div class="name-block">
       <h1 id="name">Christian López Agardi</h1>
@@ -233,7 +233,7 @@
 <section class="info-section" id="meeting">
   <h2>📅 Book a Meeting</h2>
   <p>If you’d like to schedule a meeting with me, you can do it directly through my calendar:</p>
-  <div class="calendly-inline-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:700px;"></div>
+  <div class="calendly-inline-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:900px;"></div>
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </section>
 
@@ -277,7 +277,7 @@
 
     // Aquí llamas a tu función original de traducción
     if (typeof window.translations !== "undefined") {
-      window.setLanguage(lang);
+      window.applyTranslations(lang);
     }
 
     // Cierra el menú
@@ -490,7 +490,7 @@
 
   };
 
-  function setLanguage(lang) {
+  function applyTranslations(lang) {
     const t = translations[lang];
     
     // Remueve .active de todos los botones de idioma

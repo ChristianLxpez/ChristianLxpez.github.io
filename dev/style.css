@@ -450,3 +450,35 @@ form button {
 .lang-dropdown.open .lang-menu {
   display: block;
 }
+
+/* === Mejora de los iconos de Skills === */
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* separación entre iconos */
+  list-style: none;
+  padding: 0;
+}
+
+.tech-logos li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  margin: 10px;
+  text-align: center;
+}
+
+.tech-logos img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+/* === Más espacio entre líneas en la lista de habilidades === */
+#skills-list li {
+  margin-bottom: 12px; /* más espacio entre cada línea */
+  line-height: 1.6;
+}
+
