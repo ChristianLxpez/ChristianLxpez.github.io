@@ -265,10 +265,18 @@ footer {
     margin-top: 0;
   }
 
+  .project-image {
+    text-align: center;
+    margin-top: 15px;
+  }
+
   .project-image img {
-    max-width: 30%;
-    max-height: 200px;
+    width: 18%;
+    max-width: 140px;
+    height: auto;
     object-fit: contain;
+    margin: 10px auto;
+    display: block;
   }
 
   .top-controls {
