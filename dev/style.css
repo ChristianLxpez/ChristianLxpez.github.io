@@ -313,7 +313,7 @@ form button {
   border-radius: 8px;
   cursor: pointer;
 }
-.tech-logos li {
+/* .tech-logos li {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -324,7 +324,7 @@ form button {
 .tech-logos img {
   width: 28px;
   height: 28px;
-}
+} */
 
 .languages-list img {
   vertical-align: middle;
