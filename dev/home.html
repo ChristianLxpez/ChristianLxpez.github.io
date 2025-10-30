@@ -151,7 +151,7 @@
   <h2 id="projects-title">Proyectos destacados</h2>
 
   <div class="project">
-    <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2024)</h3>
+    <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2025)</h3>
     <p id="proj1-text">
       En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
     </p>
@@ -270,46 +270,7 @@
   // Actualiza la bandera del botón principal
   document.getElementById("current-flag").src = flags[lang];
 
-  // Actualizar texto según idioma seleccionado
-  /* function setLanguage(lang) {
-    const flags = {
-      en: "https://flagcdn.com/gb.svg",
-      es: "https://flagcdn.com/es.svg",
-      hu: "https://flagcdn.com/hu.svg",
-      de: "https://flagcdn.com/de.svg"
-    };
 
-    // Actualiza la bandera del botón principal
-    document.getElementById("current-flag").src = flags[lang];
-
-    if (lang === "en") currentLang.textContent = "English";
-    if (lang === "es") currentLang.textContent = "Español";
-    if (lang === "hu") currentLang.textContent = "Magyar";
-    if (lang === "de") currentLang.textContent = "Deutsch";
-
-    // Aquí llamas a tu función original de traducción
-    if (typeof window.translations !== "undefined") {
-      window.setLanguage(lang);
-    }
-
-    // Cierra el menú
-    document.querySelector(".lang-dropdown").classList.remove("open");
-
-    // Actualiza el idioma de Calendly
-    const calendlyWidget = document.getElementById("calendly-widget");
-    if (calendlyWidget) {
-        const baseUrl = "https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi";
-        let locale = lang; // 'en', 'es', 'hu', 'de'
-        // Borra el contenido actual y recrea el iframe con el nuevo idioma
-        calendlyWidget.innerHTML = '';
-        Calendly.initInlineWidget({
-            url: `${baseUrl}?locale=${locale}`,
-            parentElement: calendlyWidget,
-            prefill: {},
-            utm: {}
-        });
-    }
-  } */
 </script>
 
 <script>
@@ -320,7 +281,7 @@
       aboutTitle: "Sobre mí",
       aboutText: "Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.",
       projectsTitle: "Proyectos destacados",
-      proj1Title: "Extracción y automatización de datos (INHUB, 2022-2024)",
+      proj1Title: "Extracción y automatización de datos (INHUB, 2022-2025)",
       proj1Text: "En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.",
       proj2Title: "App integral para mascotas (TFG Ingeniería)",
       proj2Text: "Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.",
@@ -364,7 +325,7 @@
         contact: "Contacto"
       },
       meetingTitle: "📅 Reserva una reunión",
-      meetingText: "Si quieres agendar una reunión conmigo, puedes hacerlo directamente a través de mi calendario:",
+      meetingText: "Si deseas programar una llamada conmigo, puedes hacerlo directamente a través de mi calendario:",
     },
     en: {
         name: "Christian López Agardi",
@@ -372,7 +333,7 @@
         aboutTitle: "About me",
         aboutText: "Graduate in Computer Engineering and Business Management, with experience in software development, process automation, project management, and data extraction via web scraping. Passionate about artificial intelligence and technological innovation, currently based in Berlin and combining my professional career with elite athletics, strengthening my discipline and commitment.",
         projectsTitle: "Highlighted Projects",
-        proj1Title: "Data scraping & automation (INHUB, 2022–2024)",
+        proj1Title: "Data scraping & automation (INHUB, 2022–2025)",
         proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
         proj2Title: "Pet wellness app (CS Thesis)",
         proj2Text: "I built a hybrid app focused on pets’ physical, mental and emotional wellbeing, with AI-personalized plans, using Node.js, Express, Expo and Firebase for secure Firestore auth & storage. The system tracks health data, sends alerts and generates dynamic recommendations.",
@@ -424,7 +385,7 @@
         aboutTitle: "Rólam",
         aboutText: "Informatikus mérnök és üzleti menedzsment diplomával rendelkezem, tapasztalatom van a szoftverfejlesztésben, folyamatok automatizálásában, projektmenedzsmentben és webes adatkinyerésben. Szenvedélyesen érdekel a mesterséges intelligencia és az innováció, különösen az üzleti alkalmazásaik. Jelenleg Berlinben élek, és a szakmai pályafutásomat élsportolóként, atlétikában (távol- és hármasugrás) is folytatom, ami megerősíti a fegyelmemet és az elkötelezettségemet.",
         projectsTitle: "Kiemelt projektek",
-        proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2024)",
+        proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2025)",
         proj1Text: "Az INHUB-nál Python szkripteket fejlesztettem Selenium és BeautifulSoup segítségével, amelyek több weboldalról gyűjtöttek adatokat. A feladatok napi szinten voltak ütemezve, és az adatokat automatikusan Excel, CSV és MySQL-ben tároltuk, ezzel optimalizálva a döntéshozatalt.",
         proj2Title: "Állatjólléti app (Mérnöki szakdolgozat)",
         proj2Text: "Hibrid alkalmazást fejlesztettem, amely a kisállatok fizikai, mentális és érzelmi jóllétére összpontosít. A rendszer személyre szabott MI-alapú terveket készít Node.js, Express, Expo és Firebase használatával, beleértve a Firestore biztonságos hitelesítését és tárolását.",
@@ -468,7 +429,7 @@
           contact: "Kapcsolat"
         },
         meetingTitle: "📅 Időpontfoglalás",
-        meetingText: "Ha szeretnél velem találkozót egyeztetni, közvetlenül a naptáramon keresztül megteheted:",
+        meetingText: "Ha szeretnél velem egy hívást egyeztetni, közvetlenül a naptáramon keresztül megteheted:",
       },
       de: {
         name: "Christian López Agardi",
@@ -476,7 +437,7 @@
         aboutTitle: "Über mich",
         aboutText: "Absolvent des Doppelstudiums in Informatik und Betriebswirtschaftslehre mit Erfahrung in Softwareentwicklung, Prozessautomatisierung, Projektmanagement und Datenextraktion mittels Web Scraping. Leidenschaftlich interessiert an künstlicher Intelligenz und technologischer Innovation. Derzeit lebe ich in Berlin und kombiniere meine berufliche Laufbahn mit Leistungssport in der Leichtathletik, was meine Disziplin und mein Engagement widerspiegelt.",
         projectsTitle: "Ausgewählte Projekte",
-        proj1Title: "Datenextraktion und Automatisierung (INHUB, 2022–2024)",
+        proj1Title: "Datenextraktion und Automatisierung (INHUB, 2022–2025)",
         proj1Text: "Bei INHUB entwickelte ich Python-Skripte unter Verwendung von Selenium und BeautifulSoup zur automatischen Datenerfassung von verschiedenen Websites. Die Daten wurden regelmäßig in Excel, CSV und MySQL gespeichert, wodurch Entscheidungsprozesse optimiert und manuelle Arbeit reduziert wurde.",
         proj2Title: "Ganzheitliche Haustier-App (Abschlussarbeit Informatik)",
         proj2Text: "Ich entwickelte eine hybride App, die sich auf das physische, mentale und emotionale Wohlbefinden von Haustieren konzentriert. Mit KI-basierter Personalisierung erstellt das System individuelle Pläne. Die App nutzt Node.js, Express, Expo und Firebase für Authentifizierung und sichere Datenspeicherung in Firestore.",
