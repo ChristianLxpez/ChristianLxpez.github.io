@@ -394,3 +394,63 @@ form button {
   vertical-align: middle;
   margin-right: 5px;
 }
+
+/* --- SELECTOR DE IDIOMA DESPLEGABLE --- */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-dropdown button {
+  background: none;
+  border: 1px solid var(--text);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-dropdown button i {
+  font-size: 0.8rem;
+}
+
+.lang-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  margin-top: 6px;
+}
+
+.lang-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.lang-menu a:hover {
+  background: #eaf3ff;
+}
+
+/* Mostrar menú al hacer click */
+.lang-dropdown.open .lang-menu {
+  display: block;
+}
+
+.lang-menu img {
+  width: 20px;
+  height: 14px;
+  border-radius: 3px;
+}

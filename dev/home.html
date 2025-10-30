@@ -32,10 +32,15 @@
     </div>
 
     <!-- Idiomas a la derecha -->
-    <div class="lang-switch">
-      <button onclick="setLanguage('es')" id="btn-es"><img src="https://flagcdn.com/es.svg" alt="ES"> ES</button>
-      <button onclick="setLanguage('en')" id="btn-en"><img src="https://flagcdn.com/us.svg" alt="EN"> EN</button>
-      <button onclick="setLanguage('hu')" id="btn-hu"><img src="https://flagcdn.com/hu.svg" alt="HU"> HU</button>
+    <div class="lang-dropdown">
+      <button id="lang-btn">
+        🌐 Language: <span id="current-lang">English</span> <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="lang-menu" id="lang-menu">
+        <a href="#" onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES"> Español</a>
+        <a href="#" onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU"> Magyar</a>
+        <a href="#" onclick="setLanguage('de')"><img src="https://flagcdn.com/de.svg" alt="DE"> Deutsch</a>
+      </div>
     </div>
   </div>
 
@@ -85,7 +90,9 @@
   <section class="info-section">
     <h2 id="about-title">Sobre mí</h2>
     <p id="about-text">
-      Soy ingeniero informático con formación en Administración y Dirección de Empresas. Me apasiona crear soluciones tecnológicas que aporten valor, especialmente en automatización de procesos, desarrollo de software e inteligencia artificial aplicada al negocio.
+      Graduado en Ingeniería Informática y Administración y Dirección de Empresas, con experiencia en desarrollo de software, automatización de procesos, gestión de proyectos y extracción de datos mediante web scraping.  
+      Apasionado por la inteligencia artificial aplicada al negocio y los proyectos de innovación tecnológica, busco entornos internacionales donde aportar valor combinando tecnología y estrategia empresarial.  
+      Actualmente resido en Berlín y compagino mi carrera profesional con el atletismo de alto rendimiento, disciplina que refuerza mi compromiso y constancia.
     </p>
   </section>
 
@@ -103,10 +110,14 @@
       <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS"/> CSS</li>
       <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript"/> JavaScript</li>
       <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL"/> MySQL</li>
+      <li><img src="https://avatars.githubusercontent.com/u/45487711?s=200&v=4" alt="n8n" title="n8n"/> n8n (No-Code Automation)</li>
   </ul>
+
   <ul id="skills-list">
-    <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica, KPIs</li>
-    <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural</li>
+    <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica y seguimiento de KPIs.</li>
+    <li>⚙️ <strong>Automatización:</strong> Creación de flujos automatizados No-Code con <strong>n8n</strong> e integración de <strong>agentes de IA</strong> para optimizar procesos empresariales.</li>
+    <li>🧠 <strong>Tecnología:</strong> Desarrollo de software, análisis de datos y soluciones basadas en inteligencia artificial.</li>
+    <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural y adaptación a entornos internacionales.</li>
   </ul>
 </section>
 
@@ -217,9 +228,47 @@
   });
 </script>
 
+<section class="info-section" id="meeting">
+  <h2>📅 Book a Meeting</h2>
+  <p>If you’d like to schedule a meeting with me, you can do it directly through my calendar:</p>
+  <div class="calendly-inline-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:700px;"></div>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</section>
+
+
 <footer>
   &copy; 2025 Christian López Agardi
 </footer>
+
+<script>
+  // Mostrar/ocultar el menú de idiomas
+  const langBtn = document.getElementById("lang-btn");
+  const langMenu = document.getElementById("lang-menu");
+  const currentLang = document.getElementById("current-lang");
+
+  langBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.querySelector(".lang-dropdown").classList.toggle("open");
+  });
+
+  // Cerrar menú al hacer click fuera
+  document.addEventListener("click", () => {
+    document.querySelector(".lang-dropdown").classList.remove("open");
+  });
+
+  // Actualizar texto según idioma seleccionado
+  function setLanguage(lang) {
+    if (lang === "en") currentLang.textContent = "English";
+    if (lang === "es") currentLang.textContent = "Español";
+    if (lang === "hu") currentLang.textContent = "Magyar";
+    if (lang === "de") currentLang.textContent = "Deutsch";
+
+    // Aquí llamas a tu función original de traducción
+    if (typeof window.translations !== "undefined") {
+      window.setLanguage(lang);
+    }
+  }
+</script>
 
 <script>
   const translations = {
@@ -241,29 +290,30 @@
       contactText: "Puedes escribirme a <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> o en <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
       skillsTitle: "💡 Habilidades",
         skillsList: `
-        <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
-        <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
-        <li>📊 <strong>Data:</strong> SQL, Excel, automatización de datos</li>
+        <li>🖥️ <strong>Programación:</strong> Python, Java, C/C++, Node.js, React Native</li>
+        <li>🌐 <strong>Desarrollo web:</strong> HTML, CSS, JavaScript, Express.js</li>
+        <li>⚙️ <strong>Automatización:</strong> Creación de flujos <strong>No-Code</strong> con <strong>n8n</strong> e integración de agentes de <strong>IA</strong> para optimizar procesos.</li>
+        <li>📊 <strong>Datos:</strong> SQL, Excel, automatización de datos</li>
         <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica, KPIs</li>
         <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural</li>
-        `,
+      `,
         languagesTitle: "🌍 Idiomas",
         languagesList: `
             <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
             <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungaro (nativo)</li>
             <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
-            <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francés (A2)</li>
+            <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Deutsch (A2)</li>
         `,
         personalTitle: "🧠 Perfil personal",
         personalText: " Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: \"cohesivo, perceptivo, detallista y resolutivo\".",
         interestsTitle: "🎯 Intereses y Objetivos",
         interestsText: "Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva nacional.",
-      formTitle: "Contáctame",
-      formName: "Tu nombre",
-      formEmail: "Tu email",
-      formMessage: "Tu mensaje",
-      formSubmit: "Enviar",
-      formSuccess: "✅ Mensaje enviado correctamente",
+        formTitle: "Contáctame",
+        formName: "Tu nombre",
+        formEmail: "Tu email",
+        formMessage: "Tu mensaje",
+        formSubmit: "Enviar",
+        formSuccess: "✅ Mensaje enviado correctamente",
       nav: {
         about: "Sobre mí",
         projects: "Proyectos",
@@ -276,7 +326,7 @@
         name: "Christian López Agardi",
         subtitle: "Computer Engineer & Business | Automation, AI & Strategy",
         aboutTitle: "About me",
-        aboutText: "I’m a Computer Engineer with a degree in Business Administration. I love creating tech solutions that add real value, especially around process automation, software development, and AI applied to business.",
+        aboutText: "Graduate in Computer Engineering and Business Management, with experience in software development, process automation, project management, and data extraction via web scraping. Passionate about artificial intelligence and technological innovation, currently based in Berlin and combining my professional career with elite athletics, strengthening my discipline and commitment.",
         projectsTitle: "Highlighted Projects",
         proj1Title: "Data scraping & automation (INHUB, 2022–2024)",
         proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
@@ -290,18 +340,19 @@
         contactText: "Feel free to email me at <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> or connect on <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
         skillsTitle: "💡 Skills",
         skillsList: `
-        <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
-        <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
-        <li>📊 <strong>Data:</strong> SQL, Excel, automated storage</li>
-        <li>🧭 <strong>Management:</strong> Project leadership, strategic planning, KPI tracking</li>
-        <li>🤝 <strong>Soft skills:</strong> Teamwork, intercultural communication</li>
+          <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
+          <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
+          <li>⚙️ <strong>Automation:</strong> Building <strong>No-Code workflows</strong> with <strong>n8n</strong> and integrating <strong>AI agents</strong> to streamline processes.</li>
+          <li>📊 <strong>Data:</strong> SQL, Excel, automated storage</li>
+          <li>🧭 <strong>Management:</strong> Project leadership, strategic planning, KPI tracking</li>
+          <li>🤝 <strong>Soft skills:</strong> Teamwork, intercultural communication</li>
         `,
         languagesTitle: "🌍 Languages",
         languagesList: `
             <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanish (native)</li>
             <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungarian (native)</li>
             <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> English (First - B2)</li>
-            <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> French (A2)</li>
+            <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Deutsch (A2)</li>
         `,
         personalTitle: "🧠 Personal Profile",
         personalText: "Balanced between technical precision and people management. Highly adaptable to multicultural environments, result-driven and continuously improving. According to Belbin: \"cohesive, perceptive, detail-oriented and solution-focused\".",
@@ -325,7 +376,7 @@
         name: "Christian López Agardi",
         subtitle: "Informatikus mérnök és közgazdász | Automatizálás, MI és üzlet",
         aboutTitle: "Rólam",
-        aboutText: "Informatikus mérnök vagyok, üzleti menedzsment háttérrel. Szenvedélyem a technológiai megoldások fejlesztése, különösen a folyamatok automatizálása, szoftverfejlesztés és az MI üzleti alkalmazása terén.",
+        aboutText: "Informatikus mérnök és üzleti menedzsment diplomával rendelkezem, tapasztalatom van a szoftverfejlesztésben, folyamatok automatizálásában, projektmenedzsmentben és webes adatkinyerésben. Szenvedélyesen érdekel a mesterséges intelligencia és az innováció, különösen az üzleti alkalmazásaik. Jelenleg Berlinben élek, és a szakmai pályafutásomat élsportolóként, atlétikában (távol- és hármasugrás) is folytatom, ami megerősíti a fegyelmemet és az elkötelezettségemet.",
         projectsTitle: "Kiemelt projektek",
         proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2024)",
         proj1Text: "Az INHUB-nál Python szkripteket fejlesztettem Selenium és BeautifulSoup segítségével, amelyek több weboldalról gyűjtöttek adatokat. A feladatok napi szinten voltak ütemezve, és az adatokat automatikusan Excel, CSV és MySQL-ben tároltuk, ezzel optimalizálva a döntéshozatalt.",
@@ -339,6 +390,10 @@
         contactText: "Írj e-mailt: <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
         skillsTitle: "💡 Képességek",
         skillsList: `
+          <li>🖥️ <strong>Programozás:</strong> Python, Java, C/C++, Node.js, React Native</li>
+          <li>🌐 <strong>Webfejlesztés:</strong> HTML, CSS, JavaScript, Express.js</li>
+          <li>⚙️ <strong>Automatizálás:</strong> <strong>No-Code</strong> folyamatok létrehozása <strong>n8n</strong> segítségével és <strong>MI ügynökök</strong> integrálása a hatékonyság növelésére.</li>
+          <li>📊 <strong>Adatkezelés:</strong> SQL, Excel, adat-automatizálás</li>
           <li>🧭 <strong>Vezetés:</strong> Projektmenedzsment, stratégiai tervezés, KPI-k</li>
           <li>🤝 <strong>Soft skillek:</strong> Csapatmunka, interkulturális kommunikáció</li>
         `,
@@ -347,7 +402,7 @@
           <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanyol (anyanyelvi)</li>
           <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Magyar (anyanyelvi)</li>
           <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Angol (First - B2)</li>
-          <li><img src="https://flagcdn.com/w40/fr.png" alt="FR" width="20"/> Francia (A2)</li>
+          <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Deutsch (A2)</li>
         `,
         personalTitle: "🧠 Személyes profil",
         personalText: "Technikai precizitás és emberek vezetése közötti egyensúly. Könnyen alkalmazkodom multikulturális környezethez, eredményorientált vagyok és folyamatosan fejlődöm. Belbin szerint: 'összetartó, érzékeny, részletekre figyelő és megoldásközpontú'.",
@@ -366,7 +421,58 @@
           languages: "Nyelvek",
           contact: "Kapcsolat"
         },
-      }
+      },
+      de: {
+        name: "Christian López Agardi",
+        subtitle: "Informatikingenieur & Betriebswirt | Automatisierung, KI & Strategie",
+        aboutTitle: "Über mich",
+        aboutText: "Absolvent des Doppelstudiums in Informatik und Betriebswirtschaftslehre mit Erfahrung in Softwareentwicklung, Prozessautomatisierung, Projektmanagement und Datenextraktion mittels Web Scraping. Leidenschaftlich interessiert an künstlicher Intelligenz und technologischer Innovation. Derzeit lebe ich in Berlin und kombiniere meine berufliche Laufbahn mit Leistungssport in der Leichtathletik, was meine Disziplin und mein Engagement widerspiegelt.",
+        projectsTitle: "Ausgewählte Projekte",
+        proj1Title: "Datenextraktion und Automatisierung (INHUB, 2022–2024)",
+        proj1Text: "Bei INHUB entwickelte ich Python-Skripte unter Verwendung von Selenium und BeautifulSoup zur automatischen Datenerfassung von verschiedenen Websites. Die Daten wurden regelmäßig in Excel, CSV und MySQL gespeichert, wodurch Entscheidungsprozesse optimiert und manuelle Arbeit reduziert wurde.",
+        proj2Title: "Ganzheitliche Haustier-App (Abschlussarbeit Informatik)",
+        proj2Text: "Ich entwickelte eine hybride App, die sich auf das physische, mentale und emotionale Wohlbefinden von Haustieren konzentriert. Mit KI-basierter Personalisierung erstellt das System individuelle Pläne. Die App nutzt Node.js, Express, Expo und Firebase für Authentifizierung und sichere Datenspeicherung in Firestore.",
+        proj3Title: "Marketingplan für die App (Abschlussarbeit BWL)",
+        proj3Text: "Ich erstellte den strategischen Marketingplan für den App-Launch, einschließlich Marktanalyse, Zielgruppenbestimmung, Multichannel-Digitalstrategie und Finanzprognosen.",
+        cvTitle: "Lebenslauf",
+        cvText: "Sie können meinen <a href='curriculum.pdf' download>Lebenslauf auf Spanisch</a> oder <a href='resume.pdf' download>auf Englisch</a> herunterladen.",
+        contactTitle: "Kontakt",
+        contactText: "Sie können mich unter <a href='mailto:christianlopez897@gmail.com'>christianlopez897@gmail.com</a> erreichen oder sich über <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a> mit mir vernetzen.",
+        skillsTitle: "💡 Fähigkeiten",
+        skillsList: `
+          <li>🖥️ <strong>Programmierung:</strong> Python, Java, C/C++, Node.js, React Native</li>
+          <li>🌐 <strong>Webentwicklung:</strong> HTML, CSS, JavaScript, Express.js</li>
+          <li>⚙️ <strong>Automatisierung:</strong> Erstellung von <strong>No-Code-Workflows</strong> mit <strong>n8n</strong> und Integration von <strong>KI-Agenten</strong> zur Prozessoptimierung.</li>
+          <li>📊 <strong>Daten:</strong> SQL, Excel, Datenautomatisierung</li>
+          <li>🧭 <strong>Management:</strong> Projektleitung, strategische Planung, KPI-Überwachung</li>
+          <li>🤝 <strong>Soft Skills:</strong> Teamarbeit, interkulturelle Kommunikation</li>
+        `,
+        languagesTitle: "🌍 Sprachen",
+        languagesList: `
+          <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanisch (Muttersprache)</li>
+          <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Ungarisch (Zweitsprache)</li>
+          <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Englisch (B2 – First Certificate)</li>
+          <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Deutsch (A2)</li>
+        `,
+        personalTitle: "🧠 Persönliches Profil",
+        personalText: "Ausgewogen zwischen technischer Präzision und Menschenführung. Anpassungsfähig an multikulturelle Umgebungen, ergebnisorientiert und stets lernbereit. Laut Belbin: „kohäsiv, einfühlsam, detailorientiert und lösungsorientiert.“",
+        interestsTitle: "🎯 Interessen & Ziele",
+        interestsText: "Leidenschaftlich interessiert an Technologie, Innovation und kontinuierlichem Lernen. Ich suche internationale Projekte mit Zukunftsvision. Leistungssportler in Weit- und Dreisprung, mit Erfahrung auf nationaler Ebene.",
+        formTitle: "Kontakt aufnehmen",
+        formName: "Dein Name",
+        formEmail: "Deine E-Mail",
+        formMessage: "Deine Nachricht",
+        formSubmit: "Senden",
+        formSuccess: "✅ Nachricht erfolgreich gesendet",
+        nav: {
+          about: "Über mich",
+          projects: "Projekte",
+          skills: "Fähigkeiten",
+          languages: "Sprachen",
+          contact: "Kontakt"
+        },
+      },
+
   };
 
   function setLanguage(lang) {
