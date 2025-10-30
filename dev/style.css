@@ -321,7 +321,7 @@ form button {
   margin-bottom: 12px; 
 } */
 
-.languages-list li {
+#languages-list li {
   margin-bottom: 12px; /* más espacio entre cada línea */
   line-height: 1.6;
 }
