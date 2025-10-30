@@ -258,18 +258,6 @@
     document.querySelector(".lang-dropdown").classList.remove("open");
   });
 
-  const flags = {
-    en: "https://flagcdn.com/gb.svg",
-    es: "https://flagcdn.com/es.svg",
-    hu: "https://flagcdn.com/hu.svg",
-    de: "https://flagcdn.com/de.svg"
-  };
-
-  setLanguage(lang);
-
-  // Actualiza la bandera del botón principal
-  document.getElementById("current-flag").src = flags[lang];
-
 
 </script>
 
@@ -486,16 +474,27 @@
 
   };
 
+  const flags = {
+    en: "https://flagcdn.com/gb.svg",
+    es: "https://flagcdn.com/es.svg",
+    hu: "https://flagcdn.com/hu.svg",
+    de: "https://flagcdn.com/de.svg"
+  };
+
   function setLanguage(lang) {
     const t = translations[lang];
     
-    // Remueve .active de todos los botones de idioma
+   /*  // Remueve .active de todos los botones de idioma
     document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
 
     // Añade .active al botón seleccionado
     const activeBtn = [...document.querySelectorAll('.lang-switch button')]
       .find(btn => btn.textContent.trim().toLowerCase().includes(lang));
-    if (activeBtn) activeBtn.classList.add('active');
+    if (activeBtn) activeBtn.classList.add('active'); */
+
+    // Actualizar la bandera
+  const currentFlag = document.getElementById("current-flag");
+  if(currentFlag) currentFlag.src = flags[lang];
 
     document.getElementById("name").innerText = t.name;
     document.getElementById("subtitle").innerText = t.subtitle;
