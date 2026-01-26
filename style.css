@@ -506,3 +506,17 @@ form button {
   width: 32px;
   height: 32px;
 }
+
+.more-skill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.more-skill .plus {
+  color: #0678c4;
+  font-size: 20px;
+  line-height: 1;
+}
