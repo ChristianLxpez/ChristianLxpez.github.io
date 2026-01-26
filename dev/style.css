@@ -489,3 +489,22 @@ form button {
   line-height: 1.6;
 }
 
+.cert-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cert-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.cert-list img {
+  width: 32px;
+  height: 32px;
+}
+
+
