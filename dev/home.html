@@ -6,7 +6,9 @@
  <link rel="icon" type="image/png" href="favicon-32x32.png">
   <title>Portfolio - Christian López Agardi</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!--<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
 
 <!-- Google tag (gtag.js) -->
@@ -253,7 +255,7 @@
 <!-- Contact Form -->
 <section class="contact-form">
   <h2 id="form-title">Contáctame</h2>
-  <form action="https://formsubmit.co/lopezagardi@gmail.com" method="POST">
+  <form id="contactForm" action="https://formsubmit.co/lopezagardi@gmail.com" method="POST">
     <input type="text" name="name" placeholder="Tu nombre" required id="form-name">
     <input type="email" name="email" placeholder="Tu email" required id="form-email">
     <textarea name="message" placeholder="Tu mensaje" required id="form-message"></textarea>
@@ -338,14 +340,7 @@
       contactTitle: "Contacto",
       contactText: "Puedes escribirme a <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> o en <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
       skillsTitle: "💡 Habilidades",
-        skillsList: `
-        <li>🖥️ <strong>Programación:</strong> Python, Java, C/C++, Node.js, React Native</li>
-        <li>🌐 <strong>Desarrollo web:</strong> HTML, CSS, JavaScript, Express.js</li>
-        <li>⚙️ <strong>Automatización:</strong> Creación de flujos <strong>No-Code</strong> con <strong>n8n</strong> e integración de agentes de <strong>IA</strong> para optimizar procesos.</li>
-        <li>📊 <strong>Datos:</strong> SQL, Excel, automatización de datos</li>
-        <li>🧭 <strong>Gestión:</strong> Liderazgo de proyectos, planificación estratégica, KPIs</li>
-        <li>🤝 <strong>Soft skills:</strong> Trabajo en equipo, comunicación intercultural</li>
-      `,
+        
       certificationsTitle: "📜 Certificaciones y formación",
         languagesTitle: "🌍 Idiomas",
         languagesList: `
@@ -391,14 +386,7 @@
         contactTitle: "Contact",
         contactText: "Feel free to email me at <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> or connect on <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
         skillsTitle: "💡 Skills",
-        skillsList: `
-          <li>🖥️ <strong>Programming:</strong> Python, Java, C/C++, Node.js, React Native</li>
-          <li>🌐 <strong>Web development:</strong> HTML, CSS, JavaScript, Express.js</li>
-          <li>⚙️ <strong>Automation:</strong> Building <strong>No-Code workflows</strong> with <strong>n8n</strong> and integrating <strong>AI agents</strong> to streamline processes.</li>
-          <li>📊 <strong>Data:</strong> SQL, Excel, automated storage</li>
-          <li>🧭 <strong>Management:</strong> Project leadership, strategic planning, KPI tracking</li>
-          <li>🤝 <strong>Soft skills:</strong> Teamwork, intercultural communication</li>
-        `,
+       
         certificationsTitle: "📜 Certifications & Learnings",
         languagesTitle: "🌍 Languages",
         languagesList: `
@@ -444,14 +432,7 @@
         contactTitle: "Kapcsolat",
         contactText: "Írj e-mailt: <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
         skillsTitle: "💡 Képességek",
-        skillsList: `
-          <li>🖥️ <strong>Programozás:</strong> Python, Java, C/C++, Node.js, React Native</li>
-          <li>🌐 <strong>Webfejlesztés:</strong> HTML, CSS, JavaScript, Express.js</li>
-          <li>⚙️ <strong>Automatizálás:</strong> <strong>No-Code</strong> folyamatok létrehozása <strong>n8n</strong> segítségével és <strong>MI ügynökök</strong> integrálása a hatékonyság növelésére.</li>
-          <li>📊 <strong>Adatkezelés:</strong> SQL, Excel, adat-automatizálás</li>
-          <li>🧭 <strong>Vezetés:</strong> Projektmenedzsment, stratégiai tervezés, KPI-k</li>
-          <li>🤝 <strong>Soft skillek:</strong> Csapatmunka, interkulturális kommunikáció</li>
-        `,
+        
         certificationsTitle: "📜 Tanúsítványok és tanulmányok",
         languagesTitle: "🌍 Nyelvek",
         languagesList: `
@@ -497,14 +478,7 @@
         contactTitle: "Kontakt",
         contactText: "Sie können mich unter <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> erreichen oder sich über <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a> mit mir vernetzen.",
         skillsTitle: "💡 Fähigkeiten",
-        skillsList: `
-          <li>🖥️ <strong>Programmierung:</strong> Python, Java, C/C++, Node.js, React Native</li>
-          <li>🌐 <strong>Webentwicklung:</strong> HTML, CSS, JavaScript, Express.js</li>
-          <li>⚙️ <strong>Automatisierung:</strong> Erstellung von <strong>No-Code-Workflows</strong> mit <strong>n8n</strong> und Integration von <strong>KI-Agenten</strong> zur Prozessoptimierung.</li>
-          <li>📊 <strong>Daten:</strong> SQL, Excel, Datenautomatisierung</li>
-          <li>🧭 <strong>Management:</strong> Projektleitung, strategische Planung, KPI-Überwachung</li>
-          <li>🤝 <strong>Soft Skills:</strong> Teamarbeit, interkulturelle Kommunikation</li>
-        `,
+        
         certificationsTitle: "📜 Zertifikate & Weiterbildungen",
         languagesTitle: "🌍 Sprachen",
         languagesList: `
@@ -574,7 +548,6 @@
     document.getElementById("contact-title").innerText = t.contactTitle;
     document.getElementById("contact-text").innerHTML = t.contactText;
     document.getElementById("skills-title").innerText = t.skillsTitle;
-    document.getElementById("skills-list").innerHTML = t.skillsList;
     document.getElementById("languages-title").innerText = t.languagesTitle;
     document.getElementById("languages-list").innerHTML = t.languagesList;
     document.getElementById("personal-title").innerText = t.personalTitle;
@@ -610,6 +583,9 @@
   }
   updateVisitCount();
 </script>
+
+<p id="visits"></p>
+
 
 </body>
 </html>
