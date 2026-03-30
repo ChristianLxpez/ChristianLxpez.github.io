@@ -1,589 +1,1278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <link rel="icon" type="image/png" href="favicon-32x32.png">
-  <title>Portfolio - Christian López Agardi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <!--<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>-->
+  <title>Christian López Agardi — Business Intelligence Analyst</title>
+  <link rel="icon" type="image/png" href="favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6Y8MH9V74"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M6Y8MH9V74');</script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M6Y8MH9V74"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-M6Y8MH9V74');
-</script>
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #0C0C0C;
+      --bg2:       #141414;
+      --bg3:       #1A1A1A;
+      --border:    rgba(255,255,255,0.07);
+      --gold:      #C9A84C;
+      --gold-dim:  #9A7A38;
+      --gold-glow: rgba(201,168,76,0.12);
+      --text:      #E8E4DC;
+      --text2:     #8A8680;
+      --text3:     #5A5650;
+      --white:     #F5F2ED;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --sans:      'DM Sans', sans-serif;
+      --mono:      'DM Mono', monospace;
+      --radius:    4px;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="light"] {
+      --bg:        #F8F5F0;
+      --bg2:       #EFEBE4;
+      --bg3:       #E6E0D6;
+      --border:    rgba(0,0,0,0.08);
+      --text:      #1A1714;
+      --text2:     #6B6560;
+      --text3:     #9A9590;
+      --gold-glow: rgba(201,168,76,0.08);
+      --white:     #1A1714;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.75; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ── NOISE TEXTURE ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ── TOP BAR ────────────────────────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 56px;
+      background: rgba(12,12,12,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    [data-theme="light"] .topbar { background: rgba(248,245,240,0.88); }
+
+    .topbar-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .topbar-logo span { color: var(--gold); }
+
+    .topbar-nav { display: flex; gap: 2rem; align-items: center; }
+    .topbar-nav a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+    .topbar-nav a:hover { color: var(--gold); opacity: 1; }
+
+    .topbar-right { display: flex; align-items: center; gap: 1rem; }
+
+    /* Theme toggle */
+    .theme-btn {
+      background: none; border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 12px;
+      cursor: pointer; font-size: 0.75rem;
+      color: var(--text2); font-family: var(--sans);
+      transition: all 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Lang dropdown */
+    .lang-dropdown { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: none; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 5px 10px;
+      cursor: pointer; color: var(--text2);
+      font-family: var(--sans); font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .lang-btn img { border-radius: 2px; }
+    .lang-menu {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); min-width: 130px;
+      overflow: hidden; opacity: 0; pointer-events: none;
+      transform: translateY(-6px);
+      transition: all 0.2s;
+    }
+    .lang-dropdown.open .lang-menu { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .lang-menu a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 14px; font-size: 0.82rem; color: var(--text2);
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-menu a:hover { background: var(--bg3); color: var(--text); opacity: 1; }
+    .lang-menu img { border-radius: 2px; }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none; background: none; border: none;
+      color: var(--text2); font-size: 1.3rem; cursor: pointer;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .hero-photo {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-dim);
+      object-fit: cover;
+      margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.1s forwards;
+      box-shadow: 0 0 40px var(--gold-glow);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-name em { font-style: italic; color: var(--gold); }
+
+    .hero-title {
+      font-family: var(--sans);
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+      margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .hero-tag {
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text2);
+      background: var(--bg2);
+    }
+
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: var(--gold);
+      color: #0C0C0C;
+      font-family: var(--sans); font-size: 0.82rem;
+      font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { opacity: 1; background: #e0b857; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-family: var(--sans); font-size: 0.82rem;
+      font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all 0.25s;
+    }
+    .btn-outline:hover { opacity: 1; border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+    /* ── SECTIONS ───────────────────────────────────────────── */
+    section { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .section-title em { font-style: italic; }
+    .section-line {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text { font-size: 0.95rem; color: var(--text2); line-height: 1.85; }
+    .about-text p + p { margin-top: 1.2rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat {
+      background: var(--bg2);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+    .stat:hover { background: var(--bg3); }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--text3); letter-spacing: 0.05em; }
+
+    /* ── SKILLS ─────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .skill-group {
+      background: var(--bg2);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .skill-group:hover { background: var(--bg3); }
+    .skill-group-icon { font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .skill-group-title {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-pill {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text2);
+      background: var(--bg);
+      transition: all 0.2s;
+    }
+    .skill-pill:hover { border-color: var(--gold); color: var(--gold); }
+    .skill-pill.highlight { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-glow); }
+
+    /* ── EXPERIENCE ─────────────────────────────────────────── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { }
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .exp-location { font-size: 0.75rem; color: var(--text3); }
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+    .exp-company { font-size: 0.82rem; color: var(--text2); margin-bottom: 1rem; }
+    .exp-bullets { }
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--text2);
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      line-height: 1.65;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--gold-dim);
+      font-size: 0.75rem;
+    }
+
+    /* ── PROJECTS ───────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .project-card {
+      background: var(--bg2);
+      padding: 2rem;
+      transition: background 0.25s;
+      position: relative;
+    }
+    .project-card:hover { background: var(--bg3); }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text3);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.1em;
+    }
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .project-desc {
+      font-size: 0.84rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; }
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text3);
+    }
+    .project-card-soon {
+      opacity: 0.45;
+    }
+    .project-card-soon .project-name::after {
+      content: ' — coming soon';
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      color: var(--gold-dim);
+      font-style: normal;
+    }
+
+    /* ── CERTIFICATIONS ─────────────────────────────────────── */
+    .cert-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .cert-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg2); padding: 1.25rem 1.75rem;
+      transition: background 0.2s; gap: 1rem;
+    }
+    .cert-item:hover { background: var(--bg3); }
+    .cert-left { display: flex; align-items: center; gap: 1rem; }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .cert-dot.progress { background: none; border: 1px solid var(--gold); }
+    .cert-name { font-size: 0.88rem; color: var(--text); font-weight: 400; }
+    .cert-issuer { font-size: 0.75rem; color: var(--text3); }
+    .cert-date {
+      font-family: var(--mono);
+      font-size: 0.7rem; color: var(--text3);
+      white-space: nowrap;
+    }
+    .cert-badge {
+      font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 20px;
+      background: var(--gold-glow); border: 1px solid var(--gold-dim);
+      color: var(--gold);
+    }
+
+    /* ── LANGUAGES ──────────────────────────────────────────── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .lang-item {
+      background: var(--bg2);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+    .lang-item:hover { background: var(--bg3); }
+    .lang-flag { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .lang-name { font-size: 0.9rem; color: var(--white); font-weight: 400; margin-bottom: 0.2rem; }
+    .lang-level { font-size: 0.72rem; color: var(--text3); }
+    .lang-bar { height: 2px; background: var(--border); border-radius: 1px; margin-top: 0.75rem; }
+    .lang-bar-fill { height: 100%; border-radius: 1px; background: var(--gold); }
+
+    /* ── CONTACT ────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro { font-size: 0.9rem; color: var(--text2); line-height: 1.8; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.85rem; color: var(--text2);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+    .contact-link:hover { opacity: 1; border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+    .contact-link i { width: 16px; color: var(--gold); }
+
+    /* Contact form */
+    .contact-form { display: flex; flex-direction: column; gap: 0.75rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+    .form-input, .form-textarea {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 10px 14px;
+      color: var(--text); font-family: var(--sans); font-size: 0.88rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      align-self: flex-start;
+      padding: 11px 28px;
+      background: var(--gold);
+      color: #0C0C0C;
+      font-family: var(--sans); font-size: 0.8rem;
+      font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; border-radius: var(--radius);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .form-submit:hover { background: #e0b857; transform: translateY(-1px); }
+    .form-success { font-size: 0.82rem; color: var(--gold); margin-top: 0.5rem; display: none; }
+
+    /* ── CALENDLY ───────────────────────────────────────────── */
+    .calendly-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DIVIDER LINE ───────────────────────────────────────── */
+    .full-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .topbar-nav { display: none; }
+      .topbar-nav.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 56px; left: 0; right: 0;
+        background: var(--bg2); border-bottom: 1px solid var(--border);
+        padding: 1.5rem; gap: 1.2rem; z-index: 99;
+      }
+      .menu-toggle { display: block; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="top-controls">
-    <!-- Bloque izquierdo: Tema + Menú -->
-    <div class="left-group">
-      <div class="theme-toggle">
-        <button onclick="setTheme('light')" id="lightBtn">☀️</button>
-        <button onclick="setTheme('dark')" id="darkBtn">🌑</button>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar">
+    <div class="topbar-logo">C<span>.</span>López</div>
+
+    <nav class="topbar-nav" id="nav-links">
+      <a href="#about" id="nav-about">About</a>
+      <a href="#skills" id="nav-skills">Skills</a>
+      <a href="#experience" id="nav-experience">Experience</a>
+      <a href="#projects" id="nav-projects">Projects</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </nav>
+
+    <div class="topbar-right">
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀ Light</button>
+
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-btn" id="lang-btn" onclick="toggleLang(event)">
+          <img id="current-flag" src="https://flagcdn.com/gb.svg" alt="EN" width="20" height="14">
+          <i class="fas fa-chevron-down" style="font-size:9px;"></i>
+        </button>
+        <div class="lang-menu" id="lang-menu">
+          <a href="#" onclick="setLanguage('en');return false;"><img src="https://flagcdn.com/gb.svg" width="18"> English</a>
+          <a href="#" onclick="setLanguage('es');return false;"><img src="https://flagcdn.com/es.svg" width="18"> Español</a>
+          <a href="#" onclick="setLanguage('hu');return false;"><img src="https://flagcdn.com/hu.svg" width="18"> Magyar</a>
+          <a href="#" onclick="setLanguage('de');return false;"><img src="https://flagcdn.com/de.svg" width="18"> Deutsch</a>
+        </div>
       </div>
 
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
-
-    <!-- Idiomas compactos -->
-    <div class="lang-dropdown">
-      <button id="lang-btn">
-        <img id="current-flag" src="https://flagcdn.com/gb.svg" alt="Current language" width="24" height="16">
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="lang-menu" id="lang-menu">
-        <a href="#" onclick="setLanguage('en')"><img src="https://flagcdn.com/gb.svg" alt="EN" width="20"> English</a>
-        <a href="#" onclick="setLanguage('es')"><img src="https://flagcdn.com/es.svg" alt="ES" width="20"> Español</a>
-        <a href="#" onclick="setLanguage('hu')"><img src="https://flagcdn.com/hu.svg" alt="HU" width="20"> Magyar</a>
-        <a href="#" onclick="setLanguage('de')"><img src="https://flagcdn.com/de.svg" alt="DE" width="20"> Deutsch</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Enlaces desplegables (ocultos en escritorio) -->
-  <div class="navbar-links" id="nav-links">
-    <a href="#about-title" id="nav-about">Sobre mí</a>
-    <a href="#projects-title" id="nav-projects">Proyectos</a>
-    <a href="#skills-title" id="nav-skills">Habilidades</a>
-    <a href="#languages-title" id="nav-languages">Idiomas</a>
-    <a href="#contact-title" id="nav-contact">Contacto</a>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('nav-links').classList.toggle('open');
-    }
-  </script>
-  
-  <script>
-      function setTheme(theme) {
-        const html = document.documentElement;
-        html.setAttribute('data-theme', theme);
-        document.getElementById('lightBtn').classList.remove('active');
-        document.getElementById('darkBtn').classList.remove('active');
-        document.getElementById(theme + 'Btn').classList.add('active');
-      }
-      window.onload = () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'light';
-        setTheme(current);
-        // Establecer idioma por defecto en inglés:
-        setLanguage('en');
-        document.body.classList.add('loaded');
-      };
-  </script>
-
-  <!-- Self picture + tag -->
-  <header>
-    <div class="photo">
-      <img src="yo.jpeg" alt="Christian López Agardi" />
-    </div>
-    <div class="name-block">
-      <h1 id="name">Christian López Agardi</h1>
-      <p id="subtitle">Ingeniero Informático & ADE | Automación, IA & Negocios</p>
-    </div>
   </header>
 
-  <!-- Short bio -->
-  <section class="info-section">
-    <h2 id="about-title">Sobre mí</h2>
-    <p id="about-text">
-      Graduado en Ingeniería Informática y Administración y Dirección de Empresas, con experiencia en desarrollo de software, automatización de procesos, gestión de proyectos y extracción de datos mediante web scraping.  
-      Apasionado por la inteligencia artificial aplicada al negocio y los proyectos de innovación tecnológica, busco entornos internacionales donde aportar valor combinando tecnología y estrategia empresarial.  
-      Actualmente resido en Berlín y compagino mi carrera profesional con el atletismo de alto rendimiento, disciplina que refuerza mi compromiso y constancia.
-    </p>
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <img src="yo.jpeg" alt="Christian López Agardi" class="hero-photo"/>
+    <p class="hero-eyebrow" id="hero-eyebrow">Berlin, Germany · Available now</p>
+    <h1 class="hero-name" id="hero-name">Christian <em>López</em> Agardi</h1>
+    <p class="hero-title" id="hero-title">Business Intelligence Analyst · Python · SQL · Power BI · Data Automation</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Data Analysis</span>
+      <span class="hero-tag">BI & Dashboards</span>
+      <span class="hero-tag">ETL Pipelines</span>
+      <span class="hero-tag">Process Automation</span>
+      <span class="hero-tag">Business Strategy</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="resume.pdf" download class="btn-primary" id="btn-resume"><i class="fas fa-download"></i> Download CV</a>
+      <a href="#contact" class="btn-outline" id="btn-contact-hero"><i class="fas fa-paper-plane"></i> Get in touch</a>
+    </div>
   </section>
 
-<section class="info-section">
-  <h2 id="skills-title">💡 Habilidades</h2>
+  <hr class="full-divider">
 
-  <div class="skills-block">
-
-    <h3>💻 Software Development</h3>
-    <ul class="tech-logos">
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>Python</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"/>Java</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"/>C++</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"/>Node.js</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/>React Native</li>
-      <li class="more-skill">
-        <span class="plus">＋</span>
-        <span>More</span>
-      </li>
-    </ul>
-
-    <h3>🌐 Web & Backend</h3>
-    <ul class="tech-logos">
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>HTML</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"/>CSS</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>JavaScript</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>MySQL</li>
-      <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"/>Firebase</li>
-      <li class="more-skill">
-        <span class="plus">＋</span>
-        <span>More</span>
-      </li>
-    </ul>
-
-    <h3>📊 Data & Analytics</h3>
-    <ul class="tech-logos">
-      <li><img src="https://img.icons8.com/color/48/power-bi.png"/>Power BI</li>
-      <li><img src="https://img.icons8.com/fluency/48/sql.png"/>SQL</li>
-      <li><img src="https://img.icons8.com/color/48/ms-excel.png"/>Excel</li>
-      <li><img src="https://img.icons8.com/ios-filled/50/workflow.png"/>ETL</li>
-      <li><img src="https://img.icons8.com/ios-filled/50/combo-chart.png"/>DAX</li>
-      <li class="more-skill">
-        <span class="plus">＋</span>
-        <span>More</span>
-      </li>
-    </ul>
-
-    <h3>⚙️ Automation & No-Code</h3>
-    <ul class="tech-logos">
-      <li><img src="https://avatars.githubusercontent.com/u/45487711?s=200&v=4"/>n8n</li>
-      <li><img src="https://img.icons8.com/ios-filled/50/artificial-intelligence.png"/>AI Agents</li>
-      <li class="more-skill">
-        <span class="plus">＋</span>
-        <span>More</span>
-      </li>
-    </ul>
-
-  </div>
-
-</section>
-
-<section class="info-section">
-  <h2 id="certifications-title">📜 Certifications & Learnings</h2>
-
-  <ul class="cert-list">
-    <li>
-      <img src="https://img.icons8.com/color/48/certificate.png"/>
-      Cambridge English – First Certificate (B2)
-    </li>
-    <li>
-      <img src="https://avatars.githubusercontent.com/u/45487711?s=200&v=4"/>
-      n8n – No-Code Automation & AI Agents
-    </li>
-    <li>
-      <img src="https://img.icons8.com/color/48/power-bi.png"/>
-      <a href='https://www.coursera.org/professional-certificates/microsoft-power-bi-data-analyst' target='_blank' style="color: inherit; text-decoration: none;">
-        Microsoft Power BI (in progress) ↗
-      </a>
-    </li>
-  </ul>
-</section>
-
-
-<section class="info-section">
-  <h2 id="languages-title">🌍 Idiomas</h2>
-  <ul id="languages-list">
-    <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (nativo)</li>
-    <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Húngaro (nativo)</li>
-    <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
-    <li><img src="https://flagcdn.com/w40/de.png" alt="FR" width="20"/> Alemán (A2)</li>
-  </ul>
-</section>
-
-<section class="info-section">
-  <h2 id="personal-title">🧠 Perfil personal</h2>
-  <p id="personal-text">
-    Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: "cohesivo, perceptivo, detallista y resolutivo".
-  </p>
-</section>
-
-<section class="info-section">
-  <h2 id="interests-title">🎯 Intereses y objetivos</h2>
-  <p id="interests-text">
-    Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva nacional.
-  </p>
-</section>
-
-<section>
-  <h2 id="projects-title">Proyectos destacados</h2>
-
-  <div class="project">
-    <h3 id="proj1-title">Extracción y automatización de datos (INHUB, 2022-2025)</h3>
-    <p id="proj1-text">
-      En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.
-    </p>
-    <p><strong>Stack:</strong> Python, Selenium, BeautifulSoup / Task Scheduler, MySQL</p>
-  </div>
-
-  <div class="project">
-    <h3 id="proj2-title">App integral para mascotas (TFG Ingeniería)</h3>
-    <p id="proj2-text">
-      Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.
-    </p>
-    <p><strong>Stack:</strong> Node.js, Express, Expo, Firebase (Firestore, Auth), NoSQL</p>
-
-    <div class="project-image">
-      <img src="images/Logo_PL.png" alt="Captura de la app para mascotas" />
+  <!-- ── ABOUT ── -->
+  <section id="about" class="reveal">
+    <p class="section-label" id="label-about">About</p>
+    <h2 class="section-title" id="title-about">Data meets <em>business.</em></h2>
+    <div class="section-line"></div>
+    <div class="about-grid">
+      <div class="about-text" id="about-text">
+        <p>I turn raw data into decisions. As a Business Intelligence Analyst with a <strong>double degree in Computer Engineering and Business Administration</strong>, I bridge the gap most BI profiles can't: I understand the data pipeline end-to-end <em>and</em> I understand the business impact.</p>
+        <p>At INHUB I built automated data extraction systems in Python that pulled, cleaned and centralized multi-year datasets from multiple sources daily — eliminating manual processing entirely and giving the team reliable, structured data to act on.</p>
+        <p>Currently completing the <strong>Microsoft Power BI Data Analyst Professional Certificate</strong> and Andrew Ng's Machine Learning Specialization — deepening expertise in dashboarding, DAX, predictive modeling and data storytelling.</p>
+        <p>Based in Berlin. Elite athlete in Triple Jump & Long Jump — a discipline that built the discipline I bring to every project.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-label" id="stat1">Years automating data</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label" id="stat2">Degrees: CS + Business</div></div>
+        <div class="stat"><div class="stat-num">5</div><div class="stat-label" id="stat3">Languages spoken</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label" id="stat4">Active certifications</div></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="project">
-    <h3 id="proj3-title">Plan de marketing para la app (TFG ADE)</h3>
-    <p id="proj3-text">
-      Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.
-    </p>
-  </div>
-</section>
+  <hr class="full-divider">
 
-<section class="cv-section">
-  <h2 id="cv-title">Currículum</h2>
-  <p id="cv-text">
-    Puedes descargar mi <a href="resume.pdf" download>CV</a>.
-  </p>
-</section>
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="reveal">
+    <p class="section-label" id="label-skills">Skills</p>
+    <h2 class="section-title" id="title-skills">Technical <em>toolkit.</em></h2>
+    <div class="section-line"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-icon">📊</div>
+        <div class="skill-group-title" id="skill-t1">Data & Business Intelligence</div>
+        <div class="skill-pills">
+          <span class="skill-pill highlight">SQL</span>
+          <span class="skill-pill highlight">Power BI</span>
+          <span class="skill-pill highlight">DAX</span>
+          <span class="skill-pill highlight">ETL</span>
+          <span class="skill-pill">Excel</span>
+          <span class="skill-pill">Data Modeling</span>
+          <span class="skill-pill">KPI Reporting</span>
+          <span class="skill-pill">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">🐍</div>
+        <div class="skill-group-title" id="skill-t2">Programming</div>
+        <div class="skill-pills">
+          <span class="skill-pill highlight">Python</span>
+          <span class="skill-pill">Selenium</span>
+          <span class="skill-pill">BeautifulSoup</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">React Native</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">C/C++</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">⚙️</div>
+        <div class="skill-group-title" id="skill-t3">Automation & AI</div>
+        <div class="skill-pills">
+          <span class="skill-pill highlight">Data Automation</span>
+          <span class="skill-pill highlight">n8n</span>
+          <span class="skill-pill">AI Agents</span>
+          <span class="skill-pill">ML Fundamentals</span>
+          <span class="skill-pill">Firebase</span>
+          <span class="skill-pill">Web Scraping</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon">🏢</div>
+        <div class="skill-group-title" id="skill-t4">Business & Strategy</div>
+        <div class="skill-pills">
+          <span class="skill-pill highlight">Strategic Planning</span>
+          <span class="skill-pill highlight">Project Leadership</span>
+          <span class="skill-pill">Financial Projections</span>
+          <span class="skill-pill">Market Analysis</span>
+          <span class="skill-pill">Cross-functional teams</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="info-section">
-  <h2 id="contact-title">Contacto</h2>
-  <p id="contact-text">
-    Puedes escribirme a <a href="mailto:lopezagardi@gmail.com">lopezagardi@gmail.com</a> o conectarme en <a href="https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/" target="_blank">LinkedIn</a>.
-  </p>
-</section>
+  <hr class="full-divider">
 
-<!-- Contact Form -->
-<section class="contact-form">
-  <h2 id="form-title">Contáctame</h2>
-  <form id="contactForm" action="https://formsubmit.co/lopezagardi@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Tu nombre" required id="form-name">
-    <input type="email" name="email" placeholder="Tu email" required id="form-email">
-    <textarea name="message" placeholder="Tu mensaje" required id="form-message"></textarea>
-    <button type="submit" id="form-submit">Enviar</button>
-  </form>
-  <div id="form-success" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></div>
-</section>
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience" class="reveal">
+    <p class="section-label" id="label-exp">Experience</p>
+    <h2 class="section-title" id="title-exp">Where I've <em>shipped.</em></h2>
+    <div class="section-line"></div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2022 — 2025</div>
+        <div class="exp-location">Alicante · Hybrid</div>
+      </div>
+      <div>
+        <div class="exp-role" id="exp1-role">Data & Automation Engineer</div>
+        <div class="exp-company">INHUB</div>
+        <ul class="exp-bullets" id="exp1-bullets">
+          <li>Built Python-based web scraping pipelines (Selenium, BeautifulSoup) extracting structured data from multiple sources daily — fully automated, zero manual intervention.</li>
+          <li>Designed automated storage workflows feeding MySQL databases and Excel reports, centralizing multi-year historical datasets into a single queryable source of truth.</li>
+          <li>Improved data processing efficiency by eliminating redundant manual steps, increasing accuracy and reducing turnaround time for data-driven decisions.</li>
+          <li>Led cross-functional projects: scope definition, task coordination and KPI tracking to ensure on-time delivery.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">2021 — 2022</div>
+        <div class="exp-location">Berlin · Erasmus</div>
+      </div>
+      <div>
+        <div class="exp-role">HWR Berlin</div>
+        <div class="exp-company" id="exp2-company">Exchange year — Business Administration</div>
+        <ul class="exp-bullets">
+          <li id="exp2-bullet">International academic experience in Berlin, deepening business management knowledge and expanding multicultural perspective. Foundation for current Berlin base.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<script>
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Evita la recarga/redirección
+  <hr class="full-divider">
 
-    const form = e.target;
-    const data = new FormData(form);
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="reveal">
+    <p class="section-label" id="label-proj">Projects</p>
+    <h2 class="section-title" id="title-proj">Things I've <em>built.</em></h2>
+    <div class="section-line"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-name" id="proj1-name">Automated Data Pipeline</div>
+        <div class="project-desc" id="proj1-desc">Engineered a daily automated pipeline extracting structured data from multiple web sources using Python. Eliminated manual processing, centralized multi-year data into MySQL, and improved decision-making speed and accuracy for the business team.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Selenium</span>
+          <span class="stack-tag">BeautifulSoup</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">Excel</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-name" id="proj2-name">PawLife — AI Mobile App</div>
+        <div class="project-desc" id="proj2-desc">Hybrid mobile app focused on pet wellbeing, featuring AI-personalized health plans. Architected the full data layer with Firebase Firestore. Solely responsible for both full-stack technical development and end-to-end business strategy including financial projections and go-to-market plan.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">Expo</span>
+          <span class="stack-tag">Firebase</span>
+          <span class="stack-tag">NoSQL</span>
+          <span class="stack-tag">AI</span>
+        </div>
+      </div>
+      <div class="project-card project-card-soon">
+        <div class="project-num">03</div>
+        <div class="project-name" id="proj3-name">Power BI Sales Dashboard</div>
+        <div class="project-desc" id="proj3-desc">Interactive BI dashboard with dynamic KPI tracking, DAX measures and drill-through reports. Built as part of the Microsoft Power BI Professional Certificate.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">DAX</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">ETL</span>
+        </div>
+      </div>
+      <div class="project-card project-card-soon">
+        <div class="project-num">04</div>
+        <div class="project-name" id="proj4-name">ML Predictive Analysis</div>
+        <div class="project-desc" id="proj4-desc">Predictive model applying Machine Learning fundamentals from Andrew Ng's specialization to a real business dataset — classification, regression and model evaluation.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">scikit-learn</span>
+          <span class="stack-tag">pandas</span>
+          <span class="stack-tag">ML</span>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.75rem; color:var(--text3); margin-top:1.25rem;" id="proj-note">Projects 03 and 04 in progress — completing Power BI certification and ML Specialization in April 2026.</p>
+  </section>
 
-    fetch("https://formsubmit.co/ajax/lopezagardi@gmail.com", {
-      method: "POST",
-      body: data,
-    })
-    .then(response => {
-      if (response.ok) {
-        document.getElementById("form-success").style.display = "block";
-        form.reset();
-      } else {
-        alert("❌ Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("❌ Error de red. Por favor, inténtalo más tarde.");
-    });
-  });
-</script>
+  <hr class="full-divider">
 
-<section class="info-section" id="meeting">
-  <h2 id="meeting-title">📅 Book a Meeting</h2>
-  <p id="meeting-text" style="text-align: center;">If you’d like to schedule a meeting with me, you can do it directly through my calendar:</p>
-  <div class="calendly-inline-widget"  id="calendly-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:950px;"></div>
+  <!-- ── CERTIFICATIONS ── -->
+  <section id="certifications" class="reveal">
+    <p class="section-label" id="label-cert">Certifications</p>
+    <h2 class="section-title" id="title-cert">Always <em>learning.</em></h2>
+    <div class="section-line"></div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot progress"></div>
+          <div>
+            <div class="cert-name" id="cert1-name">Microsoft Power BI Data Analyst Professional Certificate</div>
+            <div class="cert-issuer">Coursera / Microsoft</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="cert-badge" id="badge-progress">In progress</span>
+          <div class="cert-date">Feb – Apr 2026</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot progress"></div>
+          <div>
+            <div class="cert-name" id="cert2-name">Machine Learning Specialization</div>
+            <div class="cert-issuer">DeepLearning.AI / Andrew Ng</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="cert-badge" id="badge-planned">Planned</span>
+          <div class="cert-date">Apr 2026</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name" id="cert3-name">No-Code AI Agent Builder (n8n)</div>
+            <div class="cert-issuer">Simplilearn</div>
+          </div>
+        </div>
+        <div class="cert-date">Oct 2025</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name" id="cert4-name">First Certificate in English (B2)</div>
+            <div class="cert-issuer">Cambridge</div>
+          </div>
+        </div>
+        <div class="cert-date">Oct 2019</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <!-- ── LANGUAGES ── -->
+  <section id="languages" class="reveal">
+    <p class="section-label" id="label-lang">Languages</p>
+    <h2 class="section-title" id="title-lang">Speaking your <em>language.</em></h2>
+    <div class="section-line"></div>
+    <div class="lang-grid" id="lang-grid">
+      <div class="lang-item"><div class="lang-flag">🇪🇸</div><div class="lang-name" id="lang1-name">Spanish</div><div class="lang-level" id="lang1-level">Native</div><div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div></div>
+      <div class="lang-item"><div class="lang-flag">🇭🇺</div><div class="lang-name" id="lang2-name">Hungarian</div><div class="lang-level" id="lang2-level">Bilingual</div><div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div></div>
+      <div class="lang-item"><div class="lang-flag">🇬🇧</div><div class="lang-name" id="lang3-name">English</div><div class="lang-level" id="lang3-level">B2 – Cambridge First</div><div class="lang-bar"><div class="lang-bar-fill" style="width:75%"></div></div></div>
+      <div class="lang-item"><div class="lang-flag">🇩🇪</div><div class="lang-name" id="lang4-name">German</div><div class="lang-level" id="lang4-level">A2</div><div class="lang-bar"><div class="lang-bar-fill" style="width:25%"></div></div></div>
+      <div class="lang-item"><div class="lang-flag">🇫🇷</div><div class="lang-name" id="lang5-name">French</div><div class="lang-level" id="lang5-level">A2</div><div class="lang-bar"><div class="lang-bar-fill" style="width:25%"></div></div></div>
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="reveal">
+    <p class="section-label" id="label-contact">Contact</p>
+    <h2 class="section-title" id="title-contact">Let's <em>talk.</em></h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro" id="contact-intro">Open to BI Analyst, Data Analyst and Analytics roles in Berlin and remotely. If you're building a data-driven team and need someone who understands both the pipeline and the business — let's talk.</p>
+        <div class="contact-links">
+          <a href="mailto:lopezagardi@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> lopezagardi@gmail.com</a>
+          <a href="https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://christianlxpez.github.io/" target="_blank" class="contact-link"><i class="fas fa-globe"></i> christianlxpez.github.io</a>
+          <a href="resume.pdf" download class="contact-link"><i class="fas fa-file-alt"></i> <span id="cv-link-text">Download CV</span></a>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-field">
+            <label class="form-label" id="form-label-name">Name</label>
+            <input class="form-input" type="text" name="name" id="form-name" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="form-label-email">Email</label>
+            <input class="form-input" type="email" name="email" id="form-email" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" id="form-label-msg">Message</label>
+            <textarea class="form-textarea" name="message" id="form-message" required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="form-submit">Send message</button>
+          <p class="form-success" id="form-success">✓ Message sent successfully.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <!-- ── BOOK A MEETING ── -->
+  <section id="meeting" class="reveal" style="padding-top:4rem;">
+    <p class="section-label" id="label-meeting">Schedule</p>
+    <h2 class="section-title" id="title-meeting">Book a <em>meeting.</em></h2>
+    <div class="section-line"></div>
+    <div class="calendly-wrap">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/lopezagardi/meeting-with-christian-lopez-agardi" style="min-width:320px;height:700px;"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Christian López Agardi · Berlin, Germany</p>
+  </footer>
+
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-</section>
 
+  <script>
+  // ── THEME ──────────────────────────────────────────────────
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeBtn').textContent = isDark ? '🌑 Dark' : '☀ Light';
+  }
 
-<footer>
-  &copy; 2025 Christian López Agardi
-</footer>
-
-<script>
-  // Mostrar/ocultar el menú de idiomas
-  const langBtn = document.getElementById("lang-btn");
-  const langMenu = document.getElementById("lang-menu");
-  const currentLang = document.getElementById("current-lang");
-
-  langBtn.addEventListener("click", (e) => {
+  // ── LANG DROPDOWN ──────────────────────────────────────────
+  function toggleLang(e) {
     e.stopPropagation();
-    document.querySelector(".lang-dropdown").classList.toggle("open");
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+  document.addEventListener('click', () => {
+    document.getElementById('langDropdown').classList.remove('open');
   });
 
-  // Cerrar menú al hacer click fuera
-  document.addEventListener("click", () => {
-    document.querySelector(".lang-dropdown").classList.remove("open");
+  // ── MOBILE NAV ─────────────────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+
+  // ── SCROLL REVEAL ──────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── CONTACT FORM ───────────────────────────────────────────
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    fetch('https://formsubmit.co/ajax/lopezagardi@gmail.com', { method: 'POST', body: data })
+      .then(r => {
+        if (r.ok) {
+          document.getElementById('form-success').style.display = 'block';
+          this.reset();
+        }
+      }).catch(() => {});
   });
 
-
-</script>
-
-<script>
-  const translations = {
-    es: {
-      name: "Christian López Agardi",
-      subtitle: "Ingeniero Informático & ADE | Automación, IA & Negocios",
-      aboutTitle: "Sobre mí",
-      aboutText: "Graduado en Ingeniería Informática y Administración y Dirección de Empresas, con experiencia práctica en desarrollo de software, automatización de procesos y proyectos orientados a datos. He trabajado en aplicaciones reales y sistemas de automatización utilizando Python, SQL y tecnologías web modernas, siempre con un fuerte enfoque en la eficiencia y el impacto en el negocio. <br><br> Apasionado por la inteligencia artificial, el análisis de datos y el aprendizaje continuo. Actualmente resido en Berlín, compaginando mi desarrollo profesional con el atletismo de alto rendimiento, lo que ha reforzado mi disciplina, resiliencia y compromiso a largo plazo.",
-      projectsTitle: "Proyectos destacados",
-      proj1Title: "Extracción y automatización de datos (INHUB, 2022-2025)",
-      proj1Text: "En INHUB desarrollé scripts en Python usando Selenium y BeautifulSoup para extraer datos de múltiples sitios web, programando tareas diarias según el origen. Los datos se almacenaban automáticamente en Excel, CSV y bases MySQL, optimizando la toma de decisiones y reduciendo el tiempo manual.",
-      proj2Title: "App integral para mascotas (TFG Ingeniería)",
-      proj2Text: "Desarrollé una aplicación híbrida orientada al bienestar físico, mental y emocional de mascotas, con planes personalizados mediante IA, integrando Node.js, Express, Expo y Firebase para autenticación y almacenamiento seguro en Firestore. El sistema permite seguimiento de salud, alertas y recomendaciones dinámicas.",
-      proj3Title: "Plan de marketing para la app (TFG ADE)",
-      proj3Text: "Elaboré el plan estratégico para el lanzamiento de la app, incluyendo análisis de mercado, definición del buyer persona, estrategia digital multicanal y proyecciones financieras.",
-      cvTitle: "Currículum",
-      cvText: "Puedes descargar mi CV <a href='resume.pdf' download>aquí</a>.",
-      contactTitle: "Contacto",
-      contactText: "Puedes escribirme a <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> o en <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
-      skillsTitle: "💡 Habilidades",
-        
-      certificationsTitle: "📜 Certificaciones y formación",
-        languagesTitle: "🌍 Idiomas",
-        languagesList: `
-            <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Español (Nativo)</li>
-            <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Húngaro (Biligüe)</li>
-            <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Inglés (First - B2)</li>
-            <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Alemán (A2)</li>
-        `,
-        personalTitle: "🧠 Perfil personal",
-        personalText: " Perfil equilibrado entre precisión técnica y gestión de personas. Altamente adaptable a contextos multiculturales, orientado a resultados y mejora continua. Según Belbin: \"cohesivo, perceptivo, detallista y resolutivo\".",
-        interestsTitle: "🎯 Intereses y Objetivos",
-        interestsText: "Apasionado por la tecnología, la innovación y el aprendizaje constante. Actualmente busco proyectos internacionales con visión de futuro. Atleta de élite en salto de longitud y triple salto, con experiencia competitiva nacional.",
-        formTitle: "Escríbeme",
-        formName: "Tu nombre",
-        formEmail: "Tu email",
-        formMessage: "Tu mensaje",
-        formSubmit: "Enviar",
-        formSuccess: "✅ Mensaje enviado correctamente",
-      nav: {
-        about: "Sobre mí",
-        projects: "Proyectos",
-        skills: "Habilidades",
-        languages: "Idiomas",
-        contact: "Contacto"
-      },
-      meetingTitle: "📅 Reserva una reunión",
-      meetingText: "Si deseas programar una llamada conmigo, puedes hacerlo directamente a través de mi calendario:",
-    },
+  // ── TRANSLATIONS ───────────────────────────────────────────
+  const T = {
     en: {
-        name: "Christian López Agardi",
-        subtitle: "Computer Engineer & Business | Automation, AI & Strategy",
-        aboutTitle: "About me",
-        aboutText: "Graduate in Computer Engineering and Business Management with hands-on experience in software development, process automation and data-driven projects. I have worked on real applications and automation systems using Python, SQL and modern web technologies, always with a strong focus on efficiency and business impact. <br><br> Passionate about artificial intelligence, analytics and continuous learning. Currently based in Berlin, combining my professional growth with elite athletics, which has strengthened my discipline, resilience and long-term commitment.",
-        projectsTitle: "Highlighted Projects",
-        proj1Title: "Data scraping & automation (INHUB, 2022–2025)",
-        proj1Text: "At INHUB, I developed Python scripts using Selenium and BeautifulSoup to extract data from multiple websites, scheduling daily tasks by source. Data was automatically stored in Excel, CSV, and MySQL, optimizing decision-making and reducing manual time.",
-        proj2Title: "Pet wellness app (CS Thesis)",
-        proj2Text: "I built a hybrid app focused on pets’ physical, mental and emotional wellbeing, with AI-personalized plans, using Node.js, Express, Expo and Firebase for secure Firestore auth & storage. The system tracks health data, sends alerts and generates dynamic recommendations.",
-        proj3Title: "Marketing plan for the app (BA Thesis)",
-        proj3Text: "I developed the strategic plan for the app’s launch, including market analysis, buyer persona definition, multi-channel digital strategy and financial projections.",
-        cvTitle: "Resume",
-        cvText: "You can download my resume <a href='resume.pdf' download> here</a>.",
-        contactTitle: "Contact",
-        contactText: "Feel free to email me at <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> or connect on <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a>.",
-        skillsTitle: "💡 Skills",
-       
-        certificationsTitle: "📜 Certifications & Learnings",
-        languagesTitle: "🌍 Languages",
-        languagesList: `
-            <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanish (Native)</li>
-            <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Hungarian (Bilingual)</li>
-            <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> English (First - B2)</li>
-            <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> German (A2)</li>
-        `,
-        personalTitle: "🧠 Personal Profile",
-        personalText: "Balanced between technical precision and people management. Highly adaptable to multicultural environments, result-driven and continuously improving. According to Belbin: \"cohesive, perceptive, detail-oriented and solution-focused\".",
-        interestsTitle: "🎯 Interests & Goals",
-        interestsText: "Passionate about technology, innovation and constant learning. Currently seeking international projects with growth potential. Elite athlete in long jump and triple jump, with experience in national competitions.",
-        formTitle: "Get in touch",
-        formName: "Your name",
-        formEmail: "Your email",
-        formMessage: "Your message",
-        formSubmit: "Send",
-        formSuccess: "✅ Message sent successfully",
-        nav: {
-          about: "About",
-          projects: "Projects",
-          skills: "Skills",
-          languages: "Languages",
-          contact: "Contact"
-        },
-        meetingTitle: "📅 Book a Meeting",
-        meetingText: "If you’d like to schedule a meeting with me, you can do it directly through my calendar:",
+      flag: 'https://flagcdn.com/gb.svg',
+      navAbout: 'About', navSkills: 'Skills', navExp: 'Experience', navProj: 'Projects', navContact: 'Contact',
+      heroEyebrow: 'Berlin, Germany · Available now',
+      heroTitle: 'Business Intelligence Analyst · Python · SQL · Power BI · Data Automation',
+      btnResume: 'Download CV', btnContact: 'Get in touch',
+      labelAbout: 'About', titleAbout: 'Data meets <em>business.</em>',
+      aboutText: '<p>I turn raw data into decisions. As a Business Intelligence Analyst with a <strong>double degree in Computer Engineering and Business Administration</strong>, I bridge the gap most BI profiles can\'t: I understand the data pipeline end-to-end <em>and</em> I understand the business impact.</p><p>At INHUB I built automated data extraction systems in Python that pulled, cleaned and centralized multi-year datasets from multiple sources daily — eliminating manual processing entirely and giving the team reliable, structured data to act on.</p><p>Currently completing the <strong>Microsoft Power BI Data Analyst Professional Certificate</strong> and Andrew Ng\'s Machine Learning Specialization — deepening expertise in dashboarding, DAX, predictive modeling and data storytelling.</p><p>Based in Berlin. Elite athlete in Triple Jump & Long Jump — a discipline that built the discipline I bring to every project.</p>',
+      stat1: 'Years automating data', stat2: 'Degrees: CS + Business', stat3: 'Languages spoken', stat4: 'Active certifications',
+      labelSkills: 'Skills', titleSkills: 'Technical <em>toolkit.</em>',
+      skillT1: 'Data & Business Intelligence', skillT2: 'Programming', skillT3: 'Automation & AI', skillT4: 'Business & Strategy',
+      labelExp: 'Experience', titleExp: 'Where I\'ve <em>shipped.</em>',
+      exp1Role: 'Data & Automation Engineer',
+      exp1Bullets: ['Built Python-based web scraping pipelines (Selenium, BeautifulSoup) extracting structured data from multiple sources daily — fully automated, zero manual intervention.','Designed automated storage workflows feeding MySQL databases and Excel reports, centralizing multi-year historical datasets into a single queryable source of truth.','Improved data processing efficiency by eliminating redundant manual steps, increasing accuracy and reducing turnaround time for data-driven decisions.','Led cross-functional projects: scope definition, task coordination and KPI tracking to ensure on-time delivery.'],
+      exp2Company: 'Exchange year — Business Administration',
+      exp2Bullet: 'International academic experience in Berlin, deepening business management knowledge and expanding multicultural perspective. Foundation for current Berlin base.',
+      labelProj: 'Projects', titleProj: 'Things I\'ve <em>built.</em>',
+      proj1Name: 'Automated Data Pipeline',
+      proj1Desc: 'Engineered a daily automated pipeline extracting structured data from multiple web sources using Python. Eliminated manual processing, centralized multi-year data into MySQL, and improved decision-making speed and accuracy for the business team.',
+      proj2Name: 'PawLife — AI Mobile App',
+      proj2Desc: 'Hybrid mobile app focused on pet wellbeing, featuring AI-personalized health plans. Architected the full data layer with Firebase Firestore. Solely responsible for both full-stack technical development and end-to-end business strategy including financial projections and go-to-market plan.',
+      proj3Name: 'Power BI Sales Dashboard',
+      proj3Desc: 'Interactive BI dashboard with dynamic KPI tracking, DAX measures and drill-through reports. Built as part of the Microsoft Power BI Professional Certificate.',
+      proj4Name: 'ML Predictive Analysis',
+      proj4Desc: 'Predictive model applying Machine Learning fundamentals from Andrew Ng\'s specialization to a real business dataset — classification, regression and model evaluation.',
+      projNote: 'Projects 03 and 04 in progress — completing Power BI certification and ML Specialization in April 2026.',
+      labelCert: 'Certifications', titleCert: 'Always <em>learning.</em>',
+      cert1: 'Microsoft Power BI Data Analyst Professional Certificate',
+      cert2: 'Machine Learning Specialization',
+      cert3: 'No-Code AI Agent Builder (n8n)',
+      cert4: 'First Certificate in English (B2)',
+      badgeProgress: 'In progress', badgePlanned: 'Planned',
+      labelLang: 'Languages', titleLang: 'Speaking your <em>language.</em>',
+      lang1: 'Spanish', lang1l: 'Native',
+      lang2: 'Hungarian', lang2l: 'Bilingual',
+      lang3: 'English', lang3l: 'B2 – Cambridge First',
+      lang4: 'German', lang4l: 'A2',
+      lang5: 'French', lang5l: 'A2',
+      labelContact: 'Contact', titleContact: 'Let\'s <em>talk.</em>',
+      contactIntro: 'Open to BI Analyst, Data Analyst and Analytics roles in Berlin and remotely. If you\'re building a data-driven team and need someone who understands both the pipeline and the business — let\'s talk.',
+      cvLink: 'Download CV',
+      formLabelName: 'Name', formLabelEmail: 'Email', formLabelMsg: 'Message', formSubmit: 'Send message', formSuccess: '✓ Message sent successfully.',
+      labelMeeting: 'Schedule', titleMeeting: 'Book a <em>meeting.</em>',
+    },
+    es: {
+      flag: 'https://flagcdn.com/es.svg',
+      navAbout: 'Sobre mí', navSkills: 'Habilidades', navExp: 'Experiencia', navProj: 'Proyectos', navContact: 'Contacto',
+      heroEyebrow: 'Berlín, Alemania · Disponibilidad inmediata',
+      heroTitle: 'Business Intelligence Analyst · Python · SQL · Power BI · Automatización de datos',
+      btnResume: 'Descargar CV', btnContact: 'Contáctame',
+      labelAbout: 'Sobre mí', titleAbout: 'Datos que generan <em>decisiones.</em>',
+      aboutText: '<p>Convierto datos en decisiones. Como Business Intelligence Analyst con <strong>doble titulación en Ingeniería Informática y Administración de Empresas</strong>, cubro el hueco que la mayoría de perfiles BI no pueden: entiendo el pipeline de datos de principio a fin <em>y</em> entiendo el impacto en el negocio.</p><p>En INHUB construí sistemas automatizados de extracción de datos en Python que recogían, limpiaban y centralizaban datasets históricos de múltiples fuentes a diario, eliminando el procesamiento manual por completo.</p><p>Actualmente completando el <strong>Microsoft Power BI Data Analyst Professional Certificate</strong> y la Machine Learning Specialization de Andrew Ng.</p><p>Basado en Berlín. Atleta de élite en Triple Salto y Salto de Longitud — una disciplina que construyó la disciplina que traigo a cada proyecto.</p>',
+      stat1: 'Años automatizando datos', stat2: 'Titulaciones: Ing. + ADE', stat3: 'Idiomas hablados', stat4: 'Certificaciones activas',
+      labelSkills: 'Habilidades', titleSkills: '<em>Herramientas</em> técnicas.',
+      skillT1: 'Datos & Business Intelligence', skillT2: 'Programación', skillT3: 'Automatización & IA', skillT4: 'Negocio & Estrategia',
+      labelExp: 'Experiencia', titleExp: 'Dónde he <em>trabajado.</em>',
+      exp1Role: 'Data & Automation Engineer',
+      exp1Bullets: ['Construí pipelines de web scraping en Python (Selenium, BeautifulSoup) que extraían datos estructurados de múltiples fuentes a diario, totalmente automatizados.','Diseñé flujos de almacenamiento automatizados que alimentaban bases de datos MySQL e informes en Excel, centralizando datasets históricos en una única fuente de verdad.','Mejoré la eficiencia del procesamiento de datos eliminando pasos manuales y reduciendo el tiempo de respuesta para decisiones basadas en datos.','Lideré proyectos transversales: definición de alcance, coordinación y seguimiento de KPIs.'],
+      exp2Company: 'Año de intercambio — Administración de Empresas',
+      exp2Bullet: 'Experiencia académica internacional en Berlín, ampliando conocimientos en gestión empresarial y perspectiva multicultural.',
+      labelProj: 'Proyectos', titleProj: 'Cosas que he <em>construido.</em>',
+      proj1Name: 'Pipeline de datos automatizado',
+      proj1Desc: 'Pipeline diario automatizado que extraía datos estructurados de múltiples fuentes web con Python. Eliminó el procesamiento manual, centralizó datos históricos en MySQL y mejoró la velocidad de toma de decisiones.',
+      proj2Name: 'PawLife — App móvil con IA',
+      proj2Desc: 'App móvil híbrida orientada al bienestar de mascotas con planes de salud personalizados por IA. Arquitectura completa de datos con Firebase Firestore. Responsable único del desarrollo técnico y la estrategia de negocio completa.',
+      proj3Name: 'Dashboard de ventas en Power BI',
+      proj3Desc: 'Dashboard BI interactivo con KPIs dinámicos, medidas DAX e informes drill-through. Desarrollado como parte del certificado profesional de Microsoft Power BI.',
+      proj4Name: 'Análisis predictivo con ML',
+      proj4Desc: 'Modelo predictivo aplicando fundamentos de Machine Learning de la especialización de Andrew Ng a un dataset real de negocio.',
+      projNote: 'Proyectos 03 y 04 en progreso — certificación Power BI y ML Specialization en abril 2026.',
+      labelCert: 'Certificaciones', titleCert: 'Siempre <em>aprendiendo.</em>',
+      cert1: 'Microsoft Power BI Data Analyst Professional Certificate',
+      cert2: 'Machine Learning Specialization',
+      cert3: 'No-Code AI Agent Builder (n8n)',
+      cert4: 'First Certificate in English (B2)',
+      badgeProgress: 'En progreso', badgePlanned: 'Planificado',
+      labelLang: 'Idiomas', titleLang: 'Hablo tu <em>idioma.</em>',
+      lang1: 'Español', lang1l: 'Nativo',
+      lang2: 'Húngaro', lang2l: 'Bilingüe',
+      lang3: 'Inglés', lang3l: 'B2 – Cambridge First',
+      lang4: 'Alemán', lang4l: 'A2',
+      lang5: 'Francés', lang5l: 'A2',
+      labelContact: 'Contacto', titleContact: 'Hablemos.',
+      contactIntro: 'Abierto a roles de BI Analyst, Data Analyst y Analytics en Berlín y en remoto. Si estás construyendo un equipo orientado a datos y necesitas a alguien que entienda tanto el pipeline como el negocio — hablemos.',
+      cvLink: 'Descargar CV',
+      formLabelName: 'Nombre', formLabelEmail: 'Email', formLabelMsg: 'Mensaje', formSubmit: 'Enviar mensaje', formSuccess: '✓ Mensaje enviado correctamente.',
+      labelMeeting: 'Agenda', titleMeeting: 'Reserva una <em>reunión.</em>',
     },
     hu: {
-        name: "Christian López Agardi",
-        subtitle: "Informatikus mérnök és közgazdász | Automatizálás, MI és üzlet",
-        aboutTitle: "Rólam",
-        aboutText: "Informatikus mérnöki és gazdálkodás-menedzsment diplomával rendelkezem, gyakorlati tapasztalattal szoftverfejlesztésben, folyamatok automatizálásában és adatvezérelt projektekben. Valós alkalmazásokon és automatizált rendszereken dolgoztam Python, SQL és modern webes technológiák használatával, mindig a hatékonyságra és az üzleti értékre fókuszálva. <br><br> Szenvedélyesen érdekel a mesterséges intelligencia, az adatelemzés és a folyamatos tanulás. Jelenleg Berlinben élek, ahol a szakmai fejlődésemet élsportolóként végzett atlétikával kombinálom, ami tovább erősítette a fegyelmemet, kitartásomat és hosszú távú elkötelezettségemet.",
-        projectsTitle: "Kiemelt projektek",
-        proj1Title: "Adatkinyerés és automatizálás (INHUB, 2022–2025)",
-        proj1Text: "Az INHUB-nál Python szkripteket fejlesztettem Selenium és BeautifulSoup segítségével, amelyek több weboldalról gyűjtöttek adatokat. A feladatok napi szinten voltak ütemezve, és az adatokat automatikusan Excel, CSV és MySQL-ben tároltuk, ezzel optimalizálva a döntéshozatalt.",
-        proj2Title: "Állatjólléti app (Mérnöki szakdolgozat)",
-        proj2Text: "Hibrid alkalmazást fejlesztettem, amely a kisállatok fizikai, mentális és érzelmi jóllétére összpontosít. A rendszer személyre szabott MI-alapú terveket készít Node.js, Express, Expo és Firebase használatával, beleértve a Firestore biztonságos hitelesítését és tárolását.",
-        proj3Title: "Marketing terv az apphoz (Közgazdaságtan szakdolgozat)",
-        proj3Text: "Stratégiai tervet dolgoztam ki az app bevezetéséhez: piackutatás, célcsoport meghatározás, digitális marketingstratégia és pénzügyi előrejelzések. ",
-        cvTitle: "Önéletrajz",
-        cvText: "Letöltheted az <a href='resume.pdf' download> önéletrajzomat angolul</a>.",
-        contactTitle: "Kapcsolat",
-        contactText: "Írj e-mailt: <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> vagy keresd meg <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedInen</a>.",
-        skillsTitle: "💡 Képességek",
-        
-        certificationsTitle: "📜 Tanúsítványok és tanulmányok",
-        languagesTitle: "🌍 Nyelvek",
-        languagesList: `
-          <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanyol (Anyanyelvi)</li>
-          <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Magyar (Kétnyelvű)</li>
-          <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Angol (First - B2)</li>
-          <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Német (A2)</li>
-        `,
-        personalTitle: "🧠 Személyes profil",
-        personalText: "Technikai precizitás és emberek vezetése közötti egyensúly. Könnyen alkalmazkodom multikulturális környezethez, eredményorientált vagyok és folyamatosan fejlődöm. Belbin szerint: 'összetartó, érzékeny, részletekre figyelő és megoldásközpontú'.",
-        interestsTitle: "🎯 Érdeklődés és célok",
-        interestsText: "Szenvedélyem a technológia, az innováció és az élethosszig tartó tanulás. Nemzetközi projektek iránt érdeklődöm. Élsportolóként távolugrásban és hármasugrásban vettem részt országos versenyeken.",
-        formTitle: "Lépj kapcsolatba",
-        formName: "Neved",
-        formEmail: "E-mail címed",
-        formMessage: "Üzeneted",
-        formSubmit: "Küldés",
-        formSuccess: "✅ Üzenet sikeresen elküldve",
-        nav: {
-          about: "Rólam",
-          projects: "Projektek",
-          skills: "Képességek",
-          languages: "Nyelvek",
-          contact: "Kapcsolat"
-        },
-        meetingTitle: "📅 Időpontfoglalás",
-        meetingText: "Ha szeretnél velem egy hívást egyeztetni, közvetlenül a naptáramon keresztül megteheted:",
-      },
-      de: {
-        name: "Christian López Agardi",
-        subtitle: "Informatikingenieur & Betriebswirt | Automatisierung, KI & Strategie",
-        aboutTitle: "Über mich",
-        aboutText: "Absolvent des Doppelstudiums in Informatik und Betriebswirtschaftslehre mit praktischer Erfahrung in Softwareentwicklung, Prozessautomatisierung und datengetriebenen Projekten. Ich habe an realen Anwendungen und Automatisierungssystemen mit Python, SQL und modernen Webtechnologien gearbeitet, stets mit einem starken Fokus auf Effizienz und geschäftlichen Mehrwert. <br><br> Leidenschaftlich interessiert an künstlicher Intelligenz, Datenanalyse und kontinuierlichem Lernen. Derzeit lebe ich in Berlin und kombiniere meine berufliche Weiterentwicklung mit Leistungssport, was meine Disziplin, Resilienz und langfristige Zielorientierung deutlich gestärkt hat.",
-        projectsTitle: "Ausgewählte Projekte",
-        proj1Title: "Datenextraktion und Automatisierung (INHUB, 2022–2025)",
-        proj1Text: "Bei INHUB entwickelte ich Python-Skripte unter Verwendung von Selenium und BeautifulSoup zur automatischen Datenerfassung von verschiedenen Websites. Die Daten wurden regelmäßig in Excel, CSV und MySQL gespeichert, wodurch Entscheidungsprozesse optimiert und manuelle Arbeit reduziert wurde.",
-        proj2Title: "Ganzheitliche Haustier-App (Abschlussarbeit Informatik)",
-        proj2Text: "Ich entwickelte eine hybride App, die sich auf das physische, mentale und emotionale Wohlbefinden von Haustieren konzentriert. Mit KI-basierter Personalisierung erstellt das System individuelle Pläne. Die App nutzt Node.js, Express, Expo und Firebase für Authentifizierung und sichere Datenspeicherung in Firestore.",
-        proj3Title: "Marketingplan für die App (Abschlussarbeit BWL)",
-        proj3Text: "Ich erstellte den strategischen Marketingplan für den App-Launch, einschließlich Marktanalyse, Zielgruppenbestimmung, Multichannel-Digitalstrategie und Finanzprognosen.",
-        cvTitle: "Lebenslauf",
-        cvText: "Sie können meinen <a href='resume.pdf' download>Lebenslauf auf Englisch</a> herunterladen.",
-        contactTitle: "Kontakt",
-        contactText: "Sie können mich unter <a href='mailto:lopezagardi@gmail.com'>lopezagardi@gmail.com</a> erreichen oder sich über <a href='https://www.linkedin.com/in/christian-l%C3%B3pez-agardi-957240212/' target='_blank'>LinkedIn</a> mit mir vernetzen.",
-        skillsTitle: "💡 Fähigkeiten",
-        
-        certificationsTitle: "📜 Zertifikate & Weiterbildungen",
-        languagesTitle: "🌍 Sprachen",
-        languagesList: `
-          <li><img src="https://flagcdn.com/w40/es.png" alt="ES" width="20"/> Spanisch (Muttersprache)</li>
-          <li><img src="https://flagcdn.com/w40/hu.png" alt="HU" width="20"/> Ungarisch (Zweitsprache)</li>
-          <li><img src="https://flagcdn.com/w40/us.png" alt="US" width="20"/> Englisch (B2 – First Certificate)</li>
-          <li><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20"/> Deutsch (A2)</li>
-        `,
-        personalTitle: "🧠 Persönliches Profil",
-        personalText: "Ausgewogen zwischen technischer Präzision und Menschenführung. Anpassungsfähig an multikulturelle Umgebungen, ergebnisorientiert und stets lernbereit. Laut Belbin: „kohäsiv, einfühlsam, detailorientiert und lösungsorientiert.“",
-        interestsTitle: "🎯 Interessen & Ziele",
-        interestsText: "Leidenschaftlich interessiert an Technologie, Innovation und kontinuierlichem Lernen. Ich suche internationale Projekte mit Zukunftsvision. Leistungssportler in Weit- und Dreisprung, mit Erfahrung auf nationaler Ebene.",
-        formTitle: "Kontakt aufnehmen",
-        formName: "Dein Name",
-        formEmail: "Deine E-Mail",
-        formMessage: "Deine Nachricht",
-        formSubmit: "Senden",
-        formSuccess: "✅ Nachricht erfolgreich gesendet",
-        nav: {
-          about: "Über mich",
-          projects: "Projekte",
-          skills: "Fähigkeiten",
-          languages: "Sprachen",
-          contact: "Kontakt"
-        },
-        meetingTitle: "📅 Termin buchen",
-        meetingText: "Wenn Sie ein Treffen mit mir vereinbaren möchten, können Sie dies direkt über meinen Kalender tun:",
-      },
-
-  };
-
-  const flags = {
-    en: "https://flagcdn.com/gb.svg",
-    es: "https://flagcdn.com/es.svg",
-    hu: "https://flagcdn.com/hu.svg",
-    de: "https://flagcdn.com/de.svg"
+      flag: 'https://flagcdn.com/hu.svg',
+      navAbout: 'Rólam', navSkills: 'Képességek', navExp: 'Tapasztalat', navProj: 'Projektek', navContact: 'Kapcsolat',
+      heroEyebrow: 'Berlin, Németország · Azonnal elérhető',
+      heroTitle: 'Business Intelligence Analyst · Python · SQL · Power BI · Adatautomatizálás',
+      btnResume: 'CV letöltése', btnContact: 'Kapcsolatfelvétel',
+      labelAbout: 'Rólam', titleAbout: 'Az adatok <em>döntésekké</em> válnak.',
+      aboutText: '<p>Nyers adatokból döntéseket készítek. Business Intelligence Analytistként, <strong>kettős diplomával Informatikában és Gazdaságtudományban</strong>, áthidalok egy olyan részt, amelyet a legtöbb BI-profil nem tud: értem az adatfolyamatot elejétől végéig, <em>és</em> értem az üzleti hatást is.</p><p>Az INHUB-nál Python-alapú automatizált adatkinyerő rendszereket építettem, amelyek több forrásból napi szinten gyűjtöttek, tisztítottak és centralizáltak adatokat.</p><p>Jelenleg teljesítem a <strong>Microsoft Power BI Data Analyst Professional Certificate</strong>-et és Andrew Ng Machine Learning Specializációját.</p><p>Berlinben élek. Élsportoló vagyok hármasugrásban és távolugrásban — a sport fegyelme tükröződik minden munkámban.</p>',
+      stat1: 'Év adatautomatizálás', stat2: 'Diploma: Informatika + Közgazd.', stat3: 'Beszélt nyelv', stat4: 'Aktív tanúsítvány',
+      labelSkills: 'Képességek', titleSkills: 'Technikai <em>eszköztár.</em>',
+      skillT1: 'Adat & Business Intelligence', skillT2: 'Programozás', skillT3: 'Automatizálás & MI', skillT4: 'Üzlet & Stratégia',
+      labelExp: 'Tapasztalat', titleExp: 'Ahol <em>dolgoztam.</em>',
+      exp1Role: 'Adat & Automatizálási Fejlesztő',
+      exp1Bullets: ['Python-alapú web scraping pipeline-okat építettem (Selenium, BeautifulSoup), amelyek napi szinten strukturált adatokat kinyernek több forrásból — teljesen automatizálva.','Automatizált tároló munkafolyamatokat terveztem MySQL adatbázisokhoz és Excel riportokhoz, több éves historikus adatot egyetlen lekérdezhető forrásba centralizálva.','Javítottam az adatfeldolgozás hatékonyságát a redundáns manuális lépések kiküszöbölésével.','Keresztfunkcionális projekteket vezettem: hatókör meghatározás, feladat-koordináció és KPI-követés.'],
+      exp2Company: 'Csereév — Üzleti Adminisztráció',
+      exp2Bullet: 'Nemzetközi akadémiai tapasztalat Berlinben, üzleti ismeretek bővítése és multikulturális perspektíva kialakítása.',
+      labelProj: 'Projektek', titleProj: 'Amit <em>megépítettem.</em>',
+      proj1Name: 'Automatizált adatpipeline',
+      proj1Desc: 'Napi automatizált pipeline Python segítségével, amely strukturált adatokat nyer ki több webes forrásból. Megszüntette a manuális feldolgozást és centralizálta a historikus adatokat MySQL-be.',
+      proj2Name: 'PawLife — MI-alapú mobilapp',
+      proj2Desc: 'Hibrid mobilapp kisállatok jóllétéhez MI-alapú személyre szabott egészségügyi tervekkel. Firebase Firestore adatréteg architektúra. Egyedüli felelős a teljes technikai fejlesztésért és az üzleti stratégiáért.',
+      proj3Name: 'Power BI értékesítési dashboard',
+      proj3Desc: 'Interaktív BI dashboard dinamikus KPI-követéssel, DAX mértékekkel és drill-through riportokkal.',
+      proj4Name: 'ML prediktív elemzés',
+      proj4Desc: 'Prediktív modell Andrew Ng ML specializációjának alapjaival valós üzleti adathalmazon.',
+      projNote: 'A 03. és 04. projektek folyamatban — Power BI tanúsítvány és ML Specializáció 2026 áprilisban.',
+      labelCert: 'Tanúsítványok', titleCert: 'Mindig <em>tanulok.</em>',
+      cert1: 'Microsoft Power BI Data Analyst Professional Certificate',
+      cert2: 'Machine Learning Specializáció',
+      cert3: 'No-Code AI Agent Builder (n8n)',
+      cert4: 'First Certificate in English (B2)',
+      badgeProgress: 'Folyamatban', badgePlanned: 'Tervezett',
+      labelLang: 'Nyelvek', titleLang: 'A te <em>nyelveden</em> beszélek.',
+      lang1: 'Spanyol', lang1l: 'Anyanyelvi',
+      lang2: 'Magyar', lang2l: 'Kétnyelvű',
+      lang3: 'Angol', lang3l: 'B2 – Cambridge First',
+      lang4: 'Német', lang4l: 'A2',
+      lang5: 'Francia', lang5l: 'A2',
+      labelContact: 'Kapcsolat', titleContact: 'Beszéljünk.',
+      contactIntro: 'BI Analyst, Data Analyst és Analytics pozíciókra keresek lehetőséget Berlinben és távolról. Ha adatvezérelt csapatot építesz és olyan valakire van szükséged, aki érti a pipeline-t és az üzletet egyaránt — keress meg.',
+      cvLink: 'CV letöltése',
+      formLabelName: 'Név', formLabelEmail: 'Email', formLabelMsg: 'Üzenet', formSubmit: 'Üzenet küldése', formSuccess: '✓ Üzenet sikeresen elküldve.',
+      labelMeeting: 'Időpontfoglalás', titleMeeting: 'Foglalj <em>időpontot.</em>',
+    },
+    de: {
+      flag: 'https://flagcdn.com/de.svg',
+      navAbout: 'Über mich', navSkills: 'Fähigkeiten', navExp: 'Erfahrung', navProj: 'Projekte', navContact: 'Kontakt',
+      heroEyebrow: 'Berlin, Deutschland · Sofort verfügbar',
+      heroTitle: 'Business Intelligence Analyst · Python · SQL · Power BI · Datenautomatisierung',
+      btnResume: 'CV herunterladen', btnContact: 'Kontakt aufnehmen',
+      labelAbout: 'Über mich', titleAbout: 'Daten werden zu <em>Entscheidungen.</em>',
+      aboutText: '<p>Ich verwandle Rohdaten in Entscheidungen. Als Business Intelligence Analyst mit <strong>Doppelabschluss in Informatik und Betriebswirtschaftslehre</strong> überbrücke ich eine Lücke, die die meisten BI-Profile nicht können: Ich verstehe die Datenpipeline von Anfang bis Ende <em>und</em> den geschäftlichen Einfluss.</p><p>Bei INHUB baute ich automatisierte Datenextraktionssysteme in Python, die täglich Daten aus mehreren Quellen abriefen, bereinigten und zentralisierten — vollständig automatisiert.</p><p>Derzeit absolviere ich das <strong>Microsoft Power BI Data Analyst Professional Certificate</strong> und Andrew Ngs Machine Learning Specialization.</p><p>In Berlin ansässig. Leistungssportler im Dreisprung und Weitsprung — Disziplin, die ich in jedes Projekt einbringe.</p>',
+      stat1: 'Jahre Datenautomatisierung', stat2: 'Abschlüsse: Informatik + BWL', stat3: 'Gesprochene Sprachen', stat4: 'Aktive Zertifizierungen',
+      labelSkills: 'Fähigkeiten', titleSkills: 'Technisches <em>Werkzeug.</em>',
+      skillT1: 'Daten & Business Intelligence', skillT2: 'Programmierung', skillT3: 'Automatisierung & KI', skillT4: 'Business & Strategie',
+      labelExp: 'Erfahrung', titleExp: 'Wo ich <em>gearbeitet</em> habe.',
+      exp1Role: 'Data & Automation Engineer',
+      exp1Bullets: ['Python-basierte Web-Scraping-Pipelines (Selenium, BeautifulSoup) entwickelt, die täglich strukturierte Daten aus mehreren Quellen extrahieren — vollautomatisiert.','Automatisierte Speicher-Workflows für MySQL-Datenbanken und Excel-Berichte entworfen, jahrelange historische Daten in eine einzige abfragbare Quelle zentralisiert.','Datenverarbeitungseffizienz durch Eliminierung redundanter manueller Schritte verbessert.','Kleine abteilungsübergreifende Projekte geleitet: Umfangsdefinition, Aufgabenkoordination und KPI-Tracking.'],
+      exp2Company: 'Austauschjahr — Betriebswirtschaftslehre',
+      exp2Bullet: 'Internationales akademisches Erlebnis in Berlin, Vertiefung des betriebswirtschaftlichen Wissens und Erweiterung der multikulturellen Perspektive.',
+      labelProj: 'Projekte', titleProj: 'Was ich <em>gebaut</em> habe.',
+      proj1Name: 'Automatisierte Datenpipeline',
+      proj1Desc: 'Tägliche automatisierte Pipeline zur Extraktion strukturierter Daten aus mehreren Webquellen mit Python. Manuellen Verarbeitungsaufwand eliminiert, historische Daten in MySQL zentralisiert.',
+      proj2Name: 'PawLife — KI-Mobil-App',
+      proj2Desc: 'Hybride Mobile-App für Haustierwohl mit KI-personalisierten Gesundheitsplänen. Vollständige Datenschicht mit Firebase Firestore. Allein verantwortlich für technische Entwicklung und Geschäftsstrategie.',
+      proj3Name: 'Power BI Vertriebs-Dashboard',
+      proj3Desc: 'Interaktives BI-Dashboard mit dynamischem KPI-Tracking, DAX-Measures und Drill-Through-Berichten.',
+      proj4Name: 'ML Prognoseanalyse',
+      proj4Desc: 'Prädiktives Modell mit ML-Grundlagen aus Andrew Ngs Spezialisierung angewendet auf einen echten Geschäftsdatensatz.',
+      projNote: 'Projekte 03 und 04 in Bearbeitung — Power BI-Zertifizierung und ML Specialization im April 2026.',
+      labelCert: 'Zertifizierungen', titleCert: 'Immer am <em>Lernen.</em>',
+      cert1: 'Microsoft Power BI Data Analyst Professional Certificate',
+      cert2: 'Machine Learning Specialization',
+      cert3: 'No-Code AI Agent Builder (n8n)',
+      cert4: 'First Certificate in English (B2)',
+      badgeProgress: 'In Bearbeitung', badgePlanned: 'Geplant',
+      labelLang: 'Sprachen', titleLang: 'Ich spreche deine <em>Sprache.</em>',
+      lang1: 'Spanisch', lang1l: 'Muttersprache',
+      lang2: 'Ungarisch', lang2l: 'Zweisprachig',
+      lang3: 'Englisch', lang3l: 'B2 – Cambridge First',
+      lang4: 'Deutsch', lang4l: 'A2',
+      lang5: 'Französisch', lang5l: 'A2',
+      labelContact: 'Kontakt', titleContact: 'Lass uns <em>reden.</em>',
+      contactIntro: 'Offen für BI Analyst, Data Analyst und Analytics-Rollen in Berlin und remote. Wenn Sie ein datengetriebenes Team aufbauen und jemanden brauchen, der sowohl die Pipeline als auch das Business versteht — sprechen wir.',
+      cvLink: 'CV herunterladen',
+      formLabelName: 'Name', formLabelEmail: 'E-Mail', formLabelMsg: 'Nachricht', formSubmit: 'Nachricht senden', formSuccess: '✓ Nachricht erfolgreich gesendet.',
+      labelMeeting: 'Termin', titleMeeting: 'Termin <em>buchen.</em>',
+    }
   };
 
   function setLanguage(lang) {
-    const t = translations[lang];
-    
-    // Remueve .active de todos los botones de idioma
-    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+    const t = T[lang];
+    if (!t) return;
+    document.getElementById('current-flag').src = t.flag;
+    document.getElementById('langDropdown').classList.remove('open');
 
-    // Añade .active al botón seleccionado
-    const activeBtn = [...document.querySelectorAll('.lang-switch button')]
-      .find(btn => btn.textContent.trim().toLowerCase().includes(lang));
-    if (activeBtn) activeBtn.classList.add('active');
+    document.getElementById('nav-about').textContent     = t.navAbout;
+    document.getElementById('nav-skills').textContent    = t.navSkills;
+    document.getElementById('nav-experience').textContent= t.navExp;
+    document.getElementById('nav-projects').textContent  = t.navProj;
+    document.getElementById('nav-contact').textContent   = t.navContact;
 
-    // Actualizar la bandera
-  const currentFlag = document.getElementById("current-flag");
-  if(currentFlag) currentFlag.src = flags[lang];
+    document.getElementById('hero-eyebrow').textContent  = t.heroEyebrow;
+    document.getElementById('hero-title').textContent    = t.heroTitle;
+    document.getElementById('btn-resume').innerHTML      = '<i class="fas fa-download"></i> ' + t.btnResume;
+    document.getElementById('btn-contact-hero').innerHTML= '<i class="fas fa-paper-plane"></i> ' + t.btnContact;
 
-    document.getElementById("name").innerText = t.name;
-    document.getElementById("subtitle").innerText = t.subtitle;
-    document.getElementById("about-title").innerText = t.aboutTitle;
-    document.getElementById("about-text").innerHTML = t.aboutText;
-    document.getElementById("projects-title").innerText = t.projectsTitle;
-    document.getElementById("proj1-title").innerText = t.proj1Title;
-    document.getElementById("proj1-text").innerHTML = t.proj1Text;
-    document.getElementById("proj2-title").innerText = t.proj2Title;
-    document.getElementById("proj2-text").innerHTML = t.proj2Text;
-    document.getElementById("proj3-title").innerText = t.proj3Title;
-    document.getElementById("proj3-text").innerHTML = t.proj3Text;
-    document.getElementById("cv-title").innerText = t.cvTitle;
-    document.getElementById("cv-text").innerHTML = t.cvText;
-    document.getElementById("contact-title").innerText = t.contactTitle;
-    document.getElementById("contact-text").innerHTML = t.contactText;
-    document.getElementById("skills-title").innerText = t.skillsTitle;
-    document.getElementById("languages-title").innerText = t.languagesTitle;
-    document.getElementById("languages-list").innerHTML = t.languagesList;
-    document.getElementById("personal-title").innerText = t.personalTitle;
-    document.getElementById("personal-text").innerHTML = t.personalText;
-    document.getElementById("interests-title").innerText = t.interestsTitle;
-    document.getElementById("interests-text").innerHTML = t.interestsText;
-    document.getElementById("form-title").innerText = t.formTitle;
-    document.getElementById("form-name").placeholder = t.formName;
-    document.getElementById("form-email").placeholder = t.formEmail;
-    document.getElementById("form-message").placeholder = t.formMessage;
-    document.getElementById("form-submit").innerText = t.formSubmit;
-    document.getElementById("form-success").innerText = t.formSuccess;
-    document.getElementById("nav-about").innerText = t.nav.about;
-    document.getElementById("nav-projects").innerText = t.nav.projects;
-    document.getElementById("nav-skills").innerText = t.nav.skills;
-    document.getElementById("nav-languages").innerText = t.nav.languages;
-    document.getElementById("nav-contact").innerText = t.nav.contact;
-    document.getElementById("meeting-title").innerText = t.meetingTitle;
-    document.getElementById("meeting-text").innerText = t.meetingText;
+    document.getElementById('label-about').textContent   = t.labelAbout;
+    document.getElementById('title-about').innerHTML     = t.titleAbout;
+    document.getElementById('about-text').innerHTML      = t.aboutText;
+    document.getElementById('stat1').textContent         = t.stat1;
+    document.getElementById('stat2').textContent         = t.stat2;
+    document.getElementById('stat3').textContent         = t.stat3;
+    document.getElementById('stat4').textContent         = t.stat4;
+
+    document.getElementById('label-skills').textContent  = t.labelSkills;
+    document.getElementById('title-skills').innerHTML    = t.titleSkills;
+    document.getElementById('skill-t1').textContent      = t.skillT1;
+    document.getElementById('skill-t2').textContent      = t.skillT2;
+    document.getElementById('skill-t3').textContent      = t.skillT3;
+    document.getElementById('skill-t4').textContent      = t.skillT4;
+
+    document.getElementById('label-exp').textContent     = t.labelExp;
+    document.getElementById('title-exp').innerHTML       = t.titleExp;
+    document.getElementById('exp1-role').textContent     = t.exp1Role;
+    const bullets = document.getElementById('exp1-bullets');
+    bullets.innerHTML = t.exp1Bullets.map(b => `<li>${b}</li>`).join('');
+    document.getElementById('exp2-company').textContent  = t.exp2Company;
+    document.getElementById('exp2-bullet').textContent   = t.exp2Bullet;
+
+    document.getElementById('label-proj').textContent    = t.labelProj;
+    document.getElementById('title-proj').innerHTML      = t.titleProj;
+    document.getElementById('proj1-name').textContent    = t.proj1Name;
+    document.getElementById('proj1-desc').textContent    = t.proj1Desc;
+    document.getElementById('proj2-name').textContent    = t.proj2Name;
+    document.getElementById('proj2-desc').textContent    = t.proj2Desc;
+    document.getElementById('proj3-name').textContent    = t.proj3Name;
+    document.getElementById('proj3-desc').textContent    = t.proj3Desc;
+    document.getElementById('proj4-name').textContent    = t.proj4Name;
+    document.getElementById('proj4-desc').textContent    = t.proj4Desc;
+    document.getElementById('proj-note').textContent     = t.projNote;
+
+    document.getElementById('label-cert').textContent    = t.labelCert;
+    document.getElementById('title-cert').innerHTML      = t.titleCert;
+    document.getElementById('cert1-name').textContent    = t.cert1;
+    document.getElementById('cert2-name').textContent    = t.cert2;
+    document.getElementById('cert3-name').textContent    = t.cert3;
+    document.getElementById('cert4-name').textContent    = t.cert4;
+    document.getElementById('badge-progress').textContent= t.badgeProgress;
+    document.getElementById('badge-planned').textContent = t.badgePlanned;
+
+    document.getElementById('label-lang').textContent    = t.labelLang;
+    document.getElementById('title-lang').innerHTML      = t.titleLang;
+    document.getElementById('lang1-name').textContent    = t.lang1;
+    document.getElementById('lang1-level').textContent   = t.lang1l;
+    document.getElementById('lang2-name').textContent    = t.lang2;
+    document.getElementById('lang2-level').textContent   = t.lang2l;
+    document.getElementById('lang3-name').textContent    = t.lang3;
+    document.getElementById('lang3-level').textContent   = t.lang3l;
+    document.getElementById('lang4-name').textContent    = t.lang4;
+    document.getElementById('lang4-level').textContent   = t.lang4l;
+    document.getElementById('lang5-name').textContent    = t.lang5;
+    document.getElementById('lang5-level').textContent   = t.lang5l;
+
+    document.getElementById('label-contact').textContent = t.labelContact;
+    document.getElementById('title-contact').innerHTML   = t.titleContact;
+    document.getElementById('contact-intro').textContent = t.contactIntro;
+    document.getElementById('cv-link-text').textContent  = t.cvLink;
+    document.getElementById('form-label-name').textContent = t.formLabelName;
+    document.getElementById('form-label-email').textContent= t.formLabelEmail;
+    document.getElementById('form-label-msg').textContent  = t.formLabelMsg;
+    document.getElementById('form-submit').textContent   = t.formSubmit;
+    document.getElementById('form-success').textContent  = t.formSuccess;
+
+    document.getElementById('label-meeting').textContent = t.labelMeeting;
+    document.getElementById('title-meeting').innerHTML   = t.titleMeeting;
   }
 
-  function toggleTheme() {
-    const html = document.documentElement;
-    const theme = html.getAttribute('data-theme');
-    html.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-  }
-
-  function updateVisitCount() {
-    const count = localStorage.getItem('visitCount') || 0;
-    const newCount = parseInt(count) + 1;
-    localStorage.setItem('visitCount', newCount);
-    document.getElementById('visits').innerText = `Visitas: ${newCount}`;
-  }
-  updateVisitCount();
-</script>
-
-<p id="visits"></p>
-
-
+  window.onload = () => setLanguage('en');
+  </script>
 </body>
 </html>
