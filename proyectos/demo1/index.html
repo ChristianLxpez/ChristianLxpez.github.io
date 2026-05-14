@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Process Analyzer — Christian López Agardi</title>
+  <link rel="icon" type="image/png" href="../../favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg:#0C0C0C; --bg2:#141414; --bg3:#1A1A1A; --border:rgba(255,255,255,0.07);
+      --gold:#C9A84C; --gold-dim:#9A7A38; --gold-glow:rgba(201,168,76,0.12);
+      --text:#E8E4DC; --text2:#8A8680; --text3:#5A5650; --white:#F5F2ED;
+      --green:#2D9E6B; --green-glow:rgba(45,158,107,0.15); --green-dim:#1E7A52;
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'DM Sans',sans-serif;
+      --mono:'DM Mono',monospace;
+      --radius:4px; --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="light"]{
+      --bg:#F8F5F0; --bg2:#EFEBE4; --bg3:#E6E0D6; --border:rgba(0,0,0,0.08);
+      --text:#1A1714; --text2:#6B6560; --text3:#9A9590; --gold-glow:rgba(201,168,76,0.08); --white:#1A1714;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;overflow-x:hidden;transition:background var(--transition),color var(--transition);}
+    a{color:var(--gold);text-decoration:none;transition:opacity 0.2s;}
+    a:hover{opacity:0.75;}
+
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+
+    /* TOPBAR */
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;background:rgba(12,12,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background var(--transition);}
+    [data-theme="light"] .topbar{background:rgba(248,245,240,0.88);}
+    .topbar-logo{font-family:var(--serif);font-size:1.1rem;font-weight:300;letter-spacing:0.04em;color:var(--text);}
+    .topbar-logo span{color:var(--gold);}
+    .topbar-right{display:flex;align-items:center;gap:1rem;}
+    .theme-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:4px 12px;cursor:pointer;font-size:0.75rem;color:var(--text2);font-family:var(--sans);transition:all 0.2s;}
+    .theme-btn:hover{border-color:var(--gold);color:var(--gold);}
+    .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--text2);transition:color 0.2s;}
+    .back-btn:hover{color:var(--gold);opacity:1;}
+
+    /* HERO */
+    .hero{padding:140px 2rem 80px;max-width:900px;margin:0 auto;position:relative;}
+    .hero::after{content:'';position:absolute;bottom:0;left:2rem;width:1px;height:60px;background:linear-gradient(to bottom,var(--gold),transparent);}
+    .hero-eyebrow{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp 0.7s 0.1s forwards;}
+    .hero-eyebrow-line{width:32px;height:1px;background:var(--gold);}
+    .hero-title{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:1rem;opacity:0;animation:fadeUp 0.7s 0.2s forwards;}
+    .hero-title em{font-style:italic;color:var(--gold);}
+    .hero-sub{font-size:1rem;color:var(--text2);max-width:600px;line-height:1.75;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.7s 0.3s forwards;}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:2rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.7s 0.4s forwards;}
+    .meta-item{display:flex;flex-direction:column;gap:3px;}
+    .meta-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);}
+    .meta-value{font-size:0.88rem;color:var(--text2);}
+    .meta-value.green{color:var(--green);}
+    .stack-row{display:flex;flex-wrap:wrap;gap:0.4rem;opacity:0;animation:fadeUp 0.7s 0.5s forwards;}
+    .stack-tag{font-family:var(--mono);font-size:0.65rem;padding:3px 10px;border:1px solid var(--border);border-radius:2px;color:var(--text3);transition:all 0.2s;}
+    .stack-tag:hover{border-color:var(--gold-dim);color:var(--gold);}
+    .stack-tag.highlight{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-glow);}
+
+    /* MAIN */
+    .full-divider{border:none;border-top:1px solid var(--border);margin:0;}
+    main{max-width:900px;margin:0 auto;padding:0 2rem 6rem;}
+
+    /* SECTIONS */
+    .section{padding:4rem 0;border-bottom:1px solid var(--border);}
+    .section:last-child{border-bottom:none;}
+    .section-label{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+    .section-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;line-height:1.15;color:var(--white);margin-bottom:1rem;}
+    .section-title em{font-style:italic;}
+    .section-line{width:32px;height:1px;background:var(--gold);margin-bottom:2rem;}
+    .section-text{font-size:0.93rem;color:var(--text2);line-height:1.85;}
+    .section-text p+p{margin-top:1rem;}
+
+    /* TERMINAL MOCK */
+    .terminal{background:#0A0A0A;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:2rem 0;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+    [data-theme="light"] .terminal{background:#111118;}
+    .terminal-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#111;border-bottom:1px solid var(--border);}
+    .dot{width:11px;height:11px;border-radius:50%;}
+    .dot-r{background:#FF5F57;} .dot-y{background:#FEBC2E;} .dot-g{background:#28C840;}
+    .terminal-title{font-family:var(--mono);font-size:0.68rem;color:var(--text3);margin-left:auto;}
+    .terminal-body{padding:24px 28px;font-family:var(--mono);font-size:0.78rem;line-height:2;overflow-x:auto;}
+    .t-gold{color:#FEBC2E;} .t-grn{color:#2ECC71;} .t-cyn{color:#81D4FA;}
+    .t-wht{color:#F1EFE9;} .t-dim{color:#555;} .t-red{color:#FF6B6B;}
+    .t-line{display:block;}
+
+    /* HOW IT WORKS STEPS */
+    .steps{display:flex;flex-direction:column;gap:0;}
+    .step{display:grid;grid-template-columns:48px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
+    .step:last-child{border-bottom:none;}
+    .step-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--gold);line-height:1;padding-top:4px;}
+    .step-title{font-size:0.88rem;font-weight:500;color:var(--white);margin-bottom:0.3rem;}
+    .step-desc{font-size:0.85rem;color:var(--text2);line-height:1.7;}
+
+    /* FEATURES GRID */
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:1.5rem;}
+    .feature{background:var(--bg2);padding:1.5rem;transition:background 0.2s;}
+    .feature:hover{background:var(--bg3);}
+    .feature-icon{font-size:1.1rem;margin-bottom:0.75rem;}
+    .feature-title{font-size:0.8rem;font-weight:500;color:var(--white);margin-bottom:0.4rem;letter-spacing:0.03em;}
+    .feature-desc{font-size:0.8rem;color:var(--text2);line-height:1.6;}
+
+    /* SETUP BLOCK */
+    .setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:1.5rem;}
+    .setup-block{background:var(--bg2);padding:1.5rem 1.75rem;}
+    .setup-block h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+    .code-inline{font-family:var(--mono);font-size:0.78rem;color:var(--text2);line-height:2;}
+    .code-inline .cmd{color:var(--gold);}
+    .code-inline .cmt{color:var(--text3);}
+    .code-inline .val{color:var(--green);}
+
+    /* STRUCTURE */
+    .file-tree{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin-top:1.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--text2);line-height:2.1;}
+    .ft-dir{color:var(--gold);}
+    .ft-imp{color:var(--green);}
+    .ft-dim{color:var(--text3);}
+
+    /* CTA */
+    .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:#0C0C0C;font-family:var(--sans);font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;border-radius:var(--radius);transition:all 0.25s;}
+    .btn-primary:hover{opacity:1;background:#e0b857;transform:translateY(-1px);}
+    .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;border:1px solid var(--border);color:var(--text2);font-family:var(--sans);font-size:0.8rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;border-radius:var(--radius);transition:all 0.25s;}
+    .btn-outline:hover{opacity:1;border-color:var(--gold);color:var(--gold);transform:translateY(-1px);}
+
+    /* REVEAL */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.65s,transform 0.65s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* FOOTER */
+    footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);font-size:0.73rem;color:var(--text3);letter-spacing:0.05em;}
+
+    @media(max-width:640px){
+      .setup-grid{grid-template-columns:1fr;}
+      .hero-meta{gap:1.2rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="../../index.html" class="topbar-logo">C<span>.</span>López Agardi</a>
+    <div class="topbar-right">
+      <a href="../../index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> All projects</a>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀ Light</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      Project 01
+    </div>
+    <h1 class="hero-title">Business Process<br><em>Analyzer</em></h1>
+    <p class="hero-sub">An AI-powered terminal agent that analyzes any business workflow and returns structured automation opportunities, ROI estimations and quick wins — powered by Google Gemini.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Type</span>
+        <span class="meta-value">AI Agent · CLI Tool</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">AI Model</span>
+        <span class="meta-value">Gemini 2.5 Flash</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">API Cost</span>
+        <span class="meta-value green">Free tier</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-value green">✓ Working</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-tag highlight">Python</span>
+      <span class="stack-tag highlight">Google Gemini</span>
+      <span class="stack-tag highlight">AI Agents</span>
+      <span class="stack-tag">JSON</span>
+      <span class="stack-tag">ETL concepts</span>
+      <span class="stack-tag">CLI UX</span>
+      <span class="stack-tag">python-dotenv</span>
+    </div>
+  </div>
+
+  <hr class="full-divider">
+  <main>
+
+    <!-- TERMINAL PREVIEW -->
+    <div class="section reveal">
+      <p class="section-label">Preview</p>
+      <h2 class="section-title">What it looks like <em>running.</em></h2>
+      <div class="section-line"></div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="terminal-title">business_process_analyzer.py</span>
+        </div>
+        <div class="terminal-body">
+<span class="t-line"><span class="t-gold">╔────────────────────────────────────────────────────────────────╗</span></span>
+<span class="t-line"><span class="t-gold">║</span>       <span class="t-wht">Business Process Analyzer  ·  AI Agent Demo</span>       <span class="t-gold">║</span></span>
+<span class="t-line"><span class="t-gold">╚────────────────────────────────────────────────────────────────╝</span></span>
+<span class="t-line"><span class="t-dim">  Christian López Agardi  ·  christianlxpez.github.io</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-grn">  ✓</span> Conectado a Gemini 2.5 Flash</span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">  ✏  DESCRIPCIÓN DEL PROCESO</span></span>
+<span class="t-line"><span class="t-gold">  ──────────────────────────────────────────────────</span></span>
+<span class="t-line"><span class="t-dim">    Describe el proceso de negocio que quieres analizar.</span></span>
+<span class="t-line"><span class="t-gold">    › </span><span class="t-wht">Una empresa recibe 200 facturas semanales por email...</span></span>
+<span class="t-line"><span class="t-gold">    › </span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">  ⟳</span> Analizando proceso con IA...</span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">╔────────────────────────────────────────────────────────────────╗</span></span>
+<span class="t-line"><span class="t-gold">║</span>              <span class="t-wht">INFORME DE AUTOMATIZACIÓN CON IA</span>              <span class="t-gold">║</span></span>
+<span class="t-line"><span class="t-gold">╚────────────────────────────────────────────────────────────────╝</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">  📋  RESUMEN DEL PROCESO</span></span>
+<span class="t-line"><span class="t-gold">  ──────────────────────────────────────────────────</span></span>
+<span class="t-line">    <span class="t-wht">Gestión manual de facturas con extracción de datos,</span></span>
+<span class="t-line">    <span class="t-wht">verificación y entrada en ERP, con alta carga operativa.</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line">  <span class="t-gold">⚙</span>   Complejidad :  <span class="t-gold">MEDIA</span></span>
+<span class="t-line">  <span class="t-gold">📈</span>  ROI estimado :  <span class="t-cyn">Ahorro de 2–3 días de trabajo semanal</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">  ⚡  QUICK WIN</span></span>
+<span class="t-line">    <span class="t-grn">Implementar OCR + extracción con Gemini para leer</span></span>
+<span class="t-line">    <span class="t-grn">PDFs automáticamente en 1-2 semanas.</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-gold">  🤖  OPORTUNIDADES DETECTADAS (3)</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line">  <span class="t-gold">1.</span> <span class="t-wht">Extracción automática de datos de facturas</span></span>
+<span class="t-line">  <span class="t-dim">    ···········································</span></span>
+<span class="t-line">    <span class="t-dim">Problema :   </span>Lectura manual de PDFs, errores frecuentes</span>
+<span class="t-line">    <span class="t-cyn">Solución :   </span>LLM con visión para extraer campos clave</span>
+<span class="t-line">    <span class="t-dim">Stack    :   </span><span class="t-gold">Gemini Vision, Python, Mindee API</span></span>
+<span class="t-line">    <span class="t-grn">Impacto  :   </span>Reduce 3 días a 20 min/semana</span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line"><span class="t-dim">  ══════════════════════════════════════════════════════════════════</span></span>
+<span class="t-line">&nbsp;</span>
+<span class="t-line">  <span class="t-grn">✓</span> JSON guardado en <span class="t-cyn">resultado_analisis.json</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section reveal">
+      <p class="section-label">Mechanics</p>
+      <h2 class="section-title">How it <em>works.</em></h2>
+      <div class="section-line"></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">User describes a business process</div>
+            <div class="step-desc">The terminal prompts the user to describe any workflow — invoicing, customer support, inventory, HR processes. Free text, no structured form required.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Structured prompt sent to Gemini 2.5 Flash</div>
+            <div class="step-desc">A system prompt instructs the model to act as a digital transformation consultant and return only valid JSON — no markdown, no freetext.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">JSON parsed and rendered as a formatted report</div>
+            <div class="step-desc">The raw JSON is deserialized and displayed using ANSI color codes — with sections for each automation opportunity, quick wins, complexity and ROI.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Output saved to <span style="font-family:var(--mono);font-size:0.82em;color:var(--gold)">resultado_analisis.json</span></div>
+            <div class="step-desc">The structured analysis is persisted to a JSON file — ready to be consumed by other tools, dashboards or further automation pipelines.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section reveal">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">What it <em>includes.</em></h2>
+      <div class="section-line"></div>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🔑</div>
+          <div class="feature-title">Secure API key management</div>
+          <div class="feature-desc">API key loaded from <code style="font-family:var(--mono);font-size:0.85em;color:var(--gold)">.env</code> via python-dotenv. Never hardcoded, never committed to Git.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-title">Gemini 2.5 Flash</div>
+          <div class="feature-desc">Uses Google's latest free-tier model. 1,500 requests/day at zero cost — no credit card needed.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📐</div>
+          <div class="feature-title">Structured JSON output</div>
+          <div class="feature-desc">Forces the LLM to return strict JSON. Handles markdown fences and parses safely with error handling.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title">ANSI terminal formatting</div>
+          <div class="feature-desc">Clean visual hierarchy with gold headers, cyan labels and green highlights. Readable on any terminal.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💡</div>
+          <div class="feature-title">Business-focused analysis</div>
+          <div class="feature-desc">Returns automation opportunities, recommended tools, ROI estimations and a quick win for each process.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📁</div>
+          <div class="feature-title">JSON export</div>
+          <div class="feature-desc">Every analysis is saved locally as <code style="font-family:var(--mono);font-size:0.85em;color:var(--gold)">resultado_analisis.json</code> for further use or integration.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETUP -->
+    <div class="section reveal">
+      <p class="section-label">Setup</p>
+      <h2 class="section-title">Run it <em>yourself.</em></h2>
+      <div class="section-line"></div>
+      <p class="section-text">Get a free API key at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> — no credit card needed. Then:</p>
+      <div class="setup-grid">
+        <div class="setup-block">
+          <h4>Install dependencies</h4>
+          <div class="code-inline">
+            <div><span class="cmd">pip install</span> google-genai python-dotenv</div>
+          </div>
+        </div>
+        <div class="setup-block">
+          <h4>Configure your API key</h4>
+          <div class="code-inline">
+            <div><span class="cmt"># Create a .env file:</span></div>
+            <div>GEMINI_API_KEY=<span class="val">your_key_here</span></div>
+          </div>
+        </div>
+        <div class="setup-block">
+          <h4>Run the analyzer</h4>
+          <div class="code-inline">
+            <div><span class="cmd">python</span> business_process_analyzer.py</div>
+          </div>
+        </div>
+        <div class="setup-block">
+          <h4>requirements.txt</h4>
+          <div class="code-inline">
+            <div>google-genai<span class="cmt">>=1.0.0</span></div>
+            <div>python-dotenv<span class="cmt">>=1.0.0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRUCTURE -->
+    <div class="section reveal">
+      <p class="section-label">Structure</p>
+      <h2 class="section-title">Project <em>files.</em></h2>
+      <div class="section-line"></div>
+      <div class="file-tree">
+        <div><span class="ft-dir">demo1/</span></div>
+        <div>│</div>
+        <div>├── <span class="ft-imp">business_process_analyzer.py</span> <span class="ft-dim">← main script</span></div>
+        <div>├── <span class="ft-imp">README.md</span>                       <span class="ft-dim">← usage & docs</span></div>
+        <div>├── <span class="ft-imp">requirements.txt</span>                <span class="ft-dim">← dependencies</span></div>
+        <div>├── <span class="ft-dim">.env</span>                            <span class="ft-dim">← API key (not in Git)</span></div>
+        <div>├── <span class="ft-dim">.gitignore</span>                      <span class="ft-dim">← .env, venv, cache</span></div>
+        <div>└── <span class="ft-dim">resultado_analisis.json</span>         <span class="ft-dim">← generated output</span></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="section reveal">
+      <p class="section-label">Source</p>
+      <h2 class="section-title">View the <em>code.</em></h2>
+      <div class="section-line"></div>
+      <p class="section-text">Full source available on GitHub. Clone it, run it, or use it as a starting point for your own AI automation agent.</p>
+      <div class="cta-row">
+        <a href="https://github.com/christianlxpez/ai-process-analyzer" target="_blank" class="btn-primary"><i class="fab fa-github"></i> View on GitHub</a>
+        <a href="../../index.html#projects" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Christian López Agardi &nbsp;·&nbsp; <a href="../../index.html">Portfolio</a> &nbsp;·&nbsp; <a href="https://github.com/christianlxpez" target="_blank">GitHub</a>
+  </footer>
+
+  <script>
+    function toggleTheme(){
+      const html=document.documentElement;
+      const btn=document.getElementById('themeBtn');
+      if(html.getAttribute('data-theme')==='dark'){
+        html.setAttribute('data-theme','light');
+        btn.textContent='🌙 Dark';
+      } else {
+        html.setAttribute('data-theme','dark');
+        btn.textContent='☀ Light';
+      }
+    }
+    // Reveal on scroll
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+    },{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
