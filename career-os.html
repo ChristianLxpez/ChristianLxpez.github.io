@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Career OS — Christian López Agardi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0C0C0C;--bg2:#141414;--bg3:#1A1A1A;--bg4:#202020;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --gold:#C9A84C;--gold-dim:#9A7A38;--gold-glow:rgba(201,168,76,0.12);--gold-light:rgba(201,168,76,0.25);
+  --green:#2D9E6B;--green-glow:rgba(45,158,107,0.15);--green-dim:#1E7A52;
+  --blue:#4A8FD4;--blue-glow:rgba(74,143,212,0.12);
+  --amber:#D4884A;--amber-glow:rgba(212,136,74,0.12);
+  --red:#C94C4C;--red-glow:rgba(201,76,76,0.1);
+  --purple:#9B6DD4;--purple-glow:rgba(155,109,212,0.12);
+  --text:#E8E4DC;--text2:#8A8680;--text3:#5A5650;--white:#F5F2ED;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius:4px;--radius-lg:8px;
+  --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;overflow-x:hidden;}
+a{color:var(--gold);text-decoration:none;}
+ul{list-style:none;}
+img{display:block;max-width:100%;}
+
+/* PASSWORD */
+
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;background:rgba(12,12,12,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.topbar-logo{font-family:var(--serif);font-size:1rem;font-weight:300;letter-spacing:0.04em;color:var(--text2);}
+.topbar-logo span{color:var(--gold);}
+.topbar-badge{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;background:var(--gold-glow);border:1px solid var(--gold-dim);color:var(--gold);padding:3px 10px;border-radius:20px;}
+.topbar-right{display:flex;align-items:center;gap:1rem;}
+.topbar-link{font-size:0.75rem;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.topbar-link:hover{color:var(--gold);}
+.reset-btn{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;font-family:var(--mono);font-size:0.65rem;color:var(--text3);cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;}
+.reset-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* LAYOUT */
+.page{padding-top:56px;}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem;}
+.full-divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* SECTION HEADERS */
+.section-wrap{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+.section-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;line-height:1.1;color:var(--white);margin-bottom:0.75rem;}
+.section-title em{font-style:italic;}
+.section-line{width:36px;height:1px;background:var(--gold);margin-bottom:2.5rem;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 4px var(--green);}50%{box-shadow:0 0 12px var(--green),0 0 20px var(--green-glow);}}
+@keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;}
+.hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,var(--gold),transparent);}
+.hero-eyebrow{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.7s 0.1s forwards;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:0.5rem;opacity:0;animation:fadeUp 0.7s 0.2s forwards;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-subtitle{font-family:var(--sans);font-size:0.9rem;font-weight:300;color:var(--text2);max-width:640px;line-height:1.7;margin-bottom:3rem;opacity:0;animation:fadeUp 0.7s 0.3s forwards;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;width:100%;max-width:800px;margin-bottom:3rem;opacity:0;animation:fadeUp 0.7s 0.4s forwards;}
+.hero-stat{background:var(--bg2);padding:1.5rem 1rem;transition:background 0.2s;}
+.hero-stat:hover{background:var(--bg3);}
+.hero-stat-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:0.3rem;}
+.hero-stat-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);}
+
+/* GLOBAL PROGRESS */
+.global-progress-wrap{width:100%;max-width:800px;opacity:0;animation:fadeUp 0.7s 0.5s forwards;}
+.gp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;}
+.gp-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);}
+.gp-pct{font-family:var(--mono);font-size:0.8rem;color:var(--gold);}
+.gp-bar-track{height:4px;background:var(--border2);border-radius:2px;overflow:hidden;}
+.gp-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:2px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+.focus-row{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center;}
+.focus-tag{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);border-radius:20px;color:var(--text2);}
+.focus-tag.active{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-glow);}
+
+/* ── ROADMAP ── */
+.phase-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.phase{background:var(--bg2);}
+.phase-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.75rem;cursor:pointer;transition:background 0.2s;user-select:none;}
+.phase-header:hover{background:var(--bg3);}
+.phase-left{display:flex;align-items:center;gap:1rem;}
+.phase-num{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--text3);}
+.phase-name{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--white);}
+.phase-right{display:flex;align-items:center;gap:1rem;}
+.phase-pct{font-family:var(--mono);font-size:0.72rem;color:var(--gold);}
+.phase-mini-bar{width:80px;height:3px;background:var(--border2);border-radius:2px;overflow:hidden;}
+.phase-mini-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.8s;}
+.phase-chevron{font-size:0.7rem;color:var(--text3);transition:transform 0.3s;}
+.phase.open .phase-chevron{transform:rotate(180deg);}
+.phase-body{display:none;padding:0 1.75rem 1.5rem;}
+.phase.open .phase-body{display:block;}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;margin-top:1rem;}
+.skill-item{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0.85rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg3);cursor:pointer;transition:all 0.2s;position:relative;}
+.skill-item:hover{border-color:var(--gold-dim);}
+.skill-item.checked{border-color:var(--green-dim);background:rgba(45,158,107,0.06);}
+.skill-cb{width:14px;height:14px;border:1px solid var(--text3);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:8px;}
+.skill-item.checked .skill-cb{background:var(--green);border-color:var(--green);color:#fff;}
+.skill-name{font-size:0.82rem;color:var(--text2);transition:color 0.2s;}
+.skill-item.checked .skill-name{color:var(--text);}
+.skill-status{margin-left:auto;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.06em;text-transform:uppercase;}
+.status-done{color:var(--green);}
+.status-prog{color:var(--gold);}
+.status-pend{color:var(--text3);}
+
+/* PHASE STATUS BADGES */
+.phase-badge{font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;}
+.badge-active{background:var(--gold-glow);border:1px solid var(--gold-dim);color:var(--gold);}
+.badge-done{background:var(--green-glow);border:1px solid var(--green-dim);color:var(--green);}
+.badge-next{background:var(--blue-glow);border:1px solid var(--blue);color:var(--blue);}
+.badge-future{background:rgba(90,86,80,0.15);border:1px solid var(--text3);color:var(--text3);}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.proj-card{background:var(--bg2);padding:2rem;transition:background 0.25s;position:relative;}
+.proj-card:hover{background:var(--bg3);}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.3s;}
+.proj-card:hover::before{opacity:1;}
+.proj-card.status-planning::before{background:linear-gradient(90deg,var(--blue),transparent);}
+.proj-card.status-building::before{background:linear-gradient(90deg,var(--gold),transparent);}
+.proj-card.status-done::before{background:linear-gradient(90deg,var(--green),transparent);}
+.proj-num{font-family:var(--mono);font-size:0.6rem;color:var(--text3);margin-bottom:1rem;letter-spacing:0.1em;}
+.proj-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--white);margin-bottom:0.5rem;line-height:1.2;}
+.proj-desc{font-size:0.8rem;color:var(--text2);line-height:1.65;margin-bottom:1.25rem;}
+.proj-bar-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem;}
+.proj-bar-label{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;}
+.proj-bar-pct{font-family:var(--mono);font-size:0.7rem;color:var(--gold);}
+.proj-bar-track{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;margin-bottom:1.25rem;}
+.proj-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));transition:width 1s;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem;}
+.proj-tag{font-family:var(--mono);font-size:0.6rem;padding:2px 8px;border:1px solid var(--border);border-radius:2px;color:var(--text3);}
+.proj-status-row{display:flex;align-items:center;gap:0.5rem;}
+.proj-status{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+.proj-status.planning{background:var(--blue-glow);border:1px solid var(--blue);color:var(--blue);}
+.proj-status.building{background:var(--gold-glow);border:1px solid var(--gold-dim);color:var(--gold);}
+.proj-status.completed{background:var(--green-glow);border:1px solid var(--green-dim);color:var(--green);}
+.proj-value{font-size:0.75rem;color:var(--text3);margin-left:auto;}
+
+/* ── RADAR CHART ── */
+.radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.radar-canvas-wrap{display:flex;justify-content:center;}
+canvas#radarChart{max-width:420px;width:100%;}
+.radar-legend{display:flex;flex-direction:column;gap:0.75rem;}
+.radar-item{display:flex;align-items:center;gap:0.75rem;}
+.radar-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.radar-label{font-size:0.82rem;color:var(--text2);flex:1;}
+.radar-bars{flex:1;}
+.radar-compare{display:flex;flex-direction:column;gap:3px;}
+.radar-bar-now{height:3px;background:var(--gold);border-radius:2px;}
+.radar-bar-target{height:3px;background:rgba(74,143,212,0.4);border-radius:2px;margin-top:2px;}
+.radar-val{font-family:var(--mono);font-size:0.65rem;color:var(--text3);white-space:nowrap;}
+
+/* ── TARGET ROLES ── */
+.roles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.role-card{background:var(--bg2);padding:1.75rem;transition:background 0.2s;position:relative;}
+.role-card:hover{background:var(--bg3);}
+.role-icon{font-size:1.4rem;margin-bottom:0.75rem;}
+.role-title{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--white);margin-bottom:0.3rem;}
+.role-timeline{font-family:var(--mono);font-size:0.65rem;color:var(--text3);margin-bottom:1rem;}
+.role-readiness-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
+.role-readiness-label{font-size:0.72rem;color:var(--text2);}
+.role-readiness-pct{font-family:var(--mono);font-size:0.78rem;color:var(--gold);}
+.role-bar-track{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;margin-bottom:0.75rem;}
+.role-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));transition:width 1s;}
+.role-reqs{display:flex;flex-direction:column;gap:0.3rem;}
+.role-req{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--text3);}
+.role-req.met{color:var(--text2);}
+.role-req-dot{width:5px;height:5px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+.role-req.met .role-req-dot{background:var(--green);}
+
+/* ── KNOWLEDGE TRACKER ── */
+.tracker-filters{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.filter-btn{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:none;color:var(--text3);cursor:pointer;transition:all 0.2s;}
+.filter-btn:hover,.filter-btn.active{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-glow);}
+.tracker-table{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.tracker-row{display:grid;grid-template-columns:1fr 120px 140px;align-items:center;padding:0.85rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg2);transition:background 0.15s;}
+.tracker-row:last-child{border-bottom:none;}
+.tracker-row:hover{background:var(--bg3);}
+.tracker-row.header{background:var(--bg3);padding:0.6rem 1.5rem;}
+.tracker-skill-name{font-size:0.85rem;color:var(--text);}
+.tracker-category{font-family:var(--mono);font-size:0.62rem;color:var(--text3);}
+.status-select{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:4px 8px;color:var(--text2);font-family:var(--mono);font-size:0.65rem;cursor:pointer;outline:none;transition:border-color 0.2s;}
+.status-select:focus{border-color:var(--gold);}
+.status-badge{display:inline-block;font-size:0.6rem;letter-spacing:0.07em;text-transform:uppercase;padding:3px 8px;border-radius:20px;}
+.sb-none{background:rgba(90,86,80,0.12);border:1px solid var(--text3);color:var(--text3);}
+.sb-learning{background:var(--blue-glow);border:1px solid var(--blue);color:var(--blue);}
+.sb-practicing{background:var(--amber-glow);border:1px solid var(--amber);color:var(--amber);}
+.sb-project{background:var(--purple-glow);border:1px solid var(--purple);color:var(--purple);}
+.sb-pro{background:var(--green-glow);border:1px solid var(--green);color:var(--green);}
+
+/* ── MISSION ── */
+.mission-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem;text-align:center;position:relative;overflow:hidden;}
+.mission-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--gold-glow),transparent 60%);pointer-events:none;}
+.mission-quote{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:300;font-style:italic;color:var(--white);line-height:1.6;max-width:750px;margin:0 auto 2rem;}
+.mission-quote em{color:var(--gold);font-style:normal;}
+.mission-pillars{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;}
+.mission-pillar{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:5px 16px;border:1px solid var(--gold-dim);border-radius:20px;color:var(--gold);background:var(--gold-glow);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .topbar{padding:0 1.25rem;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .radar-wrap{grid-template-columns:1fr;}
+  .tracker-row{grid-template-columns:1fr 120px;}
+  .tracker-row .tracker-category{display:none;}
+  .section-wrap{padding:3.5rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+  <!-- PASSWORD -->
+  <script>
+      (function(){
+    const correct = "hola";
+    const entered = localStorage.getItem('cos_auth');
+    if(entered !== correct){
+      const pwd = prompt("🔒 Access restricted — enter code:");
+      if(pwd !== correct){
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;color:#5A5650;background:#0C0C0C;font-size:0.85rem;letter-spacing:0.1em;">ACCESS DENIED</div>';
+        return;
+      }
+      localStorage.setItem('cos_auth', correct);
+    }
+  })();
+  </script>
+
+<div class="page">
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="index.html" class="topbar-logo">C<span>.</span>López Agardi</a>
+    <span class="topbar-badge">Career OS</span>
+  </div>
+  <div class="topbar-right">
+    <a href="index.html" class="topbar-link"><i class="fas fa-arrow-left" style="margin-right:4px;font-size:10px;"></i> Portfolio</a>
+    <button class="reset-btn" onclick="confirmReset()"><i class="fas fa-redo" style="margin-right:4px;font-size:9px;"></i> Reset all</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow"><span class="live-dot"></span> Personal · Not public · Strategic roadmap</p>
+  <h1 class="hero-title">Career <em>Operating</em><br>System</h1>
+  <p class="hero-subtitle" style="opacity:0;animation:fadeUp 0.7s 0.35s forwards;">Strategic roadmap toward becoming an AI Automation Engineer, AI Energy Specialist, AI Solutions Architect and future SaaS founder. All progress persists in your browser.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num" id="stat-skills-done">0</div><div class="hero-stat-label">Skills done</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" id="stat-skills-total">0</div><div class="hero-stat-label">Total skills</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" id="stat-phases-done">0</div><div class="hero-stat-label">Phases active</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" id="stat-global-pct">0%</div><div class="hero-stat-label">Overall progress</div></div>
+  </div>
+
+  <div class="global-progress-wrap">
+    <div class="gp-header">
+      <span class="gp-label">Global career progress</span>
+      <span class="gp-pct" id="gp-pct-text">0%</span>
+    </div>
+    <div class="gp-bar-track"><div class="gp-bar-fill" id="gp-bar" style="width:0%"></div></div>
+    <div class="focus-row">
+      <span class="focus-tag active">Current focus: Power BI + Python</span>
+      <span class="focus-tag active">Next milestone: AI APIs</span>
+      <span class="focus-tag">Target: AI Automation Engineer</span>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- ROADMAP -->
+<div class="section-wrap reveal">
+  <p class="section-label">01 — Roadmap</p>
+  <h2 class="section-title">Career <em>phases.</em></h2>
+  <div class="section-line"></div>
+
+  <div class="phase-list" id="phase-list">
+
+    <!-- PHASE 1 -->
+    <div class="phase open" id="phase-1">
+      <div class="phase-header" onclick="togglePhase('phase-1')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 01</span>
+          <span class="phase-name">Foundations</span>
+          <span class="phase-badge badge-active">Active</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-1">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-1" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-1">
+          <div class="skill-item checked locked" data-phase="1" data-skill="Computer Engineering Degree"><div class="skill-cb"><i class="fas fa-check"></i></div><span class="skill-name">Computer Engineering Degree</span><span class="skill-status status-done">Done</span></div>
+          <div class="skill-item checked locked" data-phase="1" data-skill="Business Administration Degree"><div class="skill-cb"><i class="fas fa-check"></i></div><span class="skill-name">Business Administration Degree</span><span class="skill-status status-done">Done</span></div>
+          <div class="skill-item" data-phase="1" data-skill="Power BI Data Analyst"><div class="skill-cb"></div><span class="skill-name">Power BI Data Analyst</span><span class="skill-status status-prog">→ In progress</span></div>
+          <div class="skill-item" data-phase="1" data-skill="Professional Python"><div class="skill-cb"></div><span class="skill-name">Professional Python</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="1" data-skill="Advanced SQL"><div class="skill-cb"></div><span class="skill-name">Advanced SQL</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="1" data-skill="Git"><div class="skill-cb"></div><span class="skill-name">Git</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="1" data-skill="GitHub"><div class="skill-cb"></div><span class="skill-name">GitHub</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="1" data-skill="Docker"><div class="skill-cb"></div><span class="skill-name">Docker</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase" id="phase-2">
+      <div class="phase-header" onclick="togglePhase('phase-2')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 02</span>
+          <span class="phase-name">Applied AI</span>
+          <span class="phase-badge badge-next">Next</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-2">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-2" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-2">
+          <div class="skill-item" data-phase="2" data-skill="OpenAI API"><div class="skill-cb"></div><span class="skill-name">OpenAI API</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="Claude API"><div class="skill-cb"></div><span class="skill-name">Claude API</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="Gemini API"><div class="skill-cb"></div><span class="skill-name">Gemini API</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="Prompt Engineering"><div class="skill-cb"></div><span class="skill-name">Prompt Engineering</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="RAG"><div class="skill-cb"></div><span class="skill-name">RAG</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="Vector Databases"><div class="skill-cb"></div><span class="skill-name">Vector Databases</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="2" data-skill="AI Document Processing"><div class="skill-cb"></div><span class="skill-name">AI Document Processing</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase" id="phase-3">
+      <div class="phase-header" onclick="togglePhase('phase-3')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 03</span>
+          <span class="phase-name">AI Automation</span>
+          <span class="phase-badge badge-active">Active</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-3">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-3" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-3">
+          <div class="skill-item checked locked" data-phase="3" data-skill="n8n"><div class="skill-cb"><i class="fas fa-check"></i></div><span class="skill-name">n8n</span><span class="skill-status status-done">Done</span></div>
+          <div class="skill-item" data-phase="3" data-skill="Make (Integromat)"><div class="skill-cb"></div><span class="skill-name">Make (Integromat)</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="3" data-skill="Workflow Design"><div class="skill-cb"></div><span class="skill-name">Workflow Design</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="3" data-skill="API Integrations"><div class="skill-cb"></div><span class="skill-name">API Integrations</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="3" data-skill="Business Automation"><div class="skill-cb"></div><span class="skill-name">Business Automation</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase" id="phase-4">
+      <div class="phase-header" onclick="togglePhase('phase-4')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 04</span>
+          <span class="phase-name">Agentic AI</span>
+          <span class="phase-badge badge-future">Future</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-4">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-4" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-4">
+          <div class="skill-item" data-phase="4" data-skill="LangGraph"><div class="skill-cb"></div><span class="skill-name">LangGraph</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="4" data-skill="MCP"><div class="skill-cb"></div><span class="skill-name">MCP</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="4" data-skill="CrewAI"><div class="skill-cb"></div><span class="skill-name">CrewAI</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="4" data-skill="Multi-Agent Systems"><div class="skill-cb"></div><span class="skill-name">Multi-Agent Systems</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="4" data-skill="AI Orchestration"><div class="skill-cb"></div><span class="skill-name">AI Orchestration</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase" id="phase-5">
+      <div class="phase-header" onclick="togglePhase('phase-5')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 05</span>
+          <span class="phase-name">Software Engineering</span>
+          <span class="phase-badge badge-future">Future</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-5">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-5" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-5">
+          <div class="skill-item" data-phase="5" data-skill="FastAPI"><div class="skill-cb"></div><span class="skill-name">FastAPI</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="5" data-skill="React"><div class="skill-cb"></div><span class="skill-name">React</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="5" data-skill="Next.js"><div class="skill-cb"></div><span class="skill-name">Next.js</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="5" data-skill="SaaS Architecture"><div class="skill-cb"></div><span class="skill-name">SaaS Architecture</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="5" data-skill="Authentication"><div class="skill-cb"></div><span class="skill-name">Authentication</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="5" data-skill="Payments"><div class="skill-cb"></div><span class="skill-name">Payments</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase" id="phase-6">
+      <div class="phase-header" onclick="togglePhase('phase-6')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 06</span>
+          <span class="phase-name">Cloud & Enterprise</span>
+          <span class="phase-badge badge-future">Future</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-6">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-6" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-6">
+          <div class="skill-item" data-phase="6" data-skill="Azure Fundamentals"><div class="skill-cb"></div><span class="skill-name">Azure Fundamentals</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="6" data-skill="Azure AI Engineer Associate"><div class="skill-cb"></div><span class="skill-name">Azure AI Engineer Assoc.</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="6" data-skill="AWS Cloud Practitioner"><div class="skill-cb"></div><span class="skill-name">AWS Cloud Practitioner</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="6" data-skill="CI/CD"><div class="skill-cb"></div><span class="skill-name">CI/CD</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="6" data-skill="Monitoring"><div class="skill-cb"></div><span class="skill-name">Monitoring</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="6" data-skill="MLOps"><div class="skill-cb"></div><span class="skill-name">MLOps</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 7 -->
+    <div class="phase" id="phase-7">
+      <div class="phase-header" onclick="togglePhase('phase-7')">
+        <div class="phase-left">
+          <span class="phase-num">PHASE 07</span>
+          <span class="phase-name">Governance & Energy</span>
+          <span class="phase-badge badge-active">Active</span>
+        </div>
+        <div class="phase-right">
+          <span class="phase-pct" id="pct-phase-7">0%</span>
+          <div class="phase-mini-bar"><div class="phase-mini-fill" id="bar-phase-7" style="width:0%"></div></div>
+          <i class="fas fa-chevron-down phase-chevron"></i>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="skill-grid" id="skills-phase-7">
+          <div class="skill-item" data-phase="7" data-skill="Energy Management Expert"><div class="skill-cb"></div><span class="skill-name">Energy Management Expert</span><span class="skill-status status-prog">→ In progress</span></div>
+          <div class="skill-item" data-phase="7" data-skill="Energy Audits"><div class="skill-cb"></div><span class="skill-name">Energy Audits</span><span class="skill-status status-prog">→ In progress</span></div>
+          <div class="skill-item" data-phase="7" data-skill="Building Energy Certificates"><div class="skill-cb"></div><span class="skill-name">Building Energy Certs.</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="7" data-skill="Industrial Energy Efficiency"><div class="skill-cb"></div><span class="skill-name">Industrial Energy Efficiency</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="7" data-skill="ISO 50001"><div class="skill-cb"></div><span class="skill-name">ISO 50001</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="7" data-skill="ISO 42001"><div class="skill-cb"></div><span class="skill-name">ISO 42001</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="7" data-skill="EU AI Act"><div class="skill-cb"></div><span class="skill-name">EU AI Act</span><span class="skill-status status-pend">Pending</span></div>
+          <div class="skill-item" data-phase="7" data-skill="AI Governance"><div class="skill-cb"></div><span class="skill-name">AI Governance</span><span class="skill-status status-pend">Pending</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- PROJECTS -->
+<div class="section-wrap reveal">
+  <p class="section-label">02 — Projects</p>
+  <h2 class="section-title">Projects <em>dashboard.</em></h2>
+  <div class="section-line"></div>
+  <div class="projects-grid">
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">01</div>
+      <div class="proj-title">Spotify Automation Platform</div>
+      <div class="proj-desc">n8n + Spotify API automation to manage playlists, track listening patterns and generate personalized insights via AI.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">10%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:10%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">n8n</span><span class="proj-tag">Spotify API</span><span class="proj-tag">Python</span><span class="proj-tag">AI</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Portfolio · Automation</span></div>
+    </div>
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">02</div>
+      <div class="proj-title">AI Energy Auditor</div>
+      <div class="proj-desc">AI agent that processes building data, consumption patterns and generates automated energy audit reports with recommendations.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">5%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:5%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Claude API</span><span class="proj-tag">RAG</span><span class="proj-tag">Energy</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Niche · High value</span></div>
+    </div>
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">03</div>
+      <div class="proj-title">AI Compliance Assistant</div>
+      <div class="proj-desc">AI tool that helps companies assess EU AI Act compliance, generates readiness reports and tracks regulatory gaps.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">0%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:0%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">LangChain</span><span class="proj-tag">EU AI Act</span><span class="proj-tag">FastAPI</span><span class="proj-tag">RAG</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Consulting · Enterprise</span></div>
+    </div>
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">04</div>
+      <div class="proj-title">AI Document Intelligence System</div>
+      <div class="proj-desc">Multi-agent pipeline that ingests, classifies, extracts and summarizes business documents with structured output.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">0%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:0%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">CrewAI</span><span class="proj-tag">Vector DB</span><span class="proj-tag">Python</span><span class="proj-tag">Agents</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Enterprise · Scalable</span></div>
+    </div>
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">05</div>
+      <div class="proj-title">Agentic Energy Manager</div>
+      <div class="proj-desc">Autonomous AI agent that monitors energy consumption in real time, detects anomalies and generates optimization recommendations.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">0%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:0%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">LangGraph</span><span class="proj-tag">IoT APIs</span><span class="proj-tag">Python</span><span class="proj-tag">ISO 50001</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Unique niche · SaaS potential</span></div>
+    </div>
+
+    <div class="proj-card status-planning">
+      <div class="proj-num">06</div>
+      <div class="proj-title">Energy SaaS Platform</div>
+      <div class="proj-desc">Full SaaS product for SMEs to monitor, analyze and optimize their energy consumption with AI-driven dashboards and automated reports.</div>
+      <div class="proj-bar-row"><span class="proj-bar-label">Progress</span><span class="proj-bar-pct">0%</span></div>
+      <div class="proj-bar-track"><div class="proj-bar-fill" style="width:0%"></div></div>
+      <div class="proj-tags"><span class="proj-tag">Next.js</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Azure</span><span class="proj-tag">Stripe</span></div>
+      <div class="proj-status-row"><span class="proj-status planning">Planning</span><span class="proj-value">Long-term · Founder goal</span></div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- MARKET POSITIONING -->
+<div class="section-wrap reveal">
+  <p class="section-label">03 — Positioning</p>
+  <h2 class="section-title">Market <em>positioning.</em></h2>
+  <div class="section-line"></div>
+  <div class="radar-wrap">
+    <div class="radar-canvas-wrap">
+      <canvas id="radarChart" width="420" height="420"></canvas>
+    </div>
+    <div class="radar-legend">
+      <div style="display:flex;gap:1.5rem;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:2px;background:var(--gold);border-radius:1px;"></div><span style="font-size:0.72rem;color:var(--text2);">Current level</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:2px;background:var(--blue);border-radius:1px;opacity:0.6;"></div><span style="font-size:0.72rem;color:var(--text2);">Target (12-18 months)</span></div>
+      </div>
+      <div id="radar-items"></div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- TARGET ROLES -->
+<div class="section-wrap reveal">
+  <p class="section-label">04 — Target roles</p>
+  <h2 class="section-title">Role <em>readiness.</em></h2>
+  <div class="section-line"></div>
+  <div class="roles-grid">
+
+    <div class="role-card">
+      <div class="role-icon">📊</div>
+      <div class="role-title">BI / Data Analyst</div>
+      <div class="role-timeline">Now → 3 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">65%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:65%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req met"><div class="role-req-dot"></div>SQL & data pipelines</div>
+        <div class="role-req met"><div class="role-req-dot"></div>Python automation</div>
+        <div class="role-req"><div class="role-req-dot"></div>Power BI dashboards</div>
+        <div class="role-req"><div class="role-req-dot"></div>DAX & data modeling</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🤖</div>
+      <div class="role-title">Junior AI Engineer</div>
+      <div class="role-timeline">3 → 9 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">30%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:30%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req met"><div class="role-req-dot"></div>Python foundation</div>
+        <div class="role-req"><div class="role-req-dot"></div>AI APIs (OpenAI/Claude)</div>
+        <div class="role-req"><div class="role-req-dot"></div>RAG & embeddings</div>
+        <div class="role-req"><div class="role-req-dot"></div>LangChain / LangGraph</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">⚡</div>
+      <div class="role-title">AI Automation Engineer</div>
+      <div class="role-timeline">6 → 12 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">25%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:25%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req met"><div class="role-req-dot"></div>n8n workflows</div>
+        <div class="role-req"><div class="role-req-dot"></div>Make & API integration</div>
+        <div class="role-req"><div class="role-req-dot"></div>Agentic AI pipelines</div>
+        <div class="role-req"><div class="role-req-dot"></div>Multi-agent systems</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🌱</div>
+      <div class="role-title">AI Energy Specialist</div>
+      <div class="role-timeline">12 → 18 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">20%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:20%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req"><div class="role-req-dot"></div>Energy management expert</div>
+        <div class="role-req"><div class="role-req-dot"></div>AI engineering skills</div>
+        <div class="role-req"><div class="role-req-dot"></div>ISO 50001 / audits</div>
+        <div class="role-req"><div class="role-req-dot"></div>Agentic energy systems</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🏗️</div>
+      <div class="role-title">AI Solutions Architect</div>
+      <div class="role-timeline">18 → 30 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">15%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:15%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req"><div class="role-req-dot"></div>Cloud (Azure/AWS)</div>
+        <div class="role-req"><div class="role-req-dot"></div>Enterprise AI design</div>
+        <div class="role-req"><div class="role-req-dot"></div>MLOps & CI/CD</div>
+        <div class="role-req"><div class="role-req-dot"></div>AI governance</div>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-icon">🚀</div>
+      <div class="role-title">SaaS Founder</div>
+      <div class="role-timeline">30 → 48 months</div>
+      <div class="role-readiness-row"><span class="role-readiness-label">Readiness</span><span class="role-readiness-pct">12%</span></div>
+      <div class="role-bar-track"><div class="role-bar-fill" style="width:12%"></div></div>
+      <div class="role-reqs">
+        <div class="role-req met"><div class="role-req-dot"></div>Business strategy (ADE)</div>
+        <div class="role-req"><div class="role-req-dot"></div>Full-stack product</div>
+        <div class="role-req"><div class="role-req-dot"></div>Scalable AI system</div>
+        <div class="role-req"><div class="role-req-dot"></div>GTM & monetization</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- KNOWLEDGE TRACKER -->
+<div class="section-wrap reveal">
+  <p class="section-label">05 — Knowledge tracker</p>
+  <h2 class="section-title">Skill <em>status.</em></h2>
+  <div class="section-line"></div>
+
+  <div class="tracker-filters">
+    <button class="filter-btn active" onclick="filterTracker('all',this)">All</button>
+    <button class="filter-btn" onclick="filterTracker('Not Started',this)">Not started</button>
+    <button class="filter-btn" onclick="filterTracker('Learning',this)">Learning</button>
+    <button class="filter-btn" onclick="filterTracker('Practicing',this)">Practicing</button>
+    <button class="filter-btn" onclick="filterTracker('Project Completed',this)">Project done</button>
+    <button class="filter-btn" onclick="filterTracker('Professional',this)">Professional</button>
+  </div>
+
+  <div class="tracker-table">
+    <div class="tracker-row header">
+      <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Skill</span>
+      <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Category</span>
+      <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);">Status</span>
+    </div>
+    <div id="tracker-body"></div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- MISSION -->
+<div class="section-wrap reveal">
+  <p class="section-label">06 — Mission</p>
+  <h2 class="section-title">Personal <em>mission.</em></h2>
+  <div class="section-line"></div>
+  <div class="mission-card">
+    <div class="mission-quote">
+      "Build a unique profile combining <em>AI</em>, <em>Software Engineering</em>, <em>Automation</em>, <em>Business</em> and <em>Energy Expertise</em> to create high-impact solutions, generate measurable value and eventually build scalable technology businesses."
+    </div>
+    <div class="mission-pillars">
+      <span class="mission-pillar">AI Engineering</span>
+      <span class="mission-pillar">Automation</span>
+      <span class="mission-pillar">Energy Tech</span>
+      <span class="mission-pillar">Business Strategy</span>
+      <span class="mission-pillar">SaaS</span>
+      <span class="mission-pillar">Location Independence</span>
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text3);letter-spacing:0.05em;">
+  Career OS · Christian López Agardi · Private use only · <span id="last-updated"></span>
+</footer>
+
+</div><!-- end .page -->
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const TRACKER_SKILLS = [
+  {name:'Python',cat:'Programming'},{name:'SQL',cat:'Data'},{name:'Power BI',cat:'Data'},{name:'DAX',cat:'Data'},
+  {name:'Excel (Advanced)',cat:'Data'},{name:'ETL',cat:'Data'},{name:'Data Modeling',cat:'Data'},
+  {name:'Git',cat:'Engineering'},{name:'GitHub',cat:'Engineering'},{name:'Docker',cat:'Engineering'},
+  {name:'FastAPI',cat:'Engineering'},{name:'React',cat:'Engineering'},{name:'Next.js',cat:'Engineering'},
+  {name:'OpenAI API',cat:'AI'},{name:'Claude API',cat:'AI'},{name:'Gemini API',cat:'AI'},
+  {name:'Prompt Engineering',cat:'AI'},{name:'RAG',cat:'AI'},{name:'Vector Databases',cat:'AI'},
+  {name:'LangChain',cat:'AI'},{name:'LangGraph',cat:'AI'},{name:'CrewAI',cat:'AI'},
+  {name:'Multi-Agent Systems',cat:'AI'},{name:'n8n',cat:'Automation'},{name:'Make',cat:'Automation'},
+  {name:'API Integrations',cat:'Automation'},{name:'Workflow Design',cat:'Automation'},
+  {name:'Azure Fundamentals',cat:'Cloud'},{name:'Azure AI Engineer',cat:'Cloud'},{name:'AWS',cat:'Cloud'},
+  {name:'CI/CD',cat:'Cloud'},{name:'MLOps',cat:'Cloud'},
+  {name:'Energy Management',cat:'Energy'},{name:'Energy Audits',cat:'Energy'},
+  {name:'ISO 50001',cat:'Energy'},{name:'ISO 42001',cat:'Governance'},
+  {name:'EU AI Act',cat:'Governance'},{name:'AI Governance',cat:'Governance'},
+];
+
+const RADAR_DATA = [
+  {label:'Software Eng.',now:5,target:8},{label:'Artificial Intelligence',now:3,target:8},
+  {label:'Automation',now:4,target:8},{label:'Data Analytics',now:5,target:8},
+  {label:'Business Knowledge',now:8,target:9},{label:'Energy Expertise',now:3,target:8},
+  {label:'Cloud',now:1,target:7},{label:'Governance',now:2,target:7},
+];
+
+const STATUSES = ['Not Started','Learning','Practicing','Project Completed','Professional'];
+const STATUS_CLASS = {'Not Started':'sb-none','Learning':'sb-learning','Practicing':'sb-practicing','Project Completed':'sb-project','Professional':'sb-pro'};
+
+// ── LOCALSTORAGE ───────────────────────────────────────────────
+function save(key,val){try{localStorage.setItem('cos_'+key,JSON.stringify(val));}catch(e){}}
+function load(key,def){try{const v=localStorage.getItem('cos_'+key);return v!=null?JSON.parse(v):def;}catch(e){return def;}}
+
+// ── SKILL CHECKBOXES ──────────────────────────────────────────
+function initSkillItems(){
+  document.querySelectorAll('.skill-item:not(.locked)').forEach(item=>{
+    const key = 'skill_'+item.dataset.skill;
+    if(load(key,false)) item.classList.add('checked');
+    item.addEventListener('click',()=>{
+      if(item.classList.contains('locked'))return;
+      item.classList.toggle('checked');
+      save(key, item.classList.contains('checked'));
+      updateAllProgress();
+    });
+  });
+}
+
+// ── PROGRESS ─────────────────────────────────────────────────
+function updateAllProgress(){
+  let totalSkills=0,totalDone=0;
+  for(let p=1;p<=7;p++){
+    const items=document.querySelectorAll(`[data-phase="${p}"]`);
+    const done=[...items].filter(i=>i.classList.contains('checked')).length;
+    const pct=items.length?Math.round(done/items.length*100):0;
+    const el=document.getElementById('pct-phase-'+p);
+    const bar=document.getElementById('bar-phase-'+p);
+    if(el)el.textContent=pct+'%';
+    if(bar)bar.style.width=pct+'%';
+    totalSkills+=items.length;
+    totalDone+=done;
+  }
+  const gPct=totalSkills?Math.round(totalDone/totalSkills*100):0;
+  document.getElementById('gp-bar').style.width=gPct+'%';
+  document.getElementById('gp-pct-text').textContent=gPct+'%';
+  document.getElementById('stat-skills-done').textContent=totalDone;
+  document.getElementById('stat-skills-total').textContent=totalSkills;
+  document.getElementById('stat-global-pct').textContent=gPct+'%';
+  const activePhasesEl=document.getElementById('stat-phases-done');
+  const activeBadges=document.querySelectorAll('.badge-active,.badge-next');
+  if(activePhasesEl)activePhasesEl.textContent=activeBadges.length;
+}
+
+// ── PHASE TOGGLE ─────────────────────────────────────────────
+function togglePhase(id){
+  const ph=document.getElementById(id);
+  ph.classList.toggle('open');
+}
+
+// ── TRACKER ──────────────────────────────────────────────────
+function buildTracker(){
+  const body=document.getElementById('tracker-body');
+  body.innerHTML='';
+  TRACKER_SKILLS.forEach(skill=>{
+    const key='tracker_'+skill.name;
+    const current=load(key,'Not Started');
+    const row=document.createElement('div');
+    row.className='tracker-row';
+    row.dataset.status=current;
+    row.innerHTML=`
+      <div><div class="tracker-skill-name">${skill.name}</div></div>
+      <div class="tracker-category">${skill.cat}</div>
+      <div>
+        <select class="status-select" onchange="updateTrackerStatus('${skill.name}',this,this.closest('.tracker-row'))">
+          ${STATUSES.map(s=>`<option value="${s}"${s===current?' selected':''}>${s}</option>`).join('')}
+        </select>
+      </div>`;
+    body.appendChild(row);
+  });
+}
+
+function updateTrackerStatus(skillName,sel,row){
+  const val=sel.value;
+  save('tracker_'+skillName,val);
+  row.dataset.status=val;
+}
+
+function filterTracker(status,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#tracker-body .tracker-row').forEach(row=>{
+    row.style.display=(status==='all'||row.dataset.status===status)?'':'none';
+  });
+}
+
+// ── RADAR CHART (canvas, no external lib) ────────────────────
+function drawRadar(){
+  const canvas=document.getElementById('radarChart');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  const cx=W/2,cy=H/2,R=Math.min(W,H)/2-40;
+  const N=RADAR_DATA.length;
+  const step=Math.PI*2/N;
+  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+  const gridColor=isDark?'rgba(255,255,255,0.06)':'rgba(0,0,0,0.06)';
+  const textColor=isDark?'#5A5650':'#9A9590';
+  const goldColor='#C9A84C';
+  const blueColor='rgba(74,143,212,0.55)';
+
+  ctx.clearRect(0,0,W,H);
+
+  // Grid rings
+  [0.25,0.5,0.75,1].forEach(t=>{
+    ctx.beginPath();
+    for(let i=0;i<N;i++){
+      const a=step*i-Math.PI/2;
+      const x=cx+Math.cos(a)*R*t,y=cy+Math.sin(a)*R*t;
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle=gridColor;ctx.lineWidth=1;ctx.stroke();
+  });
+
+  // Axes
+  for(let i=0;i<N;i++){
+    const a=step*i-Math.PI/2;
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);
+    ctx.strokeStyle=gridColor;ctx.lineWidth=1;ctx.stroke();
+  }
+
+  // Target polygon
+  ctx.beginPath();
+  RADAR_DATA.forEach((d,i)=>{
+    const a=step*i-Math.PI/2,t=d.target/10;
+    const x=cx+Math.cos(a)*R*t,y=cy+Math.sin(a)*R*t;
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle='rgba(74,143,212,0.07)';ctx.fill();
+  ctx.strokeStyle='rgba(74,143,212,0.4)';ctx.lineWidth=1.5;ctx.stroke();
+
+  // Current polygon
+  ctx.beginPath();
+  RADAR_DATA.forEach((d,i)=>{
+    const a=step*i-Math.PI/2,t=d.now/10;
+    const x=cx+Math.cos(a)*R*t,y=cy+Math.sin(a)*R*t;
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle='rgba(201,168,76,0.12)';ctx.fill();
+  ctx.strokeStyle=goldColor;ctx.lineWidth=2;ctx.stroke();
+
+  // Dots
+  RADAR_DATA.forEach((d,i)=>{
+    const a=step*i-Math.PI/2,t=d.now/10;
+    ctx.beginPath();
+    ctx.arc(cx+Math.cos(a)*R*t,cy+Math.sin(a)*R*t,3,0,Math.PI*2);
+    ctx.fillStyle=goldColor;ctx.fill();
+  });
+
+  // Labels
+  ctx.font='500 11px DM Sans,sans-serif';ctx.fillStyle=textColor;ctx.textAlign='center';ctx.textBaseline='middle';
+  RADAR_DATA.forEach((d,i)=>{
+    const a=step*i-Math.PI/2,padding=18;
+    const x=cx+Math.cos(a)*(R+padding),y=cy+Math.sin(a)*(R+padding);
+    ctx.fillText(d.label,x,y);
+  });
+
+  // Legend items
+  const container=document.getElementById('radar-items');
+  if(container&&container.children.length===0){
+    RADAR_DATA.forEach(d=>{
+      const div=document.createElement('div');
+      div.className='radar-item';
+      div.innerHTML=`
+        <span class="radar-label">${d.label}</span>
+        <div class="radar-bars">
+          <div class="radar-compare">
+            <div class="radar-bar-now" style="width:${d.now*10}%"></div>
+            <div class="radar-bar-target" style="width:${d.target*10}%"></div>
+          </div>
+        </div>
+        <span class="radar-val">${d.now}/10 → ${d.target}/10</span>`;
+      container.appendChild(div);
+    });
+  }
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+const revObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── RESET ────────────────────────────────────────────────────
+function confirmReset(){
+  if(confirm('Reset ALL progress? This cannot be undone.')){
+    Object.keys(localStorage).filter(k=>k.startsWith('cos_')).forEach(k=>localStorage.removeItem(k));
+    location.reload();
+  }
+}
+
+// ── LAST UPDATED ─────────────────────────────────────────────
+document.getElementById('last-updated').textContent='Last opened: '+new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+
+// ── INIT ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  initSkillItems();
+  updateAllProgress();
+  buildTracker();
+  drawRadar();
+});
+</script>
+</body>
+</html>
