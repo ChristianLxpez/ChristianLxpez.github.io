@@ -94,8 +94,88 @@
     .stat-num{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:0.3rem;}
     .stat-label{font-size:0.75rem;color:var(--text3);letter-spacing:0.05em;}
 
-    
-    
+    /* WHAT I BUILD */
+    .build-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+
+    .build-card{
+      background:var(--bg2);
+      padding:2.25rem 2rem;
+      position:relative;
+      transition:background 0.25s;
+    }
+
+    .build-card:hover{
+      background:var(--bg3);
+    }
+
+    .build-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+
+    .build-card:hover::before{
+      opacity:1;
+    }
+
+    .build-num{
+      font-family:var(--mono);
+      font-size:0.65rem;
+      color:var(--text3);
+      letter-spacing:0.1em;
+      margin-bottom:1.5rem;
+    }
+
+    .build-icon{
+      font-size:1.2rem;
+      color:var(--gold);
+      margin-bottom:1rem;
+    }
+
+    .build-title{
+      font-family:var(--sans);
+      font-size:0.72rem;
+      font-weight:500;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:1rem;
+    }
+
+    .build-desc{
+      font-size:0.9rem;
+      color:var(--text2);
+      line-height:1.75;
+      max-width:280px;
+    }
+
+    @media(max-width:768px){
+      .build-grid{
+        grid-template-columns:1fr;
+      }
+
+      .build-card{
+        padding:2rem;
+      }
+
+      .build-desc{
+        max-width:none;
+      }
+    }
+
     
     /* SKILLS */
     .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
@@ -203,6 +283,7 @@
     <div class="topbar-logo">C<span>.</span>López Agardi</div>
     <nav class="topbar-nav" id="nav-links">
       <a href="#about" id="nav-about">About</a>
+      <a href="#build" id="nav-build">What I Build</a>
       <a href="#skills" id="nav-skills">Skills</a>
       <a href="#experience" id="nav-experience">Experience</a>
       <a href="#projects" id="nav-projects">Projects</a>
@@ -270,6 +351,45 @@
         <div class="stat"><div class="stat-num">5</div><div class="stat-label" id="stat3">Languages spoken</div></div>
         <div class="stat"><div class="stat-num">4</div><div class="stat-label" id="stat4">Active certifications</div></div>
       </div>
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <section id="build" class="reveal">
+    <p class="section-label" id="label-build">What I Build</p>
+    <h2 class="section-title" id="title-build">Turning problems into <em>systems.</em></h2>
+    <div class="section-line"></div>
+
+    <div class="build-grid">
+
+      <div class="build-card">
+        <div class="build-num">01</div>
+        <div class="build-icon">⚙</div>
+        <div class="build-title" id="build1-title">AI Automation</div>
+        <div class="build-desc" id="build1-desc">
+          Automate repetitive business processes with AI-powered workflows and agents.
+        </div>
+      </div>
+
+      <div class="build-card">
+        <div class="build-num">02</div>
+        <div class="build-icon">◈</div>
+        <div class="build-title" id="build2-title">AI Solutions</div>
+        <div class="build-desc" id="build2-desc">
+          Turn operational problems into software and AI-powered solutions.
+        </div>
+      </div>
+
+      <div class="build-card">
+        <div class="build-num">03</div>
+        <div class="build-icon">⌁</div>
+        <div class="build-title" id="build3-title">AI + Energy</div>
+        <div class="build-desc" id="build3-desc">
+          Apply AI and automation to energy management and efficiency.
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -429,7 +549,6 @@
       </div>
 
     </div>
-    <p style="font-size:0.75rem;color:var(--text3);margin-top:1.25rem;" id="proj-note">n8n templates are an active build. Power BI dashboard and ML analysis are certification portfolio pieces, wrapping up April 2026.</p>
   </section>
 
   <hr class="full-divider">
@@ -439,45 +558,7 @@
     <h2 class="section-title" id="title-cert">Always <em>learning.</em></h2>
     <div class="section-line"></div>
     <div class="cert-list">
-      <div class="cert-item">
-        <div class="cert-left">
-          <div class="cert-dot done"></div>
-          <div>
-            <div class="cert-name" id="cert1-name">No-Code AI Agent Builder - n8n</div>
-            <div class="cert-issuer">Simplilearn</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <span class="cert-badge done" id="badge-finished">Completed</span>
-          <div class="cert-date">2025</div>
-        </div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-left">
-          <div class="cert-dot progress"></div>
-          <div>
-            <div class="cert-name" id="cert2-name">Microsoft Power BI Data Analyst Professional Certificate</div>
-            <div class="cert-issuer">Coursera / Microsoft</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <span class="cert-badge done" id="badge-finished">Completed</span>
-          <div class="cert-date">2026</div>
-        </div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-left">
-          <div class="cert-dot progress"></div>
-          <div>
-            <div class="cert-name" id="cert3-name">Expert in Energy Management</div>
-            <div class="cert-issuer">AENOR</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <span class="cert-badge" id="badge-planned">In progress</span>
-          <div class="cert-date">November 2026</div>
-        </div>
-      </div>
+
       <div class="cert-item">
         <div class="cert-left">
           <div class="cert-dot done"></div>
@@ -491,6 +572,51 @@
           <div class="cert-date">2019</div>
         </div>
       </div>
+
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot done"></div>
+          <div>
+            <div class="cert-name" id="cert1-name">No-Code AI Agent Builder - n8n</div>
+            <div class="cert-issuer">Simplilearn</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="cert-badge done" id="badge-finished">Completed</span>
+          <div class="cert-date">2025</div>
+        </div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot done"></div>
+          <div>
+            <div class="cert-name" id="cert2-name">Microsoft Power BI Data Analyst Professional Certificate</div>
+            <div class="cert-issuer">Coursera / Microsoft</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="cert-badge done" id="badge-finished">Completed</span>
+          <div class="cert-date">2026</div>
+        </div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-left">
+          <div class="cert-dot progress"></div>
+          <div>
+            <div class="cert-name" id="cert3-name">Expert in Energy Management</div>
+            <div class="cert-issuer">AENOR</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span class="cert-badge" id="badge-planned">In progress</span>
+          <div class="cert-date">November 2026</div>
+        </div>
+      </div>
+
+
+
     </div>
   </section>
 
@@ -565,18 +691,412 @@
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
   document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const d=new FormData(this);fetch('https://formsubmit.co/ajax/lopezagardi@gmail.com',{method:'POST',body:d}).then(r=>{if(r.ok){document.getElementById('form-success').style.display='block';this.reset();}}).catch(()=>{});});
 
+
   const T={
-    en:{flag:'https://flagcdn.com/gb.svg',navAbout:'About',navSkills:'Skills',navExp:'Experience',navProj:'Projects',navContact:'Contact',eyebrow:'Available now · Open to work',heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Workflow Automation',btnResume:'Download CV',btnContact:'Get in touch',labelAbout:'About',titleAbout:'Systems that <em>run themselves.</em>',aboutText:'<p>I build AI-powered automation systems that eliminate manual work — not dashboards that describe it. With a <strong>double degree in Computer Engineering and Business Administration</strong>, I design workflows using <strong>n8n, Python and LLM APIs like Claude</strong> that actually replace repetitive human tasks, end to end.</p><p>Right now I\'m building toward a freelance automation practice for hospitality businesses — bars, restaurants, hotels: hands-on n8n + Claude API templates for booking flows, review responses and lead qualification. These are self-directed practice projects.</p><p>That direction is grounded in real experience: at INHUB, I built the automation foundations this is based on — Python pipelines that extracted, cleaned and centralized multi-year datasets from multiple sources daily, with zero manual intervention.</p><p><strong>n8n No-Code AI Agent Builder</strong> certified. Currently deepening AI agent design through Andrew Ng\'s Machine Learning Specialization. Based in Berlin, remote-first, open to relocation. Competitive athlete in Triple Jump & Long Jump, a discipline that built the discipline I bring to every project.</p>',stat1:'Years in data automation (INHUB)',stat2:'Degrees: CS + Business',stat3:'Languages spoken',stat4:'Active certifications',labelSkills:'Skills',titleSkills:'Technical <em>toolkit.</em>',skillT1:'Automation & AI',skillT2:'Programming',skillT3:'Data & Business Intelligence',skillT4:'Business & Strategy',labelExp:'Experience',titleExp:'Work & <em>experience.</em>',exp0Role:'Data & Automation Engineer',exp0Bullets:['Built Python-based web scraping pipelines (Selenium, BeautifulSoup) extracting structured data from multiple sources daily — fully automated, zero manual intervention.','Designed automated storage workflows feeding MySQL databases and Excel reports, centralizing multi-year historical datasets into a single queryable source of truth.','Improved data processing efficiency by eliminating redundant manual steps, increasing accuracy and reducing turnaround time for data-driven decisions.','Led cross-functional projects: scope definition, task coordination and KPI tracking to ensure on-time delivery.'],exp1Company:'Exchange year — Business Administration',exp1Bullet:'International academic experience in Berlin, deepening business management knowledge and expanding multicultural perspective. Foundation for current Berlin base.',labelProj:'Projects',titleProj:'Things I\'ve <em>built.</em>',proj1Name:'Automated Data Pipeline',proj1Desc:'Engineered a daily automated pipeline extracting structured data from multiple web sources using Python. Eliminated manual processing, centralized multi-year data into MySQL, and improved decision-making speed and accuracy for the business team.',proj2Name:'PawLife — AI Mobile App',proj2Desc:'Hybrid mobile app focused on pet wellbeing, featuring AI-personalized health plans. Architected the full data layer with Firebase Firestore. Solely responsible for both full-stack technical development and end-to-end business strategy including financial projections and go-to-market plan.',proj3Name:'Power BI Sales Dashboard',proj3Desc:'Interactive BI dashboard with dynamic KPI tracking, DAX measures and drill-through reports. Built as part of the Microsoft Power BI Professional Certificate.',proj4Name:'ML Predictive Analysis',proj4Desc:'Predictive model applying Machine Learning fundamentals from Andrew Ng\'s specialization to a real business dataset — classification, regression and model evaluation.',projNote:'n8n templates are an active build. Power BI dashboard and ML analysis are certification portfolio pieces, wrapping up April 2026.',labelCert:'Certifications',titleCert:'Always <em>learning.</em>',cert1:'No-Code AI Agent Builder (n8n)',cert2:'Microsoft Power BI Data Analyst Professional Certificate',cert3:'Machine Learning Specialization',cert4:'First Certificate in English (B2)',badgeProgress:'In progress',badgePlanned:'Planned',badgeFinished:'Completed',labelLang:'Languages',titleLang:'Speaking your <em>language.</em>',lang1:'Spanish',lang1l:'Native',lang2:'Hungarian',lang2l:'Bilingual',lang3:'English',lang3l:'B2 – Cambridge First',lang4:'German',lang4l:'A2',lang5:'French',lang5l:'A2',labelContact:'Contact',titleContact:'Let\'s <em>talk.</em>',contactIntro:'Open to AI Automation Engineer / AI Engineer roles — remote-first, open to relocation. If you\'re building AI-powered workflows and need someone who can design the automation and ship it — let\'s talk.',cvLink:'Download CV',formLabelName:'Name',formLabelEmail:'Email',formLabelMsg:'Message',formSubmit:'Send message',formSuccess:'✓ Message sent successfully.',labelMeeting:'Schedule',titleMeeting:'Book a <em>meeting.</em>'},
-    es:{flag:'https://flagcdn.com/es.svg',navAbout:'Sobre mí',navSkills:'Habilidades',navExp:'Experiencia',navProj:'Proyectos',navContact:'Contacto',eyebrow:'Disponible para trabajar',heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Automatización de flujos',btnResume:'Descargar CV',btnContact:'Contáctame',labelAbout:'Sobre mí',titleAbout:'Sistemas que <em>funcionan solos.</em>',aboutText:'<p>Construyo sistemas de automatización con IA que eliminan el trabajo manual — no dashboards que lo describen. Con una <strong>doble titulación en Ingeniería Informática y Administración de Empresas</strong>, diseño flujos de trabajo con <strong>n8n, Python y APIs de LLM como Claude</strong> que sustituyen tareas repetitivas de principio a fin.</p><p>Ahora mismo estoy construyendo mi propia oferta de automatización para negocios de hostelería (bares, restaurantes, hoteles): plantillas de n8n + API de Claude para reservas, respuestas a reviews y cualificación de leads. Son proyectos de práctica por iniciativa propia, todavía no trabajo facturado a clientes, con el objetivo de lanzarlo como servicio muy pronto.</p><p>Esta dirección se apoya en experiencia real: en INHUB construí las bases de automatización sobre las que se sostiene todo esto — pipelines en Python que extraían, limpiaban y centralizaban datasets históricos de múltiples fuentes a diario, sin intervención manual.</p><p>Certificado en <strong>No-Code AI Agent Builder (n8n)</strong>. Actualmente profundizando en diseño de agentes de IA con la Machine Learning Specialization de Andrew Ng. Basado en Berlín, remoto y abierto a reubicación. Atleta de élite en Triple Salto y Salto de Longitud — una disciplina que construyó la disciplina que traigo a cada proyecto.</p>',stat1:'Años en automatización de datos (INHUB)',stat2:'Titulaciones: Ing. + ADE',stat3:'Idiomas hablados',stat4:'Certificaciones activas',labelSkills:'Habilidades',titleSkills:'<em>Herramientas</em> técnicas.',skillT1:'Automatización & IA',skillT2:'Programación',skillT3:'Datos & Business Intelligence',skillT4:'Negocio & Estrategia',labelExp:'Experiencia',titleExp:'Trabajo y <em>experiencia.</em>',exp0Role:'Data & Automation Engineer',exp0Bullets:['Construí pipelines de web scraping en Python (Selenium, BeautifulSoup) que extraían datos estructurados de múltiples fuentes a diario, totalmente automatizados.','Diseñé flujos de almacenamiento automatizados que alimentaban bases de datos MySQL e informes en Excel, centralizando datasets históricos en una única fuente de verdad.','Mejoré la eficiencia del procesamiento de datos eliminando pasos manuales y reduciendo el tiempo de respuesta para decisiones basadas en datos.','Lideré proyectos transversales: definición de alcance, coordinación y seguimiento de KPIs.'],exp1Company:'Año de intercambio — Administración de Empresas',exp1Bullet:'Experiencia académica internacional en Berlín, ampliando conocimientos en gestión empresarial y perspectiva multicultural.',labelProj:'Proyectos',titleProj:'Cosas que he <em>construido.</em>',proj1Name:'Pipeline de datos automatizado',proj1Desc:'Pipeline diario automatizado que extraía datos estructurados de múltiples fuentes web con Python. Eliminó el procesamiento manual, centralizó datos históricos en MySQL y mejoró la velocidad de toma de decisiones.',proj2Name:'PawLife — App móvil con IA',proj2Desc:'App móvil híbrida orientada al bienestar de mascotas con planes de salud personalizados por IA. Arquitectura completa de datos con Firebase Firestore. Responsable único del desarrollo técnico y la estrategia de negocio completa.',proj3Name:'Dashboard de ventas en Power BI',proj3Desc:'Dashboard BI interactivo con KPIs dinámicos, medidas DAX e informes drill-through. Desarrollado como parte del certificado profesional de Microsoft Power BI.',proj4Name:'Análisis predictivo con ML',proj4Desc:'Modelo predictivo aplicando fundamentos de Machine Learning de la especialización de Andrew Ng a un dataset real de negocio.',projNote:'Las plantillas de n8n son un proyecto activo. El dashboard de Power BI y el análisis de ML son piezas de portfolio de certificaciones, cerrando en abril de 2026.',labelCert:'Certificaciones',titleCert:'Siempre <em>aprendiendo.</em>',cert1:'No-Code AI Agent Builder (n8n)',cert2:'Microsoft Power BI Data Analyst Professional Certificate',cert3:'Machine Learning Specialization',cert4:'First Certificate in English (B2)',badgeProgress:'En progreso',badgePlanned:'Planificado',badgeFinished:'Completado',labelLang:'Idiomas',titleLang:'Hablo tu <em>idioma.</em>',lang1:'Español',lang1l:'Nativo',lang2:'Húngaro',lang2l:'Bilingüe',lang3:'Inglés',lang3l:'B2 – Cambridge First',lang4:'Alemán',lang4l:'A2',lang5:'Francés',lang5l:'A2',labelContact:'Contacto',titleContact:'Hablemos.',contactIntro:'Abierto a puestos de AI Automation Engineer / AI Engineer — remoto y abierto a reubicación. Si estás construyendo flujos de trabajo con IA y necesitas a alguien que diseñe la automatización y la lance — hablemos.',cvLink:'Descargar CV',formLabelName:'Nombre',formLabelEmail:'Email',formLabelMsg:'Mensaje',formSubmit:'Enviar mensaje',formSuccess:'✓ Mensaje enviado correctamente.',labelMeeting:'Agenda',titleMeeting:'Reserva una <em>reunión.</em>'},
-    hu:{flag:'https://flagcdn.com/hu.svg',navAbout:'Rólam',navSkills:'Képességek',navExp:'Tapasztalat',navProj:'Projektek',navContact:'Kapcsolat',eyebrow:'Azonnal elérhető',heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Munkafolyamat-automatizálás',btnResume:'CV letöltése',btnContact:'Kapcsolatfelvétel',labelAbout:'Rólam',titleAbout:'Rendszerek, amelyek <em>önműködnek.</em>',aboutText:'<p>MI-alapú automatizációs rendszereket építek, amelyek megszüntetik a manuális munkát — nem irányítópultokat, amelyek csak leírják azt. <strong>Kettős diplomával Informatikában és Gazdaságtudományban</strong>, olyan munkafolyamatokat tervezek n8n, Python és LLM API-k (pl. Claude) segítségével, amelyek valóban kiváltják az ismétlődő emberi feladatokat.</p><p>Jelenleg saját kezdeményezésre építem a szolgáltatásomat vendéglátóipari vállalkozásoknak (bárok, éttermek, hotelek): n8n + Claude API sablonokat foglalási folyamatokhoz, vendégértékelésekre adott válaszokhoz és lead-minősítéshez. Ezek önállóan indított gyakorlati projektek, még nem fizetett ügyféli munka — a cél, hogy hamarosan elinduljon szolgáltatásként.</p><p>Ez az irány valós tapasztalatra épül: az INHUB-nál építettem azokat az automatizációs alapokat, amelyekre ez épül — Python pipeline-okat, amelyek napi szinten nyertek ki, tisztítottak és centralizáltak több éves adatot több forrásból, manuális beavatkozás nélkül.</p><p><strong>No-Code AI Agent Builder (n8n)</strong> tanúsítvánnyal rendelkezem. Jelenleg Andrew Ng Machine Learning Specializációján keresztül mélyítem az MI-ügynök tervezési ismereteimet. Berlinben élek, remote-first, nyitott a relokációra. Élsportoló vagyok hármasugrásban és távolugrásban — a sport fegyelme tükröződik minden munkámban.</p>',stat1:'Év adatautomatizálásban (INHUB)',stat2:'Diploma: Informatika + Közgazd.',stat3:'Beszélt nyelv',stat4:'Aktív tanúsítvány',labelSkills:'Képességek',titleSkills:'Technikai <em>eszköztár.</em>',skillT1:'Automatizálás & MI',skillT2:'Programozás',skillT3:'Adat & Business Intelligence',skillT4:'Üzlet & Stratégia',labelExp:'Tapasztalat',titleExp:'Munka és <em>tapasztalat.</em>',exp0Role:'Adat & Automatizálási Fejlesztő',exp0Bullets:['Python-alapú web scraping pipeline-okat építettem (Selenium, BeautifulSoup), amelyek napi szinten strukturált adatokat kinyernek több forrásból — teljesen automatizálva.','Automatizált tároló munkafolyamatokat terveztem MySQL adatbázisokhoz és Excel riportokhoz, több éves historikus adatot egyetlen lekérdezhető forrásba centralizálva.','Javítottam az adatfeldolgozás hatékonyságát a redundáns manuális lépések kiküszöbölésével.','Keresztfunkcionális projekteket vezettem: hatókör meghatározás, feladat-koordináció és KPI-követés.'],exp1Company:'Csereév — Üzleti Adminisztráció',exp1Bullet:'Nemzetközi akadémiai tapasztalat Berlinben, üzleti ismeretek bővítése és multikulturális perspektíva kialakítása.',labelProj:'Projektek',titleProj:'Amit <em>megépítettem.</em>',proj1Name:'Automatizált adatpipeline',proj1Desc:'Napi automatizált pipeline Python segítségével, amely strukturált adatokat nyer ki több webes forrásból. Megszüntette a manuális feldolgozást és centralizálta a historikus adatokat MySQL-be.',proj2Name:'PawLife — MI-alapú mobilapp',proj2Desc:'Hibrid mobilapp kisállatok jóllétéhez MI-alapú személyre szabott egészségügyi tervekkel. Firebase Firestore adatréteg architektúra. Egyedüli felelős a teljes technikai fejlesztésért és az üzleti stratégiáért.',proj3Name:'Power BI értékesítési dashboard',proj3Desc:'Interaktív BI dashboard dinamikus KPI-követéssel, DAX mértékekkel és drill-through riportokkal.',proj4Name:'ML prediktív elemzés',proj4Desc:'Prediktív modell Andrew Ng ML specializációjának alapjaival valós üzleti adathalmazon.',projNote:'Az n8n sablonok aktív projektek. A Power BI dashboard és az ML elemzés tanúsítványi portfólió-darabok, 2026 áprilisában lezárva.',labelCert:'Tanúsítványok',titleCert:'Mindig <em>tanulok.</em>',cert1:'No-Code AI Agent Builder (n8n)',cert2:'Microsoft Power BI Data Analyst Professional Certificate',cert3:'Machine Learning Specializáció',cert4:'First Certificate in English (B2)',badgeProgress:'Folyamatban',badgePlanned:'Tervezett',badgeFinished:'Teljesítve',labelLang:'Nyelvek',titleLang:'A te <em>nyelveden</em> beszélek.',lang1:'Spanyol',lang1l:'Anyanyelvi',lang2:'Magyar',lang2l:'Kétnyelvű',lang3:'Angol',lang3l:'B2 – Cambridge First',lang4:'Német',lang4l:'A2',lang5:'Francia',lang5l:'A2',labelContact:'Kapcsolat',titleContact:'Beszéljünk.',contactIntro:'Nyitott vagyok AI Automation Engineer / AI Engineer pozíciókra — remote-first, nyitott a relokációra. Ha MI-alapú munkafolyamatokat építesz és olyan valakire van szükséged, aki megtervezi az automatizációt és le is szállítja — keress meg.',cvLink:'CV letöltése',formLabelName:'Név',formLabelEmail:'Email',formLabelMsg:'Üzenet',formSubmit:'Üzenet küldése',formSuccess:'✓ Üzenet sikeresen elküldve.',labelMeeting:'Időpontfoglalás',titleMeeting:'Foglalj <em>időpontot.</em>'},
-    de:{flag:'https://flagcdn.com/de.svg',navAbout:'Über mich',navSkills:'Fähigkeiten',navExp:'Erfahrung',navProj:'Projekte',navContact:'Kontakt',eyebrow:'Sofort verfügbar',heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Workflow-Automatisierung',btnResume:'CV herunterladen',btnContact:'Kontakt aufnehmen',labelAbout:'Über mich',titleAbout:'Systeme, die <em>sich selbst steuern.</em>',aboutText:'<p>Ich baue KI-gestützte Automatisierungssysteme, die manuelle Arbeit eliminieren — keine Dashboards, die sie nur beschreiben. Mit einem <strong>Doppelabschluss in Informatik und Betriebswirtschaftslehre</strong> entwerfe ich Workflows mit n8n, Python und LLM-APIs wie Claude, die repetitive menschliche Aufgaben tatsächlich ersetzen.</p><p>Aktuell baue ich in Eigeninitiative mein Automatisierungsangebot für Hospitality-Unternehmen auf — Bars, Restaurants, Hotels: n8n + Claude-API-Vorlagen für Buchungsabläufe, Antworten auf Gästebewertungen und Lead-Qualifizierung. Das sind selbstinitiierte Übungsprojekte, noch keine bezahlten Kundenaufträge — das Ziel ist, daraus bald einen aktiven Service zu machen.</p><p>Diese Richtung basiert auf echter Erfahrung: Bei INHUB habe ich die Automatisierungsgrundlagen gelegt, auf denen das aufbaut — Python-Pipelines, die täglich mehrjährige Datensätze aus mehreren Quellen extrahierten, bereinigten und zentralisierten, ganz ohne manuelle Eingriffe.</p><p><strong>No-Code AI Agent Builder (n8n)</strong> zertifiziert. Aktuell vertiefe ich KI-Agenten-Design durch Andrew Ngs Machine Learning Specialization. Ansässig in Berlin, remote-first, offen für Umzug. Leistungssportler im Dreisprung und Weitsprung — Disziplin, die ich in jedes Projekt einbringe.</p>',stat1:'Jahre Datenautomatisierung (INHUB)',stat2:'Abschlüsse: Informatik + BWL',stat3:'Gesprochene Sprachen',stat4:'Aktive Zertifizierungen',labelSkills:'Fähigkeiten',titleSkills:'Technisches <em>Werkzeug.</em>',skillT1:'Automatisierung & KI',skillT2:'Programmierung',skillT3:'Daten & Business Intelligence',skillT4:'Business & Strategie',labelExp:'Erfahrung',titleExp:'Arbeit & <em>Erfahrung.</em>',exp0Role:'Data & Automation Engineer',exp0Bullets:['Python-basierte Web-Scraping-Pipelines (Selenium, BeautifulSoup) entwickelt, die täglich strukturierte Daten aus mehreren Quellen extrahieren — vollautomatisiert.','Automatisierte Speicher-Workflows für MySQL-Datenbanken und Excel-Berichte entworfen, jahrelange historische Daten in eine einzige abfragbare Quelle zentralisiert.','Datenverarbeitungseffizienz durch Eliminierung redundanter manueller Schritte verbessert.','Kleine abteilungsübergreifende Projekte geleitet: Umfangsdefinition, Aufgabenkoordination und KPI-Tracking.'],exp1Company:'Austauschjahr — Betriebswirtschaftslehre',exp1Bullet:'Internationales akademisches Erlebnis in Berlin, Vertiefung des betriebswirtschaftlichen Wissens und Erweiterung der multikulturellen Perspektive.',labelProj:'Projekte',titleProj:'Was ich <em>gebaut</em> habe.',proj1Name:'Automatisierte Datenpipeline',proj1Desc:'Tägliche automatisierte Pipeline zur Extraktion strukturierter Daten aus mehreren Webquellen mit Python. Manuellen Verarbeitungsaufwand eliminiert, historische Daten in MySQL zentralisiert.',proj2Name:'PawLife — KI-Mobil-App',proj2Desc:'Hybride Mobile-App für Haustierwohl mit KI-personalisierten Gesundheitsplänen. Vollständige Datenschicht mit Firebase Firestore. Allein verantwortlich für technische Entwicklung und Geschäftsstrategie.',proj3Name:'Power BI Vertriebs-Dashboard',proj3Desc:'Interaktives BI-Dashboard mit dynamischem KPI-Tracking, DAX-Measures und Drill-Through-Berichten.',proj4Name:'ML Prognoseanalyse',proj4Desc:'Prädiktives Modell mit ML-Grundlagen aus Andrew Ngs Spezialisierung angewendet auf einen echten Geschäftsdatensatz.',projNote:'n8n-Vorlagen sind ein aktives Projekt. Power-BI-Dashboard und ML-Analyse sind Zertifizierungs-Portfolio-Stücke, Abschluss im April 2026.',labelCert:'Zertifizierungen',titleCert:'Immer am <em>Lernen.</em>',cert1:'No-Code AI Agent Builder (n8n)',cert2:'Microsoft Power BI Data Analyst Professional Certificate',cert3:'Machine Learning Specialization',cert4:'First Certificate in English (B2)',badgeProgress:'In Bearbeitung',badgePlanned:'Geplant',badgeFinished:'Abgeschlossen',labelLang:'Sprachen',titleLang:'Ich spreche deine <em>Sprache.</em>',lang1:'Spanisch',lang1l:'Muttersprache',lang2:'Ungarisch',lang2l:'Zweisprachig',lang3:'Englisch',lang3l:'B2 – Cambridge First',lang4:'Deutsch',lang4l:'A2',lang5:'Französisch',lang5l:'A2',labelContact:'Kontakt',titleContact:'Lass uns <em>reden.</em>',contactIntro:'Offen für AI Automation Engineer / AI Engineer-Rollen — remote-first, offen für Umzug. Wenn Sie KI-gestützte Workflows aufbauen und jemanden brauchen, der die Automatisierung entwirft und liefert — sprechen wir.',cvLink:'CV herunterladen',formLabelName:'Name',formLabelEmail:'E-Mail',formLabelMsg:'Nachricht',formSubmit:'Nachricht senden',formSuccess:'✓ Nachricht erfolgreich gesendet.',labelMeeting:'Termin',titleMeeting:'Termin <em>buchen.</em>'}
+      en:{
+          flag:'https://flagcdn.com/gb.svg',
+          navAbout:'About',
+          navBuild:'What I Build',
+          navSkills:'Skills',
+          navExp:'Experience',
+          navProj:'Projects',
+          navContact:'Contact',
+
+          eyebrow:'Available now · Open to work',
+          heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Workflow Automation',
+          btnResume:'Download CV',
+          btnContact:'Get in touch',
+
+          labelAbout:'About',
+          titleAbout:'Systems that <em>run themselves.</em>',
+          aboutText:'<p>I build practical AI-powered solutions that connect <strong>automation, software, data and business processes</strong>. With a <strong>double degree in Computer Engineering and Business Administration</strong>, I approach problems from both the technical and business side — designing systems that are useful, automatable and built around real operational needs.</p><p>My current focus is <strong>AI Automation and AI Solutions</strong>: building workflows with <strong>n8n, Python, APIs and LLMs</strong>, exploring AI agents and turning repetitive or inefficient processes into reliable technical solutions.</p><p>This direction is grounded in real experience. At INHUB, I built automated Python data pipelines that extracted, cleaned and centralized multi-year datasets from multiple sources every day, with zero manual intervention. I also have experience combining software development, data, automation and business analysis across technical and product-oriented projects.</p><p><strong>No-Code AI Agent Builder (n8n)</strong> certified. Currently expanding my expertise in AI agents, LLM applications, workflow automation and energy management. Based in Berlin, remote-first and open to international relocation. Competitive athlete in Triple Jump & Long Jump — bringing discipline, consistency and long-term commitment to every project.</p>',
+
+          stat1:'Years in data automation (INHUB)',
+          stat2:'Degrees: CS + Business',
+          stat3:'Languages spoken',
+          stat4:'Active certifications',
+
+          labelBuild:'What I Build',
+          titleBuild:'Turning problems into <em>systems.</em>',
+          build1Title:'AI Automation',
+          build1Desc:'Automate repetitive business processes with AI-powered workflows and agents.',
+          build2Title:'AI Solutions',
+          build2Desc:'Turn operational problems into software and AI-powered solutions.',
+          build3Title:'AI + Energy',
+          build3Desc:'Apply AI and automation to energy management and efficiency.',
+
+          labelSkills:'Skills',
+          titleSkills:'Technical <em>toolkit.</em>',
+          skillT1:'Automation & AI',
+          skillT2:'Programming',
+          skillT3:'Data & Business Intelligence',
+          skillT4:'Business & Strategy',
+
+          labelExp:'Experience',
+          titleExp:'Work & <em>experience.</em>',
+          exp0Role:'Data & Automation Engineer',
+          exp0Bullets:[
+              'Built Python-based web scraping pipelines (Selenium, BeautifulSoup) extracting structured data from multiple sources daily — fully automated, zero manual intervention.',
+              'Designed automated storage workflows feeding MySQL databases and Excel reports, centralizing multi-year historical datasets into a single queryable source of truth.',
+              'Improved data processing efficiency by eliminating redundant manual steps, increasing accuracy and reducing turnaround time for data-driven decisions.',
+              'Led cross-functional projects: scope definition, task coordination and KPI tracking to ensure on-time delivery.'
+          ],
+          exp1Company:'Exchange year — Business Administration',
+          exp1Bullet:'International academic experience in Berlin, deepening business management knowledge and expanding multicultural perspective. Foundation for current Berlin base.',
+
+          labelProj:'Projects',
+          titleProj:'Things I\'ve <em>built.</em>',
+          proj1Name:'Automated Data Pipeline',
+          proj1Desc:'Engineered a daily automated pipeline extracting structured data from multiple web sources using Python. Eliminated manual processing, centralized multi-year data into MySQL, and improved decision-making speed and accuracy for the business team.',
+          proj2Name:'PawLife — AI Mobile App',
+          proj2Desc:'Hybrid mobile app focused on pet wellbeing, featuring AI-personalized health plans. Architected the full data layer with Firebase Firestore. Solely responsible for both full-stack technical development and end-to-end business strategy including financial projections and go-to-market plan.',
+          proj3Name:'Power BI Sales Dashboard',
+          proj3Desc:'Interactive BI dashboard with dynamic KPI tracking, DAX measures and drill-through reports. Built as part of the Microsoft Power BI Professional Certificate.',
+          proj4Name:'ML Predictive Analysis',
+          proj4Desc:'Predictive model applying Machine Learning fundamentals from Andrew Ng\'s specialization to a real business dataset — classification, regression and model evaluation.',
+          projNote:'AI automation projects are currently being developed. Power BI dashboard and ML analysis are certification portfolio pieces.',
+
+          labelCert:'Certifications',
+          titleCert:'Always <em>learning.</em>',
+          cert1:'No-Code AI Agent Builder (n8n)',
+          cert2:'Microsoft Power BI Data Analyst Professional Certificate',
+          cert3:'Machine Learning Specialization',
+          cert4:'First Certificate in English (B2)',
+          badgeProgress:'In progress',
+          badgePlanned:'Planned',
+          badgeFinished:'Completed',
+
+          labelLang:'Languages',
+          titleLang:'Speaking your <em>language.</em>',
+          lang1:'Spanish',
+          lang1l:'Native',
+          lang2:'Hungarian',
+          lang2l:'Bilingual',
+          lang3:'English',
+          lang3l:'B2 – Cambridge First',
+          lang4:'German',
+          lang4l:'A2',
+          lang5:'French',
+          lang5l:'A2',
+
+          labelContact:'Contact',
+          titleContact:'Let\'s <em>talk.</em>',
+          contactIntro:'Open to AI Automation Engineer, AI Solutions Engineer, AI Engineer and related technology roles — remote-first, open to international relocation. If you\'re building practical AI solutions and need someone who can understand the problem, design the system and build the automation — let\'s talk.',
+          cvLink:'Download CV',
+          formLabelName:'Name',
+          formLabelEmail:'Email',
+          formLabelMsg:'Message',
+          formSubmit:'Send message',
+          formSuccess:'✓ Message sent successfully.',
+          labelMeeting:'Schedule',
+          titleMeeting:'Book a <em>meeting.</em>'
+      },
+
+      es:{
+          flag:'https://flagcdn.com/es.svg',
+          navAbout:'Sobre mí',
+          navBuild:'Lo que construyo',
+          navSkills:'Habilidades',
+          navExp:'Experiencia',
+          navProj:'Proyectos',
+          navContact:'Contacto',
+
+          eyebrow:'Disponible para trabajar',
+          heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Automatización de flujos',
+          btnResume:'Descargar CV',
+          btnContact:'Contáctame',
+
+          labelAbout:'Sobre mí',
+          titleAbout:'Sistemas que <em>funcionan solos.</em>',
+          aboutText:'<p>Construyo soluciones prácticas con IA que conectan <strong>automatización, software, datos y procesos de negocio</strong>. Con una <strong>doble titulación en Ingeniería Informática y Administración de Empresas</strong>, abordo los problemas desde ambos lados, técnico y empresarial, diseñando sistemas útiles, automatizables y orientados a necesidades operativas reales.</p><p>Mi foco actual es <strong>AI Automation y AI Solutions</strong>: construyo workflows con <strong>n8n, Python, APIs y LLMs</strong>, exploro agentes de IA y convierto procesos repetitivos o ineficientes en soluciones técnicas fiables.</p><p>Esta dirección se apoya en experiencia real. En INHUB construí pipelines automatizados en Python que extraían, limpiaban y centralizaban datasets históricos de múltiples fuentes cada día, sin intervención manual. También tengo experiencia combinando desarrollo de software, datos, automatización y análisis de negocio en proyectos técnicos y orientados a producto.</p><p>Certificado en <strong>No-Code AI Agent Builder (n8n)</strong>. Actualmente ampliando mis conocimientos en agentes de IA, aplicaciones con LLMs, automatización de workflows y gestión energética. Basado en Berlín, remoto y abierto a reubicación internacional. Atleta competitivo de Triple Salto y Salto de Longitud — disciplina, constancia y compromiso a largo plazo que también aplico a cada proyecto.</p>',
+
+          stat1:'Años en automatización de datos (INHUB)',
+          stat2:'Titulaciones: Ing. + ADE',
+          stat3:'Idiomas hablados',
+          stat4:'Certificaciones activas',
+
+          labelBuild:'Lo que construyo',
+          titleBuild:'Convirtiendo problemas en <em>sistemas.</em>',
+          build1Title:'AI Automation',
+          build1Desc:'Automatizo procesos de negocio repetitivos mediante workflows y agentes potenciados por IA.',
+          build2Title:'AI Solutions',
+          build2Desc:'Convierto problemas operativos en soluciones de software y sistemas impulsados por IA.',
+          build3Title:'AI + Energy',
+          build3Desc:'Aplico IA y automatización a la gestión energética y la eficiencia.',
+
+          labelSkills:'Habilidades',
+          titleSkills:'<em>Herramientas</em> técnicas.',
+          skillT1:'Automatización & IA',
+          skillT2:'Programación',
+          skillT3:'Datos & Business Intelligence',
+          skillT4:'Negocio & Estrategia',
+
+          labelExp:'Experiencia',
+          titleExp:'Trabajo y <em>experiencia.</em>',
+          exp0Role:'Data & Automation Engineer',
+          exp0Bullets:[
+              'Construí pipelines de web scraping en Python (Selenium, BeautifulSoup) que extraían datos estructurados de múltiples fuentes a diario, totalmente automatizados.',
+              'Diseñé flujos de almacenamiento automatizados que alimentaban bases de datos MySQL e informes en Excel, centralizando datasets históricos en una única fuente de verdad.',
+              'Mejoré la eficiencia del procesamiento de datos eliminando pasos manuales y reduciendo el tiempo de respuesta para decisiones basadas en datos.',
+              'Lideré proyectos transversales: definición de alcance, coordinación y seguimiento de KPIs.'
+          ],
+          exp1Company:'Año de intercambio — Administración de Empresas',
+          exp1Bullet:'Experiencia académica internacional en Berlín, ampliando conocimientos en gestión empresarial y perspectiva multicultural.',
+
+          labelProj:'Proyectos',
+          titleProj:'Cosas que he <em>construido.</em>',
+          proj1Name:'Pipeline de datos automatizado',
+          proj1Desc:'Pipeline diario automatizado que extraía datos estructurados de múltiples fuentes web con Python. Eliminó el procesamiento manual, centralizó datos históricos en MySQL y mejoró la velocidad de toma de decisiones.',
+          proj2Name:'PawLife — App móvil con IA',
+          proj2Desc:'App móvil híbrida orientada al bienestar de mascotas con planes de salud personalizados por IA. Arquitectura completa de datos con Firebase Firestore. Responsable único del desarrollo técnico y la estrategia de negocio completa.',
+          proj3Name:'Dashboard de ventas en Power BI',
+          proj3Desc:'Dashboard BI interactivo con KPIs dinámicos, medidas DAX e informes drill-through. Desarrollado como parte del certificado profesional de Microsoft Power BI.',
+          proj4Name:'Análisis predictivo con ML',
+          proj4Desc:'Modelo predictivo aplicando fundamentos de Machine Learning de la especialización de Andrew Ng a un dataset real de negocio.',
+          projNote:'Los proyectos de AI Automation se encuentran actualmente en desarrollo. El dashboard de Power BI y el análisis de ML son piezas de portfolio de certificaciones.',
+
+          labelCert:'Certificaciones',
+          titleCert:'Siempre <em>aprendiendo.</em>',
+          cert1:'No-Code AI Agent Builder (n8n)',
+          cert2:'Microsoft Power BI Data Analyst Professional Certificate',
+          cert3:'Machine Learning Specialization',
+          cert4:'First Certificate in English (B2)',
+          badgeProgress:'En progreso',
+          badgePlanned:'Planificado',
+          badgeFinished:'Completado',
+
+          labelLang:'Idiomas',
+          titleLang:'Hablo tu <em>idioma.</em>',
+          lang1:'Español',
+          lang1l:'Nativo',
+          lang2:'Húngaro',
+          lang2l:'Bilingüe',
+          lang3:'Inglés',
+          lang3l:'B2 – Cambridge First',
+          lang4:'Alemán',
+          lang4l:'A2',
+          lang5:'Francés',
+          lang5l:'A2',
+
+          labelContact:'Contacto',
+          titleContact:'Hablemos.',
+          contactIntro:'Abierto a puestos de AI Automation Engineer, AI Solutions Engineer, AI Engineer y roles tecnológicos relacionados — remoto y abierto a reubicación internacional. Si estás construyendo soluciones prácticas con IA y necesitas a alguien que entienda el problema, diseñe el sistema y construya la automatización — hablemos.',
+          cvLink:'Descargar CV',
+          formLabelName:'Nombre',
+          formLabelEmail:'Email',
+          formLabelMsg:'Mensaje',
+          formSubmit:'Enviar mensaje',
+          formSuccess:'✓ Mensaje enviado correctamente.',
+          labelMeeting:'Agenda',
+          titleMeeting:'Reserva una <em>reunión.</em>'
+      },
+
+      hu:{
+          flag:'https://flagcdn.com/hu.svg',
+          navAbout:'Rólam',
+          navBuild:'Amit építek',
+          navSkills:'Képességek',
+          navExp:'Tapasztalat',
+          navProj:'Projektek',
+          navContact:'Kapcsolat',
+
+          eyebrow:'Azonnal elérhető',
+          heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Munkafolyamat-automatizálás',
+          btnResume:'CV letöltése',
+          btnContact:'Kapcsolatfelvétel',
+
+          labelAbout:'Rólam',
+          titleAbout:'Rendszerek, amelyek <em>önműködnek.</em>',
+          aboutText:'<p>Gyakorlati, MI-alapú megoldásokat építek, amelyek összekapcsolják az <strong>automatizálást, a szoftvert, az adatokat és az üzleti folyamatokat</strong>. <strong>Informatikai és gazdaságtudományi kettős diplomával</strong> a problémákat technikai és üzleti oldalról egyaránt megközelítem, és valós működési igényekre épülő, hasznos és automatizálható rendszereket tervezek.</p><p>Jelenlegi fókuszom az <strong>AI Automation és az AI Solutions</strong>: n8n, Python, API-k és LLM-ek segítségével építek workflow-kat, MI-ügynököket tanulmányozok, és az ismétlődő vagy nem hatékony folyamatokat megbízható technikai megoldásokká alakítom.</p><p>Ez az irány valós tapasztalatra épül. Az INHUB-nál Python-alapú automatizált adatpipeline-okat építettem, amelyek naponta több forrásból nyertek ki, tisztítottak és centralizáltak több éves adatállományokat, manuális beavatkozás nélkül. Emellett szoftverfejlesztési, adat-, automatizálási és üzleti elemzési tapasztalattal is rendelkezem technikai és termékorientált projektekben.</p><p><strong>No-Code AI Agent Builder (n8n)</strong> tanúsítvánnyal rendelkezem. Jelenleg az MI-ügynökök, LLM-alapú alkalmazások, workflow-automatizálás és energiagazdálkodás területén bővítem a tudásomat. Berlinben élek, remote-first szemléletű vagyok és nyitott vagyok nemzetközi költözésre. Versenyszerűen hármasugrásban és távolugrásban sportolok — fegyelmet, következetességet és hosszú távú elkötelezettséget viszek minden projektembe.</p>',
+
+          stat1:'Év adatautomatizálásban (INHUB)',
+          stat2:'Diploma: Informatika + Közgazd.',
+          stat3:'Beszélt nyelv',
+          stat4:'Aktív tanúsítvány',
+
+          labelBuild:'Amit építek',
+          titleBuild:'Problémákból <em>rendszereket.</em>',
+          build1Title:'AI Automation',
+          build1Desc:'Ismétlődő üzleti folyamatokat automatizálok MI-alapú workflow-kkal és ügynökökkel.',
+          build2Title:'AI Solutions',
+          build2Desc:'Működési problémákat szoftveres és MI-alapú megoldásokká alakítok.',
+          build3Title:'AI + Energy',
+          build3Desc:'MI-t és automatizálást alkalmazok az energiagazdálkodás és energiahatékonyság területén.',
+
+          labelSkills:'Képességek',
+          titleSkills:'Technikai <em>eszköztár.</em>',
+          skillT1:'Automatizálás & MI',
+          skillT2:'Programozás',
+          skillT3:'Adat & Business Intelligence',
+          skillT4:'Üzlet & Stratégia',
+
+          labelExp:'Tapasztalat',
+          titleExp:'Munka és <em>tapasztalat.</em>',
+          exp0Role:'Adat & Automatizálási Fejlesztő',
+          exp0Bullets:[
+              'Python-alapú web scraping pipeline-okat építettem (Selenium, BeautifulSoup), amelyek napi szinten strukturált adatokat nyernek ki több forrásból — teljesen automatizálva.',
+              'Automatizált tároló munkafolyamatokat terveztem MySQL adatbázisokhoz és Excel riportokhoz, több éves historikus adatot egyetlen lekérdezhető forrásba centralizálva.',
+              'Javítottam az adatfeldolgozás hatékonyságát a redundáns manuális lépések kiküszöbölésével.',
+              'Keresztfunkcionális projekteket vezettem: hatókör meghatározás, feladat-koordináció és KPI-követés.'
+          ],
+          exp1Company:'Csereév — Üzleti Adminisztráció',
+          exp1Bullet:'Nemzetközi akadémiai tapasztalat Berlinben, üzleti ismeretek bővítése és multikulturális perspektíva kialakítása.',
+
+          labelProj:'Projektek',
+          titleProj:'Amit <em>megépítettem.</em>',
+          proj1Name:'Automatizált adatpipeline',
+          proj1Desc:'Napi automatizált pipeline Python segítségével, amely strukturált adatokat nyer ki több webes forrásból. Megszüntette a manuális feldolgozást és centralizálta a historikus adatokat MySQL-be.',
+          proj2Name:'PawLife — MI-alapú mobilapp',
+          proj2Desc:'Hibrid mobilapp kisállatok jóllétéhez MI-alapú személyre szabott egészségügyi tervekkel. Firebase Firestore adatréteg architektúra. Egyedüli felelős a teljes technikai fejlesztésért és az üzleti stratégiáért.',
+          proj3Name:'Power BI értékesítési dashboard',
+          proj3Desc:'Interaktív BI dashboard dinamikus KPI-követéssel, DAX mértékekkel és drill-through riportokkal.',
+          proj4Name:'ML prediktív elemzés',
+          proj4Desc:'Prediktív modell Andrew Ng ML specializációjának alapjaival valós üzleti adathalmazon.',
+          projNote:'Az AI Automation projektek jelenleg fejlesztés alatt állnak. A Power BI dashboard és az ML elemzés tanúsítványi portfólió-darabok.',
+
+          labelCert:'Tanúsítványok',
+          titleCert:'Mindig <em>tanulok.</em>',
+          cert1:'No-Code AI Agent Builder (n8n)',
+          cert2:'Microsoft Power BI Data Analyst Professional Certificate',
+          cert3:'Machine Learning Specializáció',
+          cert4:'First Certificate in English (B2)',
+          badgeProgress:'Folyamatban',
+          badgePlanned:'Tervezett',
+          badgeFinished:'Teljesítve',
+
+          labelLang:'Nyelvek',
+          titleLang:'A te <em>nyelveden</em> beszélek.',
+          lang1:'Spanyol',
+          lang1l:'Anyanyelvi',
+          lang2:'Magyar',
+          lang2l:'Kétnyelvű',
+          lang3:'Angol',
+          lang3l:'B2 – Cambridge First',
+          lang4:'Német',
+          lang4l:'A2',
+          lang5:'Francia',
+          lang5l:'A2',
+
+          labelContact:'Kapcsolat',
+          titleContact:'Beszéljünk.',
+          contactIntro:'Nyitott vagyok AI Automation Engineer, AI Solutions Engineer, AI Engineer és kapcsolódó technológiai pozíciókra — remote-first, nyitott nemzetközi relokációra. Ha gyakorlati MI-megoldásokat építesz, és olyan szakemberre van szükséged, aki megérti a problémát, megtervezi a rendszert és felépíti az automatizálást — keress meg.',
+          cvLink:'CV letöltése',
+          formLabelName:'Név',
+          formLabelEmail:'Email',
+          formLabelMsg:'Üzenet',
+          formSubmit:'Üzenet küldése',
+          formSuccess:'✓ Üzenet sikeresen elküldve.',
+          labelMeeting:'Időpontfoglalás',
+          titleMeeting:'Foglalj <em>időpontot.</em>'
+      },
+
+      de:{
+          flag:'https://flagcdn.com/de.svg',
+          navAbout:'Über mich',
+          navBuild:'Was ich baue',
+          navSkills:'Fähigkeiten',
+          navExp:'Erfahrung',
+          navProj:'Projekte',
+          navContact:'Kontakt',
+
+          eyebrow:'Sofort verfügbar',
+          heroTitle:'AI Automation Engineer · n8n · Python · Claude API · Workflow-Automatisierung',
+          btnResume:'CV herunterladen',
+          btnContact:'Kontakt aufnehmen',
+
+          labelAbout:'Über mich',
+          titleAbout:'Systeme, die <em>sich selbst steuern.</em>',
+          aboutText:'<p>Ich entwickle praxisnahe KI-Lösungen, die <strong>Automatisierung, Software, Daten und Geschäftsprozesse</strong> miteinander verbinden. Mit einem <strong>Doppelabschluss in Informatik und Betriebswirtschaftslehre</strong> betrachte ich Probleme sowohl aus technischer als auch aus geschäftlicher Perspektive und entwickle Systeme, die einen konkreten operativen Nutzen schaffen.</p><p>Mein aktueller Fokus liegt auf <strong>AI Automation und AI Solutions</strong>: Ich entwickle Workflows mit <strong>n8n, Python, APIs und LLMs</strong>, beschäftige mich mit KI-Agenten und verwandle repetitive oder ineffiziente Prozesse in zuverlässige technische Lösungen.</p><p>Diese Richtung basiert auf echter Erfahrung. Bei INHUB habe ich automatisierte Python-Datenpipelines entwickelt, die täglich mehrjährige Datensätze aus mehreren Quellen extrahierten, bereinigten und zentralisierten — vollständig ohne manuelle Eingriffe. Darüber hinaus verbinde ich Erfahrung in Softwareentwicklung, Daten, Automatisierung und Business Analysis in technischen und produktorientierten Projekten.</p><p><strong>No-Code AI Agent Builder (n8n)</strong> zertifiziert. Aktuell erweitere ich meine Kenntnisse in KI-Agenten, LLM-Anwendungen, Workflow-Automatisierung und Energiemanagement. In Berlin ansässig, remote-first und offen für internationale Relocation. Leistungssportler im Dreisprung und Weitsprung — Disziplin, Beständigkeit und langfristiges Engagement, die ich in jedes Projekt einbringe.</p>',
+
+          stat1:'Jahre Datenautomatisierung (INHUB)',
+          stat2:'Abschlüsse: Informatik + BWL',
+          stat3:'Gesprochene Sprachen',
+          stat4:'Aktive Zertifizierungen',
+
+          labelBuild:'Was ich baue',
+          titleBuild:'Probleme in <em>Systeme verwandeln.</em>',
+          build1Title:'AI Automation',
+          build1Desc:'Repetitive Geschäftsprozesse mit KI-gestützten Workflows und Agenten automatisieren.',
+          build2Title:'AI Solutions',
+          build2Desc:'Operative Probleme in Software- und KI-gestützte Lösungen verwandeln.',
+          build3Title:'AI + Energy',
+          build3Desc:'KI und Automatisierung für Energiemanagement und Energieeffizienz einsetzen.',
+
+          labelSkills:'Fähigkeiten',
+          titleSkills:'Technisches <em>Werkzeug.</em>',
+          skillT1:'Automatisierung & KI',
+          skillT2:'Programmierung',
+          skillT3:'Daten & Business Intelligence',
+          skillT4:'Business & Strategie',
+
+          labelExp:'Erfahrung',
+          titleExp:'Arbeit & <em>Erfahrung.</em>',
+          exp0Role:'Data & Automation Engineer',
+          exp0Bullets:[
+              'Python-basierte Web-Scraping-Pipelines (Selenium, BeautifulSoup) entwickelt, die täglich strukturierte Daten aus mehreren Quellen extrahieren — vollautomatisiert.',
+              'Automatisierte Speicher-Workflows für MySQL-Datenbanken und Excel-Berichte entworfen, jahrelange historische Daten in eine einzige abfragbare Quelle zentralisiert.',
+              'Datenverarbeitungseffizienz durch Eliminierung redundanter manueller Schritte verbessert.',
+              'Kleine abteilungsübergreifende Projekte geleitet: Umfangsdefinition, Aufgabenkoordination und KPI-Tracking.'
+          ],
+          exp1Company:'Austauschjahr — Betriebswirtschaftslehre',
+          exp1Bullet:'Internationales akademisches Erlebnis in Berlin, Vertiefung des betriebswirtschaftlichen Wissens und Erweiterung der multikulturellen Perspektive.',
+
+          labelProj:'Projekte',
+          titleProj:'Was ich <em>gebaut</em> habe.',
+          proj1Name:'Automatisierte Datenpipeline',
+          proj1Desc:'Tägliche automatisierte Pipeline zur Extraktion strukturierter Daten aus mehreren Webquellen mit Python. Manuellen Verarbeitungsaufwand eliminiert und historische Daten in MySQL zentralisiert.',
+          proj2Name:'PawLife — KI-Mobil-App',
+          proj2Desc:'Hybride Mobile-App für Haustierwohl mit KI-personalisierten Gesundheitsplänen. Vollständige Datenschicht mit Firebase Firestore. Allein verantwortlich für technische Entwicklung und Geschäftsstrategie.',
+          proj3Name:'Power BI Vertriebs-Dashboard',
+          proj3Desc:'Interaktives BI-Dashboard mit dynamischem KPI-Tracking, DAX-Measures und Drill-Through-Berichten.',
+          proj4Name:'ML Prognoseanalyse',
+          proj4Desc:'Prädiktives Modell mit ML-Grundlagen aus Andrew Ngs Spezialisierung auf einen echten Geschäftsdatensatz angewendet.',
+          projNote:'Die AI-Automation-Projekte befinden sich derzeit in Entwicklung. Power-BI-Dashboard und ML-Analyse sind Zertifizierungs-Portfolio-Stücke.',
+
+          labelCert:'Zertifizierungen',
+          titleCert:'Immer am <em>Lernen.</em>',
+          cert1:'No-Code AI Agent Builder (n8n)',
+          cert2:'Microsoft Power BI Data Analyst Professional Certificate',
+          cert3:'Machine Learning Specialization',
+          cert4:'First Certificate in English (B2)',
+          badgeProgress:'In Bearbeitung',
+          badgePlanned:'Geplant',
+          badgeFinished:'Abgeschlossen',
+
+          labelLang:'Sprachen',
+          titleLang:'Ich spreche deine <em>Sprache.</em>',
+          lang1:'Spanisch',
+          lang1l:'Muttersprache',
+          lang2:'Ungarisch',
+          lang2l:'Zweisprachig',
+          lang3:'Englisch',
+          lang3l:'B2 – Cambridge First',
+          lang4:'Deutsch',
+          lang4l:'A2',
+          lang5:'Französisch',
+          lang5l:'A2',
+
+          labelContact:'Kontakt',
+          titleContact:'Lass uns <em>reden.</em>',
+          contactIntro:'Offen für AI Automation Engineer, AI Solutions Engineer, AI Engineer und verwandte Technologie-Rollen — remote-first und offen für internationale Relocation. Wenn du praktische KI-Lösungen entwickelst und jemanden brauchst, der das Problem versteht, das System entwirft und die Automatisierung baut — lass uns sprechen.',
+          cvLink:'CV herunterladen',
+          formLabelName:'Name',
+          formLabelEmail:'E-Mail',
+          formLabelMsg:'Nachricht',
+          formSubmit:'Nachricht senden',
+          formSuccess:'✓ Nachricht erfolgreich gesendet.',
+          labelMeeting:'Termin',
+          titleMeeting:'Termin <em>buchen.</em>'
+      }
   };
+
 
   function setLanguage(lang){
     const t=T[lang]; if(!t)return;
     document.getElementById('current-flag').src=t.flag;
     document.getElementById('langDropdown').classList.remove('open');
     document.getElementById('nav-about').textContent=t.navAbout;
+    document.getElementById('nav-build').textContent=t.navBuild;
     document.getElementById('nav-skills').textContent=t.navSkills;
     document.getElementById('nav-experience').textContent=t.navExp;
     document.getElementById('nav-projects').textContent=t.navProj;
@@ -592,6 +1112,16 @@
     document.getElementById('stat2').textContent=t.stat2;
     document.getElementById('stat3').textContent=t.stat3;
     document.getElementById('stat4').textContent=t.stat4;
+
+    document.getElementById('label-build').textContent=t.labelBuild;
+    document.getElementById('title-build').innerHTML=t.titleBuild;
+    document.getElementById('build1-title').textContent=t.build1Title;
+    document.getElementById('build1-desc').textContent=t.build1Desc;
+    document.getElementById('build2-title').textContent=t.build2Title;
+    document.getElementById('build2-desc').textContent=t.build2Desc;
+    document.getElementById('build3-title').textContent=t.build3Title;
+    document.getElementById('build3-desc').textContent=t.build3Desc;
+
     document.getElementById('label-skills').textContent=t.labelSkills;
     document.getElementById('title-skills').innerHTML=t.titleSkills;
     document.getElementById('skill-t1').textContent=t.skillT1;
