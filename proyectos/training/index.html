@@ -1,0 +1,264 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Camino del Guerrero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: una columna tipo cuaderno de entrenamiento; fases como "rondas", días como fichas con registro */
+:root{
+  --bg:#f5f3f2; --surface:#ffffff; --fg:#1d1a19; --muted:#6b6360; --line:#e2dcd9;
+  --accent:#c2412d; --accent-soft:#f6e0db; --ok:#2f7d4f; --ok-soft:#dcefe3; --warn:#b07a10; --warn-soft:#f6ecd2; --bad:#b3261e; --bad-soft:#f7dcda;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"Source Sans 3",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151312; --surface:#1f1c1b; --fg:#f1ecea; --muted:#a39a96; --line:#34302e;
+  --accent:#e8664f; --accent-soft:#3a201b; --ok:#5fbf86; --ok-soft:#1b3326; --warn:#e0b04a; --warn-soft:#3a2f14; --bad:#ef7a70; --bad-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151312; --surface:#1f1c1b; --fg:#f1ecea; --muted:#a39a96; --line:#34302e;
+  --accent:#e8664f; --accent-soft:#3a201b; --ok:#5fbf86; --ok-soft:#1b3326; --warn:#e0b04a; --warn-soft:#3a2f14; --bad:#ef7a70; --bad-soft:#3d1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;padding-inline:16px;padding-block:24px 48px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(2.6rem,10vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h1 span{color:var(--accent)}
+h2{font-size:1.9rem;font-weight:800;text-transform:uppercase}
+h3{font-size:1.3rem;font-weight:600}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+p{margin:0}
+.lead{color:var(--muted);max-width:62ch}
+header{display:flex;flex-direction:column;gap:10px}
+.progress{display:flex;flex-direction:column;gap:6px}
+.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.stats{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.stats b{color:var(--fg)}
+.today-btn{align-self:flex-start;font:600 .95rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:6px;padding:10px 16px;cursor:pointer}
+.today-btn:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.rules{display:grid;gap:10px}
+.light{display:grid;grid-template-columns:14px 1fr;gap:12px;padding:12px 14px;border-radius:8px}
+.light::before{content:"";width:14px;height:14px;border-radius:50%;margin-top:4px;background:currentColor}
+.light div{color:var(--fg);min-width:0}
+.g{background:var(--ok-soft);color:var(--ok)} .y{background:var(--warn-soft);color:var(--warn)} .r{background:var(--bad-soft);color:var(--bad)}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 14px;color:var(--fg)}
+.note strong{color:var(--accent)}
+
+details.routine{border-top:1px solid var(--line);padding-block:12px}
+details.routine:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;gap:12px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .code{font-family:var(--mono);font-size:.85rem;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px;flex:none}
+summary .name{font-weight:700}
+summary .dur{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--muted);flex:none}
+.routine ol,.routine ul{margin:10px 0 0;padding-left:22px;display:grid;gap:4px}
+.routine .sub{color:var(--muted);font-size:.92rem;margin-top:8px}
+.tbl-wrap{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;font-size:.9rem;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+th{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+.phase{display:flex;flex-direction:column;gap:12px}
+.phase-head{display:flex;flex-direction:column;gap:4px;padding-bottom:6px;border-bottom:3px solid var(--fg)}
+.phase-head p{color:var(--muted)}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.day.is-today{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.day.done{opacity:.72}
+.day-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.date{font-family:var(--display);font-weight:800;font-size:1.5rem;text-transform:uppercase}
+.tag{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:var(--line);color:var(--muted)}
+.tag.club{background:var(--accent-soft);color:var(--accent)}
+.tag.rest{background:var(--ok-soft);color:var(--ok)}
+.tag.test{background:var(--warn-soft);color:var(--warn)}
+.today-pill{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:#fff;background:var(--accent);padding:2px 8px;border-radius:4px}
+.sess{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.sess input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent);margin:2px 0 0;cursor:pointer}
+.sess label{min-width:0;cursor:pointer}
+.sess .when{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted);display:block}
+.log{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.log label{font-size:.78rem;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+.log input,.log textarea{font:inherit;font-size:.95rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+.log .full{grid-column:1/-1}
+.log textarea{min-height:44px;resize:vertical}
+.debt{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--muted)}
+.debt input{accent-color:var(--bad);width:18px;height:18px}
+footer{color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){.bar i{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">12 oct → 7 nov 2026 · Triple / Longitud</span>
+  <h1>Camino del <span>Guerrero</span></h1>
+  <p class="lead">27 días para volver a la pretemporada blindado, rápido y con rebote. Cada día tiene sesión de mañana (AM) y de tarde (PM). Marca lo que hagas, apunta dolor y sensaciones. Se guarda en este móvil.</p>
+  <div class="progress">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="stats"><span>Sesiones: <b id="s-done">0</b>/<b id="s-total">0</b></span><span>Racha: <b id="s-streak">0</b> días</span><span>Deudas: <b id="s-debt">0</b></span></div>
+  </div>
+  <button class="today-btn" id="go-today" type="button">Ir a hoy</button>
+</header>
+
+<section class="rules">
+  <span class="eyebrow">Reglas del gimnasio</span>
+  <h2>Semáforo del pubis</h2>
+  <p class="lead">Cada mañana: squeeze test (balón entre rodillas, tumbado, apretar 5" fuerte). Apunta la molestia de 0 a 10. Esto decide si progresas.</p>
+  <div class="light g"><div><b>Verde · 0–2</b> y al día siguiente igual o mejor. Sigue el plan y progresa.</div></div>
+  <div class="light y"><div><b>Amarillo · 3–4</b> o molestia que dura hasta la mañana siguiente. Repite el nivel, quita la pliometría y no subas intensidad.</div></div>
+  <div class="light r"><div><b>Rojo · 5+</b>, dolor punzante, o el squeeze sube 2 puntos de un día a otro. Para carrera y saltos, haz solo B y M. Si en 48 h no mejora, fisio.</div></div>
+  <p class="note"><strong>Sprint por encima del 90%</strong> solo si: squeeze ≤2, Copenhague de 25" sin dolor y dos sesiones seguidas al 80% sin molestias.</p>
+  <p class="note"><strong>El "hilo" detrás del isquio</strong> suena a tensión del nervio ciático. El flossing de la rutina B ayuda. Si aparece hormigueo, adormecimiento o sube corriendo, para y que te vea un fisio deportivo en Berlín. Una revisión antes de noviembre es buena idea igualmente.</p>
+  <p class="note"><strong>Deuda del guerrero.</strong> Sesión saltada sin motivo = al día siguiente 100 burpees (en bloques) + 5' de plancha acumulada, y esa noche sin redes. La deuda nunca se paga con carrera extra ni quitando un descanso. Saltarse una sesión por dolor no es fallo, es inteligencia.</p>
+  <p class="note"><strong>Horario.</strong> AM por la mañana o mediodía, PM por la tarde. Deja al menos 6 h entre las dos. Duerme 8 h: es parte del plan.</p>
+</section>
+
+<section>
+  <span class="eyebrow">El arsenal</span>
+  <h2 style="margin-bottom:8px">Rutinas</h2>
+  <div id="routines"></div>
+</section>
+
+<div id="phases" class="wrap" style="gap:36px"></div>
+
+<footer>Si algo duele de verdad, el plan se adapta. Un guerrero que llega sano en noviembre gana más que uno que lo da todo en octubre y se rompe.</footer>
+</div>
+
+<script>
+const R = [
+ {c:"B",n:"Blindaje del pubis",d:"20–25'",items:[
+  "Squeeze isométrico balón entre rodillas, tumbado: 5×10\" al 70%. Desde el 26/10, con piernas estiradas.",
+  "Copenhague: S1 rodilla apoyada 3×15\"/lado · S2 3×25\" · S3 pie apoyado 3×20\" · Pueblo 3×30\" con 5 elevaciones.",
+  "Plancha lateral + abducción pierna de arriba: 3×8/lado.",
+  "Puente glúteo unipodal: 3×12/lado, 2\" arriba.",
+  "Pasos laterales con banda (rodillas) y monster walk: 3×15 pasos/lado.",
+  "Dead bug lento 3×10 + Pallof press con banda 3×10/lado.",
+  "Bird dog: 3×8/lado, 3\" de pausa.",
+  "Gemelo unipodal en escalón: 3×15/lado.",
+  "Flossing ciático sentado (extiende rodilla y mira arriba, flexiona y mira abajo): 2×10/lado, suave."]},
+ {c:"M",n:"Movilidad + activación",d:"15'",items:[
+  "90/90 de cadera: 1'/lado.","Estiramiento de flexor en zancada con glúteo apretado: 2×30\"/lado, suave.",
+  "Aductor dinámico en cuadrupedia (rocking): 10.","Tobillo contra la pared: 10/lado.","Cat-camel: 10.","Puente de glúteo: 15.","Skipping andando y talones: 2×20 m."]},
+ {c:"F1",n:"Piernas y cadena posterior",d:"40'",sub:"Mancuerna 10 kg. 3 series, 45\" de pausa. Repeticiones por semana como en el club: S1 30 · S2 25 · S3 20.",items:[
+  "Sentadilla goblet profunda.","Zancada búlgara (la mitad por pierna).","Peso muerto rumano unipodal: 12/lado fijo.",
+  "Puente de isquio unipodal con pie en banco: 12/lado.","Sentadilla sumo.","Gemelo unipodal en escalón: 20/lado.",
+  "Nordic negativo desde la S2: 3×4–6 (bajada de 4\").","Hollow hold: 3×30\"."]},
+ {c:"F2",n:"Tronco y tren superior",d:"40'",sub:"Parque de calistenia. 4 series, 45\" de pausa.",items:[
+  "Dominadas: máximo.","Fondos: máximo.","Remo invertido en barra baja: 12–15.","Flexiones: 20.",
+  "Elevación de rodillas colgado, sin balanceo: 12. Piernas estiradas solo desde el 26/10 y sin dolor.",
+  "Superman / extensión lumbar: 15.","Plancha frontal: 45–60\".","Plancha lateral: 30\"/lado."]},
+ {c:"C",n:"Core express",d:"15'",items:["Hollow hold 3×30\"","Plancha lateral 3×30\"/lado","Dead bug 3×12","Pallof press 3×10/lado","Superman 3×15"]},
+ {c:"P1",n:"Pliometría · reactivación",d:"15'",sub:"Contacto corto, tobillo rígido, aterrizaje silencioso. Sobre césped si puedes.",items:[
+  "Pogos (saltitos de tobillo): 3×20.","Skipping bajo rápido: 3×20 m.","Saltos laterales sobre línea: 3×15.","Salto a escalón o cajón bajo, bajar andando: 3×5."]},
+ {c:"P2",n:"Pliometría · rebote",d:"20'",sub:"Solo con semáforo verde. La pierna derecha (hop y step) siempre al 70%, la izquierda puede ir un poco más.",items:[
+  "Pogos: 3×25.","Frösche (saltos de rana) bajos y encadenados: 3×5.","Saltos alternos cortos: 3×6 apoyos.",
+  "Hops pierna izquierda 2×5 · pierna derecha 2×5 suaves.","Salto a cajón: 3×5."]},
+ {c:"P3",n:"Pliometría · césped del pueblo",d:"25'",items:[
+  "Pogos: 3×25.","Frösche: 4×5.","Saltos alternos: 4×20 m.","Hop-hop-step suave (ritmo de triple, sin buscar distancia): 4×.","Saltos laterales con cambio de dirección: 3×10."]},
+ {c:"E",n:"Escaleras",d:"30'",sub:"Bajada siempre andando. E1 = solo la primera parte. E2 = tabla completa del club, 2 series.",table:true},
+ {c:"FP",n:"Fuerza pueblo (pesas 5/10/20 kg)",d:"45'",sub:"3–4 series, 45\" de pausa.",items:[
+  "Sentadilla goblet con 20 kg: 3×20.","Swing con 20 kg: 4×15.","Zancada búlgara con 2×10 kg: 3×12/lado.","Peso muerto rumano unipodal con 20 kg: 3×10/lado.",
+  "Sentadilla sumo con 20 kg: 3×20.","Remo unilateral con 20 kg: 3×12/lado.","Press de hombros con 10 kg: 3×12/lado.",
+  "Gemelo unipodal en escalón con 10 kg: 3×15/lado.","Copenhague: 3×30\"/lado."]},
+ {c:"TEST",n:"Tests (12/10 y 7/11)",d:"20'",items:[
+  "Squeeze test: molestia 0–10.","Copenhague máx. con rodilla apoyada (s) por lado.","Plancha frontal máx. (s).",
+  "Dominadas máx.","Salto horizontal a pies juntos, mejor de 3 (al 80% el 12/10).","El 7/11 añade: 3×30 m lanzados al 95% si el semáforo está verde."]}
+];
+const stairs = [["Pierna izquierda","1 escalón","no"],["Pierna derecha","1 escalón","no"],["Skipping (Kniehebelauf)","1 escalón","E1"],["Tobillos (Fußgelenk)","1 escalón","E1"],["izq-izq-der-der","1 escalón","E1"],["Frösche","1 escalón","no"],["Sprunglauf (saltos alternos)","máx.","no"],["Ablauf (carrera rápida)","máx.","no"],["izq-izq-der-der","2 escalones","no"]];
+
+const D = [
+ {ph:"Ronda 1 · Despertar",phd:"Volver a correr con alegría, construir la base de fuerza y el blindaje. Todo al 70%.",days:[
+  ["2026-10-12","Lun 12","","B","TEST + rodaje 20' suave (5:45–6:00) + 4×60 m progresivos al 70% + F1"],
+  ["2026-10-13","Mar 13","club","M + B corto (solo Copenhague y squeeze)","Club: fútbol + estabilidad"],
+  ["2026-10-14","Mié 14","","B","Técnica ABC (skipping, talones, A-skip, B-skip, 2×30 m cada uno) + 6×80 m al 70%, vuelta andando + F2"],
+  ["2026-10-15","Jue 15","club","M + rodaje 20' suave","Club: fútbol + estabilidad"],
+  ["2026-10-16","Vie 16","","B","Minutenlauf 1-2-3-2-1 (30\" de pausa, ritmo alegre) + P1 + F1"],
+  ["2026-10-17","Sáb 17","","Rodaje continuo 30' (~5:30) + M","E1 escaleras + F2"],
+  ["2026-10-18","Dom 18","rest","Paseo 45' + M + flossing","Descanso. Revisa la semana y apunta cómo te sientes."]]},
+ {ph:"Ronda 2 · Volver al ring",phd:"Pretemporada con el club de lunes a jueves. Por la mañana, blindaje. Viernes y sábado, tú solo y al 75–80%.",days:[
+  ["2026-10-19","Lun 19","club","B","Club: pretemporada"],
+  ["2026-10-20","Mar 20","club","M + rodaje 20' suave","Club: pretemporada"],
+  ["2026-10-21","Mié 21","club","B","Club: pretemporada"],
+  ["2026-10-22","Jue 22","club","M + C","Club: pretemporada"],
+  ["2026-10-23","Vie 23","","B","10×100 m al 75% (2' andando) + 4×30 m desde parado al 85–90% si cumples el criterio + P2 + F1"],
+  ["2026-10-24","Sáb 24","","Rodaje 35–40' progresivo (5:40 → 5:00)","E2 escaleras completas + F2"],
+  ["2026-10-25","Dom 25","rest","B ligero (10') + paseo","Descanso total"]]},
+ {ph:"Ronda 3 · Campo en solitario",phd:"El grupo está en el campo entrenando doble. Tú también. Ritmo del 80%, primeras aceleraciones al 90%.",days:[
+  ["2026-10-26","Lun 26","","6×200 m al 75–80% (3–4' andando) + B","F1 (20 reps) + P2 + C"],
+  ["2026-10-27","Mar 27","","Minutenlauf completo 1-2-3-4-5-4-3-2-1 (30\" de pausa, ritmo alegre)","Técnica ABC + 6×30 m aceleraciones al 90% (criterio) + F2"],
+  ["2026-10-28","Mié 28","","Rodaje 30' suave + M","2×(4×100 m al 80%, cada segundo progresivo), 2' de pausa, 8' entre series + B"],
+  ["2026-10-29","Jue 29","rest","B","Viaje al pueblo. Paseo 30' + M"]]},
+ {ph:"Ronda 4 · Entrenamiento en el pueblo",phd:"Cuestas, escaleras, césped, arena del río y las pesas de la báscula. Aquí se forja el guerrero.",days:[
+  ["2026-10-30","Vie 30","","Rodaje 30' suave por tierra + 5' descalzo en arena, muy suave","E2 escaleras + FP"],
+  ["2026-10-31","Sáb 31","","B","Cuestas 8×60 m (pendiente suave) al 85%, bajada andando + 4×30 m en césped al 90% + C"],
+  ["2026-11-01","Dom 1","rest","Paseo 45–60' + M","Descanso"],
+  ["2026-11-02","Lun 2","","Minutenlauf completo por camino","FP + P3 en césped"],
+  ["2026-11-03","Mar 3","","B + 10' descalzo en arena con saltitos","Sekundenläufe 30\"-20\"-45\"-30\"-20\"-45\"-20\" (20\" de trote), 3 series, 4–5' entre series, en césped"],
+  ["2026-11-04","Mié 4","","Rodaje 40' (5:20–5:30)","F2 adaptado (remo con pesa, flexiones, fondos en silla, dominadas si hay barra) + C"],
+  ["2026-11-05","Jue 5","","M","Cuestas 8×80 m al 90% + escaleras de 2 en 2 (2×) + saltos alternos en césped 4×20 m"],
+  ["2026-11-06","Vie 6","","B","2×(6×100 m en césped al 80–85%), 2' de pausa, 6' entre series + FP ligero (2 series)"],
+  ["2026-11-07","Sáb 7","test","TEST final","Rodaje 20' suave + M. Vuelta. Noviembre te espera."]]}
+];
+
+const KEY="guerrero-v1"; let S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){S={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+// routines
+const rw=document.getElementById("routines");
+R.forEach(r=>{
+  const d=document.createElement("details");d.className="routine";
+  let body=r.sub?`<p class="sub">${r.sub}</p>`:"";
+  if(r.table){
+    body+=`<div class="tbl-wrap"><table><thead><tr><th>Ejercicio</th><th>Escalones</th><th>En E1</th></tr></thead><tbody>`+
+      stairs.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2].startsWith("E1")?"sí":"—"}</td></tr>`).join("")+`</tbody></table></div>`;
+  } else body+=`<ul>${r.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
+  d.innerHTML=`<summary><span class="code">${r.c}</span><span class="name">${r.n}</span><span class="dur">${r.d}</span></summary>${body}`;
+  rw.appendChild(d);
+});
+
+// days
+const today=new Date();const tk=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+const pw=document.getElementById("phases");
+D.forEach(p=>{
+  const sec=document.createElement("section");sec.className="phase";
+  sec.innerHTML=`<div class="phase-head"><h2>${p.ph}</h2><p>${p.phd}</p></div>`;
+  p.days.forEach(([k,label,tag,am,pm])=>{
+    const st=S[k]||{};const el=document.createElement("article");el.className="day";el.id="d"+k;
+    const tg=tag==="club"?'<span class="tag club">Club</span>':tag==="rest"?'<span class="tag rest">Recuperación</span>':tag==="test"?'<span class="tag test">Test</span>':"";
+    el.innerHTML=`<div class="day-top"><span class="date">${label}</span>${tg}${k===tk?'<span class="today-pill">HOY</span>':""}</div>
+    <div class="sess"><input type="checkbox" id="am-${k}" ${st.am?"checked":""}><label for="am-${k}"><span class="when">AM</span>${esc(am)}</label></div>
+    <div class="sess"><input type="checkbox" id="pm-${k}" ${st.pm?"checked":""}><label for="pm-${k}"><span class="when">PM</span>${esc(pm)}</label></div>
+    <div class="log">
+      <label>Squeeze mañana (0–10)<input id="sq-${k}" type="number" min="0" max="10" inputmode="numeric" value="${st.sq??""}"></label>
+      <label>Dolor máx. entreno (0–10)<input id="pa-${k}" type="number" min="0" max="10" inputmode="numeric" value="${st.pa??""}"></label>
+      <label class="full">Notas (tiempos, cargas, sensaciones)<textarea id="no-${k}">${esc(st.no||"")}</textarea></label>
+      <label class="debt full" style="flex-direction:row"><input type="checkbox" id="db-${k}" ${st.db?"checked":""}>Hoy tengo deuda pendiente</label>
+    </div>`;
+    if(k===tk)el.classList.add("is-today");
+    if(st.am&&st.pm)el.classList.add("done");
+    el.addEventListener("input",e=>{
+      const t=e.target,id=t.id.slice(0,2);S[k]=S[k]||{};
+      S[k][id]=t.type==="checkbox"?t.checked:t.value;
+      el.classList.toggle("done",!!(S[k].am&&S[k].pm));
+      // color squeeze field by semaphore
+      save();stats();
+    });
+    sec.appendChild(el);
+  });
+  pw.appendChild(sec);
+});
+
+function stats(){
+  const keys=D.flatMap(p=>p.days.map(d=>d[0]));
+  let done=0,debt=0;keys.forEach(k=>{const s=S[k]||{};if(s.am)done++;if(s.pm)done++;if(s.db)debt++;});
+  let streak=0;for(const k of keys){if(k>tk)break;const s=S[k]||{};if(s.am&&s.pm)streak++;else if(k<tk)streak=0;}
+  document.getElementById("s-done").textContent=done;document.getElementById("s-total").textContent=keys.length*2;
+  document.getElementById("s-streak").textContent=streak;document.getElementById("s-debt").textContent=debt;
+  document.getElementById("bar").style.width=(done/(keys.length*2)*100)+"%";
+}
+stats();
+document.getElementById("go-today").addEventListener("click",()=>{
+  const el=document.getElementById("d"+tk)||document.getElementById("d2026-10-12");el.scrollIntoView({behavior:"smooth",block:"start"});
+});
+</script>
+
+</body></html>
